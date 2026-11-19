@@ -1,6 +1,6 @@
 // Conserva la pagina sul telefono: si apre subito con la copia salvata e intanto scarica quella nuova,
 // che si vede dall'apertura successiva. I dati arrivano sempre dal server, mai dalla copia.
-var CACHE = 'ld-montaggi-0a920a92cc';
+var CACHE = 'ld-montaggi-8e94b1d2ca';
 var FILE = ['./index.html', './manifest.webmanifest', './icona-180.png', './icona-192.png', './icona-512.png'];
 
 self.addEventListener('install', function (e) {
@@ -17,6 +17,7 @@ self.addEventListener('fetch', function (e) {
   var req = e.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
   var pagina = req.mode === 'navigate';
+  if (pagina && !/\/(index\.html)?$/.test(new URL(req.url).pathname)) return;
   var chiave = pagina ? './index.html' : req;
   e.respondWith(caches.open(CACHE).then(function (c) {
     return c.match(chiave, { ignoreSearch: pagina }).then(function (salvata) {

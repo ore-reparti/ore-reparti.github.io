@@ -973,7 +973,7 @@
     // text/plain: Google risponde senza controlli preliminari, più veloce.
     return fetch(SERVER, { method: 'POST', body: JSON.stringify({ f: nome, a: args }), redirect: 'follow' })
       .then(function (r) {
-        if (!r.ok) throw new Error('Il server di Google ha risposto con un errore (' + r.status + '). Riprova.');
+        if (!r.ok) throw new Error('Il server ha risposto con un errore (' + r.status + '). Riprova.');
         return r.json();
       }, function () {
         throw new Error('Connessione assente o troppo lenta: controlla internet e riprova.');
@@ -1004,6 +1004,9 @@
   }
   window.google = { script: { run: crea(null, null, undefined) } };
   window.SERVER_LD = SERVER;
+  window.SU_SUPABASE = false;
+  // Supabase: appena si apre la pagina si sveglia il server, così quando si preme Entra è già pronto.
+  if (window.SU_SUPABASE) chiamaServer('titoloPagina', ['']).catch(function () {});
 })();
 
 var CONFIG = (function () {
@@ -1016,10 +1019,33 @@ var CONFIG = (function () {
     q[k] = i < 0 ? '' : decodeURIComponent(p.slice(i + 1).replace(/\+/g, ' '));
   });
   var sezione = q.sezione || '';
-  // Le pagine degli avanzamenti restano su Google.
   if (/^avanzamenti/.test(sezione)) {
-    document.documentElement.style.display = 'none';
-    location.replace(window.SERVER_LD + location.search);
+    // Con Google le pagine degli avanzamenti restano su Google.
+    if (!window.SU_SUPABASE) {
+      document.documentElement.style.display = 'none';
+      location.replace(window.SERVER_LD + location.search);
+      return { vista: 'operatore' };
+    }
+    // Con Supabase la pagina degli avanzamenti si apre qui, a tutto schermo; il nome arriva dal server.
+    document.addEventListener('DOMContentLoaded', function () {
+      var cornice = document.createElement('iframe');
+      cornice.setAttribute('title', 'Avanzamenti');
+      cornice.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;border:0;z-index:2147483647;background:#fff';
+      cornice.srcdoc = '<p style="font:16px -apple-system,sans-serif;color:#5a6b76;padding:24px">Carico gli avanzamenti…</p>';
+      document.body.appendChild(cornice);
+      var chiedi = function (nome, args) {
+        return new Promise(function (ok, ko) { var r = google.script.run.withSuccessHandler(ok).withFailureHandler(ko); r[nome].apply(r, args || []); });
+      };
+      Promise.all([chiedi('av_pagina'), sezione === 'avanzamenti' ? null : chiedi('personaAvanzamenti', [sezione])]).then(function (x) {
+        var persona = x[1];
+        if (persona) document.title = 'LD Montaggi - ' + persona.titolo;
+        var dati = persona ? '<script>window.AV_PERSONA = ' + JSON.stringify(persona).replace(/</g, '\u003c') + ';<\/script>' : '';
+        cornice.srcdoc = x[0].replace(/<head>/i, '<head>' + dati);
+      }, function (e) {
+        cornice.srcdoc = '<p style="font:16px -apple-system,sans-serif;color:#b00020;padding:24px">Avanzamenti non caricati: ' +
+          String(e && e.message ? e.message : e).replace(/</g, '&lt;') + '. Ricarica la pagina.</p>';
+      });
+    });
     return { vista: 'operatore' };
   }
   var p = PAGINE.hasOwnProperty(sezione) ? PAGINE[sezione] : null;
