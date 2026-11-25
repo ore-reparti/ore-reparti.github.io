@@ -197,6 +197,41 @@
   #cornice-avanzamenti { display: block; width: 100%; height: calc(100vh - 24px); height: calc(100dvh - 24px); min-height: 480px; border: 0; background: #f2f2f7; }
   #per-persona > summary { cursor: pointer; margin: 0; }
   #riepilogo-assegna .numero-assegnati { font-size: 14px; vertical-align: middle; }
+  /* Squadra di oggi: una sola schermata per assegnare, spostare e mandare in aiuto. */
+  #squadra .sq-filtri { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 0 0 12px; }
+  #squadra .sq-seg { display: inline-flex; background: #e9e9ee; border-radius: 10px; padding: 2px; }
+  #squadra .sq-seg button { border: 0; background: transparent; padding: 6px 12px; border-radius: 8px; font: inherit; font-size: 15px; color: var(--inchiostro); cursor: pointer; }
+  #squadra .sq-seg button[aria-pressed=true] { background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.12); font-weight: 600; }
+  #squadra .sq-cerca { flex: 1 1 160px; min-width: 0; font: inherit; font-size: 16px; padding: 8px 12px; border: 1px solid var(--bordo); border-radius: 10px; }
+  #squadra .sq-card { background: #fff; border-radius: 14px; padding: 12px 14px; margin: 0 0 10px; box-shadow: 0 1px 2px rgba(0,0,0,.05); border-left: 6px solid transparent; }
+  #squadra .sq-card h2 { font-size: 16px; margin: 0 0 8px; display: flex; align-items: center; gap: 8px; }
+  #squadra .sq-card h2 .n { margin-left: auto; font-size: 13px; font-weight: 600; color: var(--tenue); background: #f0f0f4; border-radius: 999px; padding: 1px 9px; }
+  #squadra .sq-da { border-left-color: var(--accento); background: #fff8f2; }
+  #squadra .sq-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  #squadra .sq-chip { border: 1px solid #d6dbe0; background: #f7f8fa; border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 14px; color: var(--inchiostro); cursor: pointer; text-align: left; }
+  #squadra .sq-chip small { display: block; font-size: 11px; color: var(--tenue); }
+  #squadra .sq-chip.assente { background: #fff1e0; border-color: #f0b37a; }
+  #squadra .sq-chip.aiuto { border-style: dashed; background: #fff; }
+  #squadra .sq-chip.doppio { border: 2px solid var(--errore); background: #fff0ef; }
+  #squadra .sq-chip.doppio small { color: var(--errore); font-weight: 600; }
+  .sq-menu .sq-nota { color: var(--tenue); font-size: 13px; margin: 10px 4px 0; }
+  #squadra .sq-chip.piu { border-style: dashed; color: var(--primario); background: transparent; }
+  #squadra .sq-vuoto { color: var(--tenue); font-size: 14px; margin: 0; }
+  #squadra .sq-gruppo-da { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--tenue); margin: 10px 2px 6px; }
+  #squadra .sq-gruppo-da:first-of-type { margin-top: 0; }
+  #squadra h3.sq-rep { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--tenue); margin: 18px 4px 8px; }
+  #squadra h4.sq-com { font-size: 14px; margin: 10px 4px 6px; }
+  .sq-velo { position: fixed; inset: 0; background: rgba(0,0,0,.25); z-index: 50; }
+  .sq-menu { position: fixed; left: 0; right: 0; bottom: 0; z-index: 51; background: #fff; border-radius: 16px 16px 0 0; padding: 16px 16px 24px; max-height: 80vh; overflow: auto; box-shadow: 0 -4px 20px rgba(0,0,0,.15); max-width: 640px; margin: 0 auto; }
+  .sq-menu h2 { font-size: 18px; margin: 0 0 2px; }
+  .sq-menu .sq-sotto { color: var(--tenue); font-size: 14px; margin: 0 0 12px; }
+  .sq-menu .sq-azione { display: block; width: 100%; text-align: left; border: 0; border-top: .5px solid #e5e5ea; background: none; padding: 13px 4px; font: inherit; font-size: 16px; color: var(--primario); cursor: pointer; }
+  .sq-menu .sq-azione.rosso { color: var(--errore); }
+  .sq-menu .sq-azione small { display: block; color: var(--tenue); font-size: 13px; }
+  .sq-menu .sq-gruppo { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--tenue); margin: 12px 4px 2px; }
+  .sq-menu label.sq-fino { display: flex; align-items: center; gap: 8px; font-size: 15px; margin: 4px 4px 8px; }
+  .sq-toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 20px; z-index: 60; background: #1c1c1e; color: #fff; border-radius: 12px; padding: 10px 14px; font-size: 15px; display: flex; gap: 14px; align-items: center; max-width: calc(100% - 32px); box-shadow: 0 4px 16px rgba(0,0,0,.25); }
+  .sq-toast button { background: none; border: 0; color: #64d2ff; font: inherit; font-weight: 600; cursor: pointer; padding: 0; }
   .pannello-sposta { background: #fff; border: 2px solid var(--primario); border-radius: 12px; padding: 12px; margin: 8px 0 12px; }
   .pannello-sposta .testo-sposta { font-weight: 600; margin: 0 0 8px; }
   .riga-sposta { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; font-weight: 600; }
@@ -396,6 +431,7 @@
   .gruppo-reparto > .scheda:last-child { margin-bottom: 8px; }
   .banda-reparto { --rep: #1d5fa8; background: var(--rep); color: #fff; text-align: center; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 6px 16px; }
   .banda-reparto.reparto-carpenteria { --rep: #0a8f86; }
+  .banda-squadra { font-size: 16px; padding: 10px 16px; letter-spacing: .06em; }
   .chi-approva { font-size: 13px; color: var(--tenue); align-self: center; }
   h4.commessa-gruppo { font-size: 15px; font-weight: 600; margin: 16px 4px 6px; color: var(--inchiostro); }
   h3.reparto + h4.commessa-gruppo, #attivita-assegna > h4.commessa-gruppo:first-child { margin-top: 4px; }
@@ -968,7 +1004,7 @@
 // ----- Pagina su GitHub: collegamento diretto al server di Google -----
 (function () {
   var SERVER = "https://xwrzezvzsjjpghdjypox.supabase.co/functions/v1/api";
-  var NOMI = ["accediGestione", "accediOperatore", "accediPersonale", "accediReport", "accediSezione", "aggiornaFineAssenza", "aggiungiDipendente", "allegaCertificato", "allegaCertificatoPersonale", "allegaFotoPunto", "allegaFotoPuntoCapo", "annullaMiaRichiesta", "annullaPrestito", "assenzeDelMese", "attestatiDelMese", "av_accedi", "av_aggiorna", "av_aggiungiDipendente", "av_aggiungiTipo", "av_attivaAttivita", "av_azzeraStoria", "av_cambiaMioPin", "av_caricaPosizioni", "av_collegaRegistroOre", "av_confermaDichiarata", "av_controlla", "av_eliminaAttivita", "av_eliminaDipendente", "av_eliminaStatino", "av_ignoraDichiarata", "av_inviaAttivita", "av_linkRegistro", "av_modificaAttivita", "av_modificaOrdine", "av_modificaPosizioni", "av_modificaTipo", "av_nuovoOrdine", "av_nuovoPin", "av_pagina", "av_salvaCassa", "av_salvaConsumabili", "av_salvaGruppiOrdini", "av_salvaMomConfig", "av_salvaNotaMom", "av_salvaStatino", "av_scaricaStatino", "av_segna", "av_segnaMom", "av_storico", "azzeraRegistro", "cambiaMioPin", "cambiaPinMaster", "cambiaPunto", "cambiaSquadra", "caricaReport", "chiudiReport", "comunicaMalattia", "creaPrestito", "documentoRichiesta", "eliminaAssenza", "eliminaDipendente", "eliminaReport", "fileReport", "fotoPunto", "generaPinMancanti", "gestisciRichiesta", "inviaCompilazione", "inviaRichiesta", "mieMalattie", "mieRichieste", "mioDocumento", "nuovoPin", "personaAvanzamenti", "pinPersonale", "registraAssenza", "riepilogoPersonale", "salvaAssegnazioni", "salvaAttestati", "salvaOrdineSchede", "scaricaAttestato", "scaricaMioModulo", "scaricaModulo", "scaricaResoconto", "scaricaRiepilogoPersonale", "segnaEsitiVisti", "segnaMom", "segnaPunto", "segnaRichiesteViste", "statoCompilazioni", "titoloPagina", "vediCertificato", "vediResoconto"];
+  var NOMI = ["accediGestione", "accediOperatore", "accediPersonale", "accediReport", "accediSezione", "aggiornaFineAssenza", "aggiungiDipendente", "allegaCertificato", "allegaCertificatoPersonale", "allegaFotoPunto", "allegaFotoPuntoCapo", "annullaMiaRichiesta", "annullaPrestito", "assenzeDelMese", "attestatiDelMese", "av_accedi", "av_aggiorna", "av_aggiungiDipendente", "av_aggiungiTipo", "av_attivaAttivita", "av_azzeraStoria", "av_cambiaMioPin", "av_caricaPosizioni", "av_collegaRegistroOre", "av_confermaDichiarata", "av_controlla", "av_eliminaAttivita", "av_eliminaDipendente", "av_eliminaStatino", "av_ignoraDichiarata", "av_inviaAttivita", "av_linkRegistro", "av_modificaAttivita", "av_modificaOrdine", "av_modificaPosizioni", "av_modificaTipo", "av_nuovoOrdine", "av_nuovoPin", "av_pagina", "av_salvaCassa", "av_salvaConsumabili", "av_salvaGruppiOrdini", "av_salvaMomConfig", "av_salvaNotaMom", "av_salvaStatino", "av_scaricaStatino", "av_segna", "av_segnaMom", "av_storico", "azzeraRegistro", "cambiaMioPin", "cambiaPinMaster", "cambiaPunto", "cambiaSquadra", "caricaReport", "chiudiReport", "comunicaMalattia", "creaPrestito", "documentoRichiesta", "eliminaAssenza", "eliminaDipendente", "eliminaReport", "fileReport", "fotoPunto", "generaPinMancanti", "gestisciRichiesta", "inviaCompilazione", "inviaRichiesta", "mieMalattie", "mieRichieste", "mioDocumento", "nuovoPin", "personaAvanzamenti", "pinPersonale", "registraAssenza", "riepilogoPersonale", "salvaAssegnazioni", "salvaAttestati", "salvaOrdineSchede", "salvaSquadra", "scaricaAttestato", "scaricaMioModulo", "scaricaModulo", "scaricaResoconto", "scaricaRiepilogoPersonale", "segnaEsitiVisti", "segnaMom", "segnaPunto", "segnaRichiesteViste", "statoCompilazioni", "titoloPagina", "vediCertificato", "vediResoconto"];
   function chiamaServer(nome, args) {
     // text/plain: Google risponde senza controlli preliminari, più veloce.
     return fetch(SERVER, { method: 'POST', body: JSON.stringify({ f: nome, a: args }), redirect: 'follow' })
@@ -1212,6 +1248,7 @@ var CONFIG = (function () {
 
   function mostraAssegnazioni(dati, cred, titoloPagina) {
     var generale = dati.generale;
+    var dopoSalva = null; // Squadra di oggi: cosa fare quando il salvataggio finisce
     CONFIG.operatori = dati.dipendenti.map(function (x) { return x.nome; });
     CONFIG.assenti = dati.assenti || null;
     $('assegna').hidden = false;
@@ -1495,12 +1532,13 @@ var CONFIG = (function () {
           assegnazioniDaSalvare = false;
           aggiornaElenco(risposta.dipendenti);
           lavoroDaRicaricare = true;
-          mostraAvviso('avviso-assegna', 'Assegnazioni salvate.', true);
+          if (dopoSalva) { var f1 = dopoSalva; dopoSalva = null; f1(null); } else mostraAvviso('avviso-assegna', 'Assegnazioni salvate.', true);
           // Se nel frattempo il capo è passato a Il mio lavoro, le attività si ricaricano subito.
           if (schedaAttiva === 'lavoro') caricaLavoroCapo();
         })
         .withFailureHandler(function (err) {
           fine();
+          if (dopoSalva) { var f2 = dopoSalva; dopoSalva = null; f2(err); }
           mostraAvviso('avviso-assegna', 'Salvataggio non riuscito, riprova. Dettaglio: ' + err.message);
           if (schedaAttiva === 'lavoro') {
             messaggio('');
@@ -1509,6 +1547,322 @@ var CONFIG = (function () {
         })
         .salvaAssegnazioni({ sezioneId: cred.sezioneId, pin: cred.pin, assegnazioni: assegnazioni });
     });
+
+    /* ----- Squadra di oggi: tocchi un nome e scegli dove va; ogni scelta si salva subito (con Annulla) ----- */
+    var blocchi = Array.prototype.slice.call(document.querySelectorAll('.blocco-assegna'));
+    if (!blocchi.length) return;
+    ['riepilogo-assegna', 'attivita-assegna'].forEach(function (id) { $(id).hidden = true; });
+    $('salva').closest('.barra').hidden = true;
+    $('prestiti').hidden = true;
+    $('spiega-assegna').textContent = 'Ogni dipendente sta nella squadra di Verniciatura o di Carpenteria e si assegna alle attività della sua squadra. Tocca un nome per spostarlo, aggiungerlo su un\'altra attività o toglierlo; per uno scambio di qualche giorno con l\'altra squadra usa "In aiuto". Ogni scelta si salva subito; per qualche secondo puoi premere Annulla. In arancione chi è in ferie, in permesso o assente.';
+    var nonAss = dati.nonDaAssegnare || [];
+    var squadre = dati.squadre || {};
+    var squadraDi = function (n) { return (squadre[n] || {}).r || ''; };
+    var puoSquadre = !!(dati.generale && !dati.reparto && dati.puoMom);
+    var SQ = { rep: '', cerca: '' };
+    var reparti = blocchi.map(function (b) { return b.dataset.reparto; }).filter(function (r, i, a) { return r && a.indexOf(r) === i; });
+    var box = document.createElement('div');
+    box.id = 'squadra';
+    $('attivita-assegna').parentNode.insertBefore(box, $('riepilogo-assegna'));
+    var filtri = nuovo('div', 'sq-filtri', null, box);
+    if (reparti.length > 1) {
+      var seg = nuovo('div', 'sq-seg', null, filtri);
+      [''].concat(reparti).forEach(function (r) {
+        var b = nuovo('button', '', r || 'Tutti', seg);
+        b.type = 'button';
+        b.onclick = function () { SQ.rep = r; disegnaSquadra(); };
+        b.dataset.r = r;
+      });
+    }
+    var cerca = nuovo('input', 'sq-cerca', null, filtri);
+    cerca.type = 'search';
+    cerca.placeholder = 'Cerca un nome';
+    cerca.oninput = function () { SQ.cerca = cerca.value.trim().toUpperCase(); disegnaSquadra(); };
+    var corpo = nuovo('div', '', null, box);
+
+    var nomiIn = function (b) { return Array.prototype.map.call(b.querySelectorAll('input:checked'), function (c) { return c.value; }); };
+    var foto = function () { return blocchi.map(nomiIn); };
+    var rimetti = function (f) { blocchi.forEach(function (b, i) { b.querySelectorAll('input').forEach(function (c) { c.checked = f[i].indexOf(c.value) !== -1; }); }); };
+    var aiutiOggi = function () { return (dati.prestiti || []).filter(function (x) { return x.dal <= oggi() && x.al >= oggi(); }); };
+    var trova = function (n) { return !SQ.cerca || n.indexOf(SQ.cerca) !== -1; };
+
+    var toastEl = null, toastTimer = null;
+    function toast(testo, annulla) {
+      if (toastEl) toastEl.remove();
+      clearTimeout(toastTimer);
+      toastEl = nuovo('div', 'sq-toast', null, document.body);
+      nuovo('span', '', testo, toastEl);
+      if (annulla) {
+        var b = nuovo('button', '', 'Annulla', toastEl);
+        b.type = 'button';
+        b.onclick = function () { toastEl.remove(); toastEl = null; annulla(); };
+      }
+      toastTimer = setTimeout(function () { if (toastEl) { toastEl.remove(); toastEl = null; } }, annulla ? 7000 : 4000);
+    }
+    function salvaModifica(testo, primaDi) {
+      dopoSalva = function (err) {
+        if (err) { if (primaDi) { rimetti(primaDi); ricalcola(); } disegnaSquadra(); toast('Non salvato: ' + err.message); return; }
+        disegnaSquadra();
+        toast(testo, primaDi ? function () { rimetti(primaDi); ricalcola(); salvaModifica('Modifica annullata.', null); } : null);
+      };
+      assegnazioniDaSalvare = true;
+      disegnaSquadra();
+      toast('Salvo…');
+      $('assegna').requestSubmit();
+    }
+    // Mette (o toglie) una persona: rispetta le stesse regole delle spunte (altro reparto, già occupato).
+    function cambia(nome, togliDa, mettiSu, testo) {
+      var prima = foto();
+      if (mettiSu && !confermaAssente(nome)) return;
+      if (togliDa) casellaIn(togliDa, nome).checked = false;
+      ricalcola();
+      if (mettiSu) {
+        var c = casellaIn(mettiSu, nome);
+        if (!c || c.disabled) {
+          var perche = c ? c.closest('.spunta').querySelector('.dove').textContent : '';
+          rimetti(prima); ricalcola(); disegnaSquadra();
+          toast(nome + ' non si può mettere su ' + mettiSu.dataset.titolo + (perche ? ' (' + perche + ')' : '') + '.');
+          return;
+        }
+        c.checked = true;
+        ricalcola();
+      }
+      salvaModifica(testo, prima);
+    }
+    function aiuto(nome, a, al) {
+      if (!confermaAssente(nome)) return;
+      var prima = (dati.prestiti || []).map(function (x) { return x.id; });
+      toast('Salvo…');
+      google.script.run
+        .withSuccessHandler(function (r) {
+          dati.prestiti = r.prestiti;
+          ricalcola(); disegnaSquadra();
+          lavoroDaRicaricare = true;
+          var nuovoAiuto = (r.prestiti || []).filter(function (x) { return prima.indexOf(x.id) === -1; })[0];
+          toast(nome + ' in aiuto su ' + a.commessa + ' – ' + a.nome + (al === oggi() ? ' solo per oggi' : ' fino al ' + dataBreve(al)) + '.',
+            nuovoAiuto ? function () { finisciAiuto(nuovoAiuto, 'Aiuto annullato.'); } : null);
+        })
+        .withFailureHandler(function (err) { toast('Non salvato: ' + err.message); })
+        .creaPrestito(cred, { nome: nome, commessa: a.commessa, attivita: a.nome, dal: oggi(), al: al });
+    }
+    function finisciAiuto(x, testo) {
+      toast('Salvo…');
+      google.script.run
+        .withSuccessHandler(function (r) { dati.prestiti = r.prestiti; ricalcola(); disegnaSquadra(); lavoroDaRicaricare = true; toast(testo || ('Aiuto finito: ' + x.nome + ' torna sulle sue attività.')); })
+        .withFailureHandler(function (err) { toast('Non salvato: ' + err.message); })
+        .annullaPrestito(cred, x.id);
+    }
+
+    // Le attività dove si può mettere una persona (stesse regole delle spunte: un dipendente sta in un solo reparto).
+    // togliDa = l'attività che lascia (Sposta): si prova senza di lei.
+    function dovePuo(nome, togliDa) {
+      var prima = foto();
+      if (togliDa) { casellaIn(togliDa, nome).checked = false; ricalcola(); }
+      var ok = blocchi.filter(function (b) { var c = casellaIn(b, nome); return c && !c.checked && !c.disabled; });
+      if (togliDa) { rimetti(prima); ricalcola(); }
+      return ok;
+    }
+    function repartiDi(nome) {
+      var r = blocchi.filter(function (b) { return nomiIn(b).indexOf(nome) !== -1; }).map(function (b) { return b.dataset.reparto; });
+      ((dati.repartiFuori || {})[nome] || []).forEach(function (x) { r.push(x); });
+      return r.filter(function (x, i) { return x && r.indexOf(x) === i; });
+    }
+    function chip(padre, nome, sotto, classe, click) {
+      var b = nuovo('button', 'sq-chip' + (classe ? ' ' + classe : ''), nome, padre);
+      b.type = 'button';
+      var ass = testoAssenza(nome);
+      if (ass && ass.oggi) b.classList.add('assente');
+      var due = repartiDi(nome);
+      if (due.length > 1) { b.classList.add('doppio'); sotto = '⚠ su ' + due.join(' e ') + ': lascialo in un reparto solo'; }
+      var righe = [sotto, ass ? ass.testo : ''].filter(Boolean);
+      if (righe.length) nuovo('small', '', righe.join(' · '), b);
+      b.onclick = click;
+      return b;
+    }
+    function disegnaSquadra() {
+      Array.prototype.forEach.call(filtri.querySelectorAll('.sq-seg button'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.r === SQ.rep)); });
+      corpo.textContent = '';
+      // Da assegnare: presenti senza attività, senza capi, report e personale.
+      var liberi = CONFIG.operatori.filter(function (n) { return libero(n) && nonAss.indexOf(n) === -1 && trova(n); });
+      var da = nuovo('div', 'sq-card sq-da', null, corpo);
+      var h = nuovo('h2', '', 'Da assegnare', da);
+      nuovo('span', 'n', String(liberi.length), h);
+      if (!liberi.length) nuovo('p', 'sq-vuoto', SQ.cerca ? 'Nessuno con questo nome.' : 'Tutti hanno un\'attività.', da);
+      liberi = liberi.filter(function (n) { return !SQ.rep || !squadraDi(n) || squadraDi(n) === SQ.rep; });
+      h.lastChild.textContent = String(liberi.length);
+      liberi.sort(function (x, y) { var ax = (testoAssenza(x) || {}).oggi ? 1 : 0, ay = (testoAssenza(y) || {}).oggi ? 1 : 0; return ax - ay || (x < y ? -1 : 1); });
+      reparti.concat(['']).forEach(function (r) {
+        var del = liberi.filter(function (n) { return squadraDi(n) === r; });
+        if (!del.length) return;
+        if (reparti.length > 1 || !r) nuovo('p', 'sq-gruppo-da', r ? 'Squadra ' + r : 'Senza squadra', da);
+        var cl = nuovo('div', 'sq-chips', null, da);
+        del.forEach(function (n) { chip(cl, n, '', '', function () { menuPersona(n, null); }); });
+      });
+      var aiuti = aiutiOggi();
+      var ultimoRep = null, ultimaCom = null;
+      blocchi.forEach(function (b) {
+        if (SQ.rep && b.dataset.reparto !== SQ.rep) return;
+        var qui = nomiIn(b);
+        var aiutiQui = aiuti.filter(function (x) { return x.commessa === b.dataset.commessa && x.attivita === b.dataset.attivita; });
+        if (SQ.cerca && !qui.some(trova) && !aiutiQui.some(function (x) { return trova(x.nome); })) return;
+        if (b.dataset.reparto !== ultimoRep) { ultimoRep = b.dataset.reparto; ultimaCom = null; if (ultimoRep) nuovo('h3', 'sq-rep', 'Reparto ' + ultimoRep, corpo); }
+        if (b.dataset.commessa !== ultimaCom) { ultimaCom = b.dataset.commessa; nuovo('h4', 'sq-com', ultimaCom, corpo); }
+        var card = nuovo('div', 'sq-card', null, corpo);
+        card.style.borderLeftColor = b.style.backgroundColor || 'transparent';
+        var t = nuovo('h2', '', b.dataset.attivita, card);
+        nuovo('span', 'n', String(qui.length + aiutiQui.length), t);
+        var cc = nuovo('div', 'sq-chips', null, card);
+        qui.filter(trova).forEach(function (n) {
+          var altre = blocchi.filter(function (x) { return x !== b && nomiIn(x).indexOf(n) !== -1; }).map(function (x) { return x.dataset.titolo; });
+          if (dati.occupati[n]) altre.push(dati.occupati[n]);
+          chip(cc, n, altre.length ? 'anche su ' + altre.join(', ') : '', '', function () { menuPersona(n, b); });
+        });
+        aiutiQui.filter(function (x) { return trova(x.nome); }).forEach(function (x) {
+          chip(cc, x.nome, 'in aiuto ' + (x.al === oggi() ? 'solo oggi' : 'fino al ' + dataBreve(x.al)), 'aiuto', function () { menuAiuto(x); });
+        });
+        var piu = nuovo('button', 'sq-chip piu', '+ Aggiungi', cc);
+        piu.type = 'button';
+        piu.onclick = function () { menuAggiungi(b); };
+      });
+    }
+
+    var velo = null, menu = null;
+    function chiudiMenu() { if (velo) velo.remove(); if (menu) menu.remove(); velo = menu = null; }
+    function apriMenu(titolo, sotto) {
+      chiudiMenu();
+      velo = nuovo('div', 'sq-velo', null, document.body);
+      velo.onclick = chiudiMenu;
+      menu = nuovo('div', 'sq-menu', null, document.body);
+      menu.setAttribute('role', 'dialog');
+      nuovo('h2', '', titolo, menu);
+      if (sotto) nuovo('p', 'sq-sotto', sotto, menu);
+      return menu;
+    }
+    function voce(m, testo, piccolo, classe, fn) {
+      var b = nuovo('button', 'sq-azione' + (classe ? ' ' + classe : ''), testo, m);
+      b.type = 'button';
+      if (piccolo) nuovo('small', '', piccolo, b);
+      b.onclick = fn;
+      return b;
+    }
+    // Elenco delle attività dove mandarlo, divise per reparto (escluse quelle dove è già).
+    function scegliAttivita(m, nome, togliDa, fn) {
+      var gruppo = null, ammesse = dovePuo(nome, togliDa), escluse = [];
+      blocchi.forEach(function (b) {
+        if (nomiIn(b).indexOf(nome) !== -1) return;
+        if (ammesse.indexOf(b) === -1) { if (b.dataset.reparto && escluse.indexOf(b.dataset.reparto) === -1) escluse.push(b.dataset.reparto); return; }
+        if (b.dataset.reparto !== gruppo) { gruppo = b.dataset.reparto; nuovo('p', 'sq-gruppo', gruppo ? 'Reparto ' + gruppo : 'Attività', m); }
+        voce(m, b.dataset.titolo, nomiIn(b).length ? nomiIn(b).length + (nomiIn(b).length === 1 ? ' persona' : ' persone') : 'nessuno', '', function () { chiudiMenu(); fn(b); });
+      });
+      if (!ammesse.length) nuovo('p', 'sq-vuoto', 'Nessuna attività disponibile.', m);
+      if (escluse.length) nuovo('p', 'sq-nota', 'Le attività di ' + escluse.map(function (r) { return 'Reparto ' + r; }).join(' e ') +
+        ' non compaiono: un dipendente lavora in un reparto solo' + (togliDa ? '' : ' (per cambiarlo usa Sposta)') + '. Per un aiuto di qualche giorno usa "In aiuto solo per oggi".', m);
+    }
+    function menuPersona(nome, da) {
+      var sue = blocchi.filter(function (b) { return nomiIn(b).indexOf(nome) !== -1; });
+      var ass = testoAssenza(nome);
+      var m = apriMenu(nome, [sue.length ? 'Su: ' + sue.map(function (b) { return b.dataset.titolo; }).join(', ') : 'Senza attività', ass ? ass.testo : ''].filter(Boolean).join(' · '));
+      if (da) {
+        voce(m, 'Sposta su un\'altra attività', 'Lascia ' + da.dataset.titolo, '', function () {
+          var m2 = apriMenu('Sposta ' + nome, 'Da ' + da.dataset.titolo + ' a…');
+          scegliAttivita(m2, nome, da, function (b) { cambia(nome, da, b, nome + ' spostato su ' + b.dataset.titolo + '.'); });
+        });
+        voce(m, 'Aggiungi anche su…', 'Resta anche su ' + da.dataset.titolo, '', function () {
+          var m2 = apriMenu('Aggiungi ' + nome, 'Anche su…');
+          scegliAttivita(m2, nome, null, function (b) { cambia(nome, null, b, nome + ' aggiunto su ' + b.dataset.titolo + '.'); });
+        });
+      } else {
+        voce(m, 'Assegna a…', 'Resta assegnato finché non lo cambi', '', function () {
+          var m2 = apriMenu('Assegna ' + nome, 'Su quale attività?');
+          scegliAttivita(m2, nome, null, function (b) { cambia(nome, null, b, nome + ' assegnato su ' + b.dataset.titolo + '.'); });
+        });
+      }
+      if (dati.tutteAttivita) voce(m, 'In aiuto solo per oggi…', 'Anche su un\'attività dell\'altro reparto; poi torna da solo', '', function () { menuAiutoNuovo(nome); });
+      if (da) voce(m, 'Togli da ' + da.dataset.titolo, '', 'rosso', function () { chiudiMenu(); cambia(nome, da, null, nome + ' tolto da ' + da.dataset.titolo + '.'); });
+      if (puoSquadre) {
+        var ora = squadraDi(nome);
+        reparti.filter(function (r) { return r !== ora; }).forEach(function (r) {
+          var dalle = blocchi.filter(function (b) { return b.dataset.reparto !== r && nomiIn(b).indexOf(nome) !== -1; });
+          voce(m, (ora ? 'Passa alla squadra ' : 'Metti nella squadra ') + r,
+            dalle.length ? 'Lo toglie da ' + dalle.map(function (b) { return b.dataset.titolo; }).join(', ') : (ora ? 'Lascia la squadra ' + ora : 'Poi lo assegni alle attività di ' + r), '',
+            function () { chiudiMenu(); cambiaSquadra(nome, r, dalle); });
+        });
+      }
+      voce(m, 'Chiudi', '', '', chiudiMenu);
+    }
+    // Cambio di squadra (solo il titolare): prima lo toglie dalle attività dell'altro reparto, poi salva la squadra.
+    function cambiaSquadra(nome, r, dalle) {
+      var registra = function () {
+        toast('Salvo…');
+        google.script.run
+          .withSuccessHandler(function (x) {
+            squadre = x.squadre || {};
+            dati.repartiFuori = dati.repartiFuori || {};
+            dati.repartiFuori[nome] = [r];
+            ricalcola(); disegnaSquadra();
+            toast(nome + ' ora è nella squadra ' + r + '.');
+          })
+          .withFailureHandler(function (err) { disegnaSquadra(); toast('Non salvato: ' + err.message); })
+          .salvaSquadra(cred, nome, r);
+      };
+      if (!dalle.length) { registra(); return; }
+      var prima = foto();
+      dalle.forEach(function (b) { casellaIn(b, nome).checked = false; });
+      ricalcola();
+      dopoSalva = function (err) {
+        if (err) { rimetti(prima); ricalcola(); disegnaSquadra(); toast('Non salvato: ' + err.message); return; }
+        registra();
+      };
+      assegnazioniDaSalvare = true;
+      toast('Salvo…');
+      $('assegna').requestSubmit();
+    }
+    function menuAiutoNuovo(nome) {
+      var m = apriMenu(nome + ' in aiuto', 'Lo trova in Il mio lavoro insieme alle sue attività; le sue assegnazioni non cambiano.');
+      var lab = nuovo('label', 'sq-fino', 'Fino al ', m);
+      var fino = nuovo('input', '', null, lab);
+      fino.type = 'date'; fino.value = oggi(); fino.min = oggi();
+      var gruppo = null;
+      dati.tutteAttivita.forEach(function (a) {
+        var g = a.reparto || 'Altre';
+        if (g !== gruppo) { gruppo = g; nuovo('p', 'sq-gruppo', 'Reparto ' + g, m); }
+        voce(m, a.commessa + ' – ' + a.nome, '', '', function () { var al = fino.value || oggi(); chiudiMenu(); aiuto(nome, a, al); });
+      });
+    }
+    function menuAiuto(x) {
+      var m = apriMenu(x.nome, 'In aiuto su ' + x.commessa + ' – ' + x.attivita + (x.al === oggi() ? ' solo oggi' : ' fino al ' + dataBreve(x.al)) + (x.da ? ' · deciso da ' + x.da : ''));
+      if (x.puoAnnullare) voce(m, 'Finisci l\'aiuto adesso', 'Torna sulle sue attività', 'rosso', function () { chiudiMenu(); finisciAiuto(x); });
+      voce(m, 'Chiudi', '', '', chiudiMenu);
+    }
+    function menuAggiungi(b) {
+      var m = apriMenu('Aggiungi su ' + b.dataset.titolo, 'Prima chi è da assegnare, poi gli altri' + (b.dataset.reparto ? ' del Reparto ' + b.dataset.reparto : '') + '. Chi lavora nell\'altro reparto non compare.');
+      var cerca2 = nuovo('input', 'sq-cerca', null, m);
+      cerca2.type = 'search'; cerca2.placeholder = 'Cerca un nome'; cerca2.style.width = '100%';
+      var lista = nuovo('div', '', null, m);
+      var disegna = function () {
+        lista.textContent = '';
+        var q = cerca2.value.trim().toUpperCase();
+        var qui = nomiIn(b);
+        var tutti = CONFIG.operatori.filter(function (n) { var c = casellaIn(b, n); return qui.indexOf(n) === -1 && c && !c.disabled && (!q || n.indexOf(q) !== -1); });
+        var liberiQui = tutti.filter(function (n) { return libero(n) && nonAss.indexOf(n) === -1; });
+        var altri = tutti.filter(function (n) { return liberiQui.indexOf(n) === -1; });
+        [['Da assegnare', liberiQui], ['Altri', altri]].forEach(function (g) {
+          if (!g[1].length) return;
+          nuovo('p', 'sq-gruppo', g[0], lista);
+          g[1].forEach(function (n) {
+            var dove = blocchi.filter(function (x) { return nomiIn(x).indexOf(n) !== -1; }).map(function (x) { return x.dataset.titolo; });
+            var ass = testoAssenza(n);
+            voce(lista, n, [dove.length ? 'su ' + dove.join(', ') : '', ass ? ass.testo : ''].filter(Boolean).join(' · '), '', function () {
+              chiudiMenu(); cambia(n, null, b, n + ' aggiunto su ' + b.dataset.titolo + '.');
+            });
+          });
+        });
+      };
+      cerca2.oninput = disegna;
+      disegna();
+    }
+    $('assegna').addEventListener('ricalcola', function () { disegnaSquadra(); });
+    disegnaSquadra();
   }
 
   /* ----- Avanzamenti Carpenteria: l'app degli avanzamenti in una cornice, con lo stesso PIN ----- */
@@ -4743,6 +5097,7 @@ var CONFIG = (function () {
 
   function esci() {
     chiudiCambioPin();
+    if (!(CONFIG.sezione && CONFIG.sezione.reparto)) mostraSquadra('');
     $('esiti-richieste').hidden = true;
     mostraRichiesteMie(false);
     mostraMalattiaMia(false);
@@ -4808,6 +5163,20 @@ var CONFIG = (function () {
   window.addEventListener('focus', aggiornaAttivitaSeVuoto);
   setInterval(aggiornaAttivitaSeVuoto, 30000);
 
+  // In cima alla pagina del dipendente: la sua squadra, nel colore del reparto.
+  function mostraSquadra(sq) {
+    if (CONFIG.sezione && CONFIG.sezione.reparto) return; // la pagina del capo ha già la fascia del reparto
+    var banda = $('banda-squadra');
+    if (!sq) { if (banda) banda.remove(); return; }
+    if (!banda) {
+      banda = document.createElement('div');
+      banda.id = 'banda-squadra';
+      document.querySelector('header').insertAdjacentElement('afterend', banda);
+    }
+    banda.className = 'banda-reparto banda-squadra reparto-' + sq.toLowerCase();
+    banda.textContent = 'Squadra ' + sq;
+  }
+
   function entraOperatore() {
     $('avviso').hidden = true;
     var pin = $('pin-operatore').value.trim();
@@ -4823,6 +5192,7 @@ var CONFIG = (function () {
         $('pin-operatore').value = '';
         $('accesso-operatore').hidden = true;
         $('nome-operatore').textContent = r.nome;
+        mostraSquadra(r.squadra);
         $('operatore-attivo').hidden = false;
         $('viste-operatore').hidden = false;
         disegnaAttivita(r.attivita);
@@ -4924,6 +5294,7 @@ var CONFIG = (function () {
       .withSuccessHandler(function (r) {
         pinOperatore = capoPin;
         $('nome-operatore').textContent = r.nome;
+        mostraSquadra(r.squadra);
         $('operatore-attivo').hidden = false;
         // Anche il capo chiede ferie e permessi e comunica la malattia, come ogni dipendente.
         $('viste-operatore').hidden = false;
