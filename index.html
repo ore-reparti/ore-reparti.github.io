@@ -214,6 +214,11 @@
   #squadra .sq-chip.aiuto { border-style: dashed; background: #fff; }
   #squadra .sq-chip.sq-verniciatura { background: #e3eefb; border-color: #1d5fa8; }
   #squadra .sq-chip.sq-carpenteria { background: #efe6fa; border-color: #6b3fa0; }
+  #squadra .sq-chip.sq-redolone { background: #fdeee6; border-color: #d9541e; }
+  #squadra .sq-chip.sq-redolone::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; background: #d9541e; }
+  #squadra .sq-squadra-redolone { border-left-color: #d9541e; }
+  #squadra .sq-squadra-redolone h2 { color: #c2410c; }
+  #squadra .sq-nota { margin: 0 0 8px; font-size: 13px; color: #c2410c; }
   #squadra .sq-chip.sq-verniciatura::before, #squadra .sq-chip.sq-carpenteria::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
   #squadra .sq-chip.sq-verniciatura::before { background: #1d5fa8; }
   #squadra .sq-chip.sq-carpenteria::before { background: #6b3fa0; }
@@ -278,6 +283,40 @@
   #modulo.in-abb #attivita, #modulo.in-abb #scheda-note, #modulo.in-abb #barra-modulo,
   #modulo.in-abb #campo-data { display: none !important; }
   /* Lavori */
+  .tr-pill-extra { font-size: 12px; font-weight: 800; border-radius: 999px; padding: 2px 9px; background: #ffe7a3; color: #8a5a00; border: 1px solid #f2c443; }
+  .tr-extra { margin-top: 12px; background: #fff8e1; border: 1.5px solid #f2c443; border-radius: 12px; padding: 10px 12px; }
+  .tr-extra-testa { display: flex; justify-content: space-between; align-items: center; gap: 8px; color: #8a5a00; }
+  .tr-extra-riga { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-top: .5px solid #f2dfa0; }
+  .tr-extra-riga:first-of-type { border-top: 0; }
+  .tr-extra-t { flex: 1; min-width: 0; }
+  .tr-extra-t strong { display: block; font-size: 14px; }
+  .tr-extra-t small { color: #7a6a3a; font-size: 12px; }
+  .tr-extra-form { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+  .tr-extra-form .tr-de, .tr-extra-form select { grid-column: 1 / -1; }
+  .tr-extra-form button { grid-column: 1 / -1; }
+  .tr-extra-nuovo > summary { cursor: pointer; font-weight: 700; color: #8a5a00; }
+  .tr-card > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; }
+  .tr-card > summary::-webkit-details-marker { display: none; }
+  .tr-tit { flex: 1; min-width: 0; }
+  .tr-tit strong { display: block; font-size: 16px; }
+  .tr-tit small { color: var(--tenue); font-size: 12.5px; }
+  .tr-dx { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .tr-dx .lav-passo { margin-left: 0; }
+  .tr-ore { font-size: 20px; font-weight: 800; color: #17383c; font-variant-numeric: tabular-nums; }
+  .tr-barre { display: grid; gap: 8px; margin-top: 10px; }
+  .tr-et { display: flex; justify-content: space-between; gap: 8px; font-size: 13.5px; }
+  .tr-nome { font-weight: 600; }
+  .tr-val { color: #17383c; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .tr-binario { height: 8px; border-radius: 999px; background: #e6ecee; overflow: hidden; margin-top: 3px; }
+  .tr-binario i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #1d5fa8, #38a3a5); }
+  .tr-binario i.senza { background: repeating-linear-gradient(45deg, #c9d3d8 0 6px, #e6ecee 6px 12px); }
+  .tr-chi { display: block; color: var(--tenue); font-size: 12px; margin-top: 2px; }
+  .tr-dett { display: none; margin-top: 12px; border-top: .5px solid #e3e7eb; padding-top: 8px; }
+  .tr-card[open] .tr-dett { display: block; }
+  .tr-dett h4 { margin: 0 0 6px; font-size: 13px; color: var(--tenue); }
+  .tr-riga { display: grid; grid-template-columns: 82px 1fr; gap: 2px 8px; padding: 5px 0; border-top: .5px solid #f0f2f4; font-size: 13px; }
+  .tr-riga .tr-a { grid-column: 2; color: #17383c; }
+  .tr-riga small { grid-column: 2; color: var(--tenue); }
   .blocco.di-squadra h2 { cursor: pointer; }
   .blocco.di-squadra h2::before { content: '▾ '; font-size: .8em; }
   .blocco.di-squadra.chiuso h2::before { content: '▸ '; }
@@ -611,6 +650,7 @@
   .gruppo-reparto > .scheda:last-child { margin-bottom: 8px; }
   .banda-reparto { --rep: #1d5fa8; background: var(--rep); color: #fff; text-align: center; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 6px 16px; }
   .banda-reparto.reparto-carpenteria { --rep: #6b3fa0; }
+  .banda-reparto.reparto-redolone { --rep: #d9541e; }
   .banda-squadra { font-size: 16px; padding: 10px 16px; letter-spacing: .06em; }
   .chi-approva { font-size: 13px; color: var(--tenue); align-self: center; }
   h4.commessa-gruppo { font-size: 15px; font-weight: 600; margin: 16px 4px 6px; color: var(--inchiostro); }
@@ -846,6 +886,8 @@
     color: #10292c !important; background: rgba(255, 255, 255, .62); border-radius: 12px; padding: 6px 10px;
     -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
   .giorno-testa { display: inline-block; }
+  #attivita > p.messaggio { color: #10292c !important; background: rgba(255, 255, 255, .72); border-radius: 12px; padding: 10px 14px;
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); font-weight: 600; }
   @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
     .scheda, details.scheda, section.scheda, .accesso, .voce { background: rgba(255, 255, 255, .66) !important; -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%); }
     .lav-card, .abb-card, .lav-riga, .abb-stat > div, .abb-vuoto, .abb-mia { background: rgba(255, 255, 255, .74) !important; -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%); }
@@ -931,6 +973,7 @@
   <section id="lavori-oggi" class="scheda" hidden></section>
   <section id="lavori-conferma" class="scheda" hidden></section>
   <section id="lavori-storico" class="scheda" hidden></section>
+  <section id="lavori-treni" class="scheda" hidden></section>
   <section id="mod25" class="scheda" hidden></section>
   <details id="compilazioni" class="scheda" hidden>
     <summary><span class="titolo-compilazioni">Compilazioni</span> <span id="riassunto-compilazioni"></span></summary>
@@ -1275,7 +1318,7 @@
 // ----- Pagina su GitHub: collegamento diretto al server di Google -----
 (function () {
   var SERVER = "https://xwrzezvzsjjpghdjypox.supabase.co/functions/v1/api";
-  var NOMI = ["abbigliamento", "accediGestione", "accediOperatore", "accediPersonale", "accediReport", "accediSezione", "aggiornaFineAssenza", "aggiungiDipendente", "allegaCertificato", "allegaCertificatoPersonale", "allegaFotoPunto", "allegaFotoPuntoCapo", "annullaAbbigliamento", "annullaAbbigliamentoMio", "annullaMiaRichiesta", "annullaPrestito", "assenzeDelMese", "attestatiDelMese", "attrezzature", "av_abbigliamentoElenco", "av_accedi", "av_aggiorna", "av_aggiungiDipendente", "av_aggiungiTipo", "av_attivaAttivita", "av_azzeraStoria", "av_cambiaMioPin", "av_caricaPosizioni", "av_collegaRegistroOre", "av_confermaDichiarata", "av_consegnaAbbigliamento", "av_controlla", "av_dpiElenco", "av_eliminaAttivita", "av_eliminaDipendente", "av_eliminaStatino", "av_ignoraDichiarata", "av_inviaAttivita", "av_linkRegistro", "av_modificaAttivita", "av_modificaOrdine", "av_modificaPosizioni", "av_modificaTipo", "av_nuovoOrdine", "av_nuovoPin", "av_pagina", "av_respingiAbbigliamento", "av_salvaCassa", "av_salvaConsumabili", "av_salvaDpi", "av_salvaGruppiOrdini", "av_salvaMomConfig", "av_salvaNotaMom", "av_salvaStatino", "av_scaricaAbbigliamentoAv", "av_scaricaStatino", "av_segna", "av_segnaMom", "av_storico", "azzeraRegistro", "cambiaMioPin", "cambiaPinMaster", "cambiaPunto", "cambiaSquadra", "caricaReport", "chiudiReport", "comunicaMalattia", "confermaRicevuto", "consegnaAttrezzi", "consegnaBumpCap", "creaPrestito", "documentoRichiesta", "eliminaAssenza", "eliminaDipendente", "eliminaReport", "fileReport", "firmaMod25", "fotoPunto", "generaPinMancanti", "gestisciRichiesta", "importaAttrezzi", "inviaCompilazione", "inviaRichiesta", "lavoriDaConfermare", "lavoriGiorno", "lavoriStorico", "mieAttrezzature", "mieMalattie", "mieRichieste", "mioAbbigliamento", "mioDocumento", "mod25Settimana", "nuovoPin", "personaAvanzamenti", "pinPersonale", "registraAssenza", "richiediAbbigliamento", "richiediAbbigliamentoMio", "rientroAttrezzo", "riepilogoPersonale", "salvaAssegnazioni", "salvaAttestati", "salvaAttrezzo", "salvaOrdineSchede", "salvaSquadra", "scaricaAbbigliamento", "scaricaAttestato", "scaricaMioAbbigliamento", "scaricaMioModulo", "scaricaMod25", "scaricaModulo", "scaricaResoconto", "scaricaRiepilogoPersonale", "segnaEsitiVisti", "segnaMom", "segnaPunto", "segnaRichiesteViste", "statoCompilazioni", "titoloPagina", "vediCertificato", "vediResoconto"];
+  var NOMI = ["abbigliamento", "accediGestione", "accediOperatore", "accediPersonale", "accediReport", "accediSezione", "aggiornaFineAssenza", "aggiungiDipendente", "aggiungiExtra", "allegaCertificato", "allegaCertificatoPersonale", "allegaFotoPunto", "allegaFotoPuntoCapo", "annullaAbbigliamento", "annullaAbbigliamentoMio", "annullaMiaRichiesta", "annullaPrestito", "assenzeDelMese", "attestatiDelMese", "attrezzature", "av_abbigliamentoElenco", "av_accedi", "av_aggiorna", "av_aggiungiDipendente", "av_aggiungiTipo", "av_attivaAttivita", "av_azzeraStoria", "av_cambiaMioPin", "av_caricaPosizioni", "av_collegaRegistroOre", "av_confermaDichiarata", "av_consegnaAbbigliamento", "av_controlla", "av_dpiElenco", "av_eliminaAttivita", "av_eliminaDipendente", "av_eliminaStatino", "av_ignoraDichiarata", "av_inviaAttivita", "av_linkRegistro", "av_modificaAttivita", "av_modificaOrdine", "av_modificaPosizioni", "av_modificaTipo", "av_nuovoOrdine", "av_nuovoPin", "av_pagina", "av_respingiAbbigliamento", "av_salvaCassa", "av_salvaConsumabili", "av_salvaDpi", "av_salvaGruppiOrdini", "av_salvaMomConfig", "av_salvaNotaMom", "av_salvaStatino", "av_scaricaAbbigliamentoAv", "av_scaricaStatino", "av_segna", "av_segnaMom", "av_storico", "azzeraRegistro", "cambiaMioPin", "cambiaPinMaster", "cambiaPunto", "cambiaSquadra", "caricaReport", "chiudiReport", "comunicaMalattia", "confermaRicevuto", "consegnaAttrezzi", "consegnaBumpCap", "creaPrestito", "documentoRichiesta", "eliminaAssenza", "eliminaDipendente", "eliminaExtra", "eliminaReport", "fileReport", "firmaMod25", "fotoPunto", "generaPinMancanti", "gestisciRichiesta", "importaAttrezzi", "inviaCompilazione", "inviaRichiesta", "lavoriDaConfermare", "lavoriGiorno", "lavoriStorico", "lavoriTreni", "mieAttrezzature", "mieMalattie", "mieRichieste", "mioAbbigliamento", "mioDocumento", "mod25Settimana", "nuovoPin", "personaAvanzamenti", "pinPersonale", "registraAssenza", "richiediAbbigliamento", "richiediAbbigliamentoMio", "rientroAttrezzo", "riepilogoPersonale", "salvaAssegnazioni", "salvaAttestati", "salvaAttrezzo", "salvaOrdineSchede", "salvaSquadra", "scaricaAbbigliamento", "scaricaAttestato", "scaricaMioAbbigliamento", "scaricaMioModulo", "scaricaMod25", "scaricaModulo", "scaricaResoconto", "scaricaRiepilogoPersonale", "segnaEsitiVisti", "segnaMom", "segnaPunto", "segnaRichiesteViste", "statoCompilazioni", "titoloPagina", "vediCertificato", "vediResoconto"];
   function chiamaServer(nome, args) {
     // text/plain: Google risponde senza controlli preliminari, più veloce.
     return fetch(SERVER, { method: 'POST', body: JSON.stringify({ f: nome, a: args }), redirect: 'follow' })
@@ -1834,6 +1877,9 @@ var CONFIG = (function () {
     var puoSquadre = !!(dati.generale && !dati.reparto && dati.puoMom);
     var SQ = { rep: '', cerca: '', vista: 'oggi' };
     var reparti = blocchi.map(function (b) { return b.dataset.reparto; }).filter(function (r, i, a) { return r && a.indexOf(r) === i; });
+    // Le squadre: quelle dei reparti più "Redolone" (stabilimento di Serravalle: niente attività in Hitachi).
+    var REDOLONE = 'Redolone';
+    var squadreTutte = reparti.concat(puoSquadre || Object.keys(squadre).some(function (n) { return squadre[n].r === REDOLONE; }) ? [REDOLONE] : []);
     var box = document.createElement('div');
     box.id = 'squadra';
     $('attivita-assegna').parentNode.insertBefore(box, $('riepilogo-assegna'));
@@ -1967,12 +2013,13 @@ var CONFIG = (function () {
     // Le squadre: un riquadro per squadra con tutti i suoi dipendenti, e chi è ancora senza squadra.
     function disegnaSquadre() {
       var aiuti = aiutiOggi();
-      reparti.filter(function (r) { return !SQ.rep || r === SQ.rep; }).concat(['']).forEach(function (r) {
+      squadreTutte.filter(function (r) { return !SQ.rep || r === SQ.rep; }).concat(['']).forEach(function (r) {
         var membri = CONFIG.operatori.filter(function (n) { return squadraDi(n) === r && trova(n); });
         if (!r && !membri.length) return;
         var card = nuovo('div', 'sq-card sq-squadra' + (r ? ' sq-squadra-' + r.toLowerCase() : ''), null, corpo);
         var h = nuovo('h2', '', r ? 'Squadra ' + r : 'Senza squadra', card);
         nuovo('span', 'n', String(membri.length), h);
+        if (r === REDOLONE) nuovo('p', 'sq-vuoto', 'Stabilimento di Serravalle (Via Redolone): per ora non indicano le attività e non vanno sulle lavorazioni in Hitachi.', card);
         if (!r) nuovo('p', 'sq-vuoto', 'Tocca un nome e scegli "Metti nella squadra…".', card);
         if (!membri.length) nuovo('p', 'sq-vuoto', SQ.cerca ? 'Nessuno con questo nome.' : 'Ancora nessuno.', card);
         var cc = nuovo('div', 'sq-chips', null, card);
@@ -1980,7 +2027,7 @@ var CONFIG = (function () {
           var su = blocchi.filter(function (b) { return nomiIn(b).indexOf(n) !== -1; }).map(function (b) { return b.dataset.titolo; });
           var aiuto = aiuti.filter(function (x) { return x.nome === n; }).map(function (x) { return 'in aiuto su ' + x.commessa + ' – ' + x.attivita; });
           var tutte = su.concat(aiuto);
-          var sotto = tutte.length > 1 ? tutte.length + ' attività' : tutte[0] || (nonAss.indexOf(n) !== -1 ? '' : 'da assegnare');
+          var sotto = tutte.length > 1 ? tutte.length + ' attività' : tutte[0] || (nonAss.indexOf(n) !== -1 || r === REDOLONE ? '' : 'da assegnare');
           chip(cc, n, sotto, '', function () { menuPersona(n, null); });
         });
       });
@@ -1991,7 +2038,7 @@ var CONFIG = (function () {
       corpo.textContent = '';
       if (SQ.vista === 'squadre') { disegnaSquadre(); return; }
       // Da assegnare: presenti senza attività, senza capi, report e personale.
-      var liberi = CONFIG.operatori.filter(function (n) { return libero(n) && nonAss.indexOf(n) === -1 && trova(n); });
+      var liberi = CONFIG.operatori.filter(function (n) { return libero(n) && nonAss.indexOf(n) === -1 && squadraDi(n) !== REDOLONE && trova(n); });
       var da = nuovo('div', 'sq-card sq-da', null, corpo);
       var h = nuovo('h2', '', 'Da assegnare', da);
       nuovo('span', 'n', String(liberi.length), h);
@@ -2070,7 +2117,9 @@ var CONFIG = (function () {
       var sue = blocchi.filter(function (b) { return nomiIn(b).indexOf(nome) !== -1; });
       var ass = testoAssenza(nome);
       var m = apriMenu(nome, [sue.length ? 'Su: ' + sue.map(function (b) { return b.dataset.titolo; }).join(', ') : 'Senza attività', ass ? ass.testo : ''].filter(Boolean).join(' · '));
-      if (da) {
+      var aRedolone = squadraDi(nome) === REDOLONE;
+      if (aRedolone) nuovo('p', 'sq-nota', 'Squadra Redolone (Serravalle): non si assegna alle lavorazioni in Hitachi. Per farlo, prima passalo a un\'altra squadra.', m);
+      if (aRedolone) { /* niente assegnazioni né aiuti */ } else if (da) {
         voce(m, 'Sposta su un\'altra attività', 'Lascia ' + da.dataset.titolo, '', function () {
           var m2 = apriMenu('Sposta ' + nome, 'Da ' + da.dataset.titolo + ' a…');
           scegliAttivita(m2, nome, da, function (b) { cambia(nome, da, b, nome + ' spostato su ' + b.dataset.titolo + '.'); });
@@ -2085,14 +2134,15 @@ var CONFIG = (function () {
           scegliAttivita(m2, nome, null, function (b) { cambia(nome, null, b, nome + ' assegnato su ' + b.dataset.titolo + '.'); });
         });
       }
-      if (dati.tutteAttivita) voce(m, 'In aiuto solo per oggi…', 'Anche su un\'attività dell\'altro reparto; poi torna da solo', '', function () { menuAiutoNuovo(nome); });
+      if (dati.tutteAttivita && !aRedolone) voce(m, 'In aiuto solo per oggi…', 'Anche su un\'attività dell\'altro reparto; poi torna da solo', '', function () { menuAiutoNuovo(nome); });
       if (da) voce(m, 'Togli da ' + da.dataset.titolo, '', 'rosso', function () { chiudiMenu(); cambia(nome, da, null, nome + ' tolto da ' + da.dataset.titolo + '.'); });
       if (puoSquadre) {
         var ora = squadraDi(nome);
-        reparti.filter(function (r) { return r !== ora; }).forEach(function (r) {
+        squadreTutte.filter(function (r) { return r !== ora; }).forEach(function (r) {
           var dalle = blocchi.filter(function (b) { return b.dataset.reparto !== r && nomiIn(b).indexOf(nome) !== -1; });
           voce(m, (ora ? 'Passa alla squadra ' : 'Metti nella squadra ') + r,
-            dalle.length ? 'Lo toglie da ' + dalle.map(function (b) { return b.dataset.titolo; }).join(', ') : (ora ? 'Lascia la squadra ' + ora : 'Poi lo assegni alle attività di ' + r), '',
+            dalle.length ? 'Lo toglie da ' + dalle.map(function (b) { return b.dataset.titolo; }).join(', ') :
+              r === REDOLONE ? 'Stabilimento di Serravalle: niente attività in Hitachi' : (ora ? 'Lascia la squadra ' + ora : 'Poi lo assegni alle attività di ' + r), '',
             function () { chiudiMenu(); cambiaSquadra(nome, r, dalle); });
         });
       }
@@ -3954,6 +4004,151 @@ var CONFIG = (function () {
         .withFailureHandler(function (e) { boxS.textContent = 'Storico non caricato: ' + e.message; }).lavoriStorico(cred, periodo.dal, periodo.al);
     };
     caricaStorico();
+
+    // ----- Treni Verniciatura: le ore di ogni treno, divise per attività -----
+    var boxT = $('lavori-treni');
+    if (CONFIG.sezione && CONFIG.sezione.reparto !== 'Verniciatura') return;   // solo capo cantiere e Verniciatura
+    boxT.hidden = false;
+    var treni = null, datiTreni = {}, ft = { q: '', stato: '', commessa: '', aperto: '' };
+    // Il modulo per un lavoro extra: attività di Verniciatura, descrizione, ore, data, chi l'ha fatto.
+    var formExtra = function (padre, commessa, treno) {
+      var f = nuovo('div', 'tr-extra-form', null, padre);
+      var att = (datiTreni.attivitaExtra || []).filter(function (a) { return !commessa || a.commessa === commessa; });
+      var sa = document.createElement('select');
+      nuovo('option', '', 'Attività…', sa).value = '';
+      att.forEach(function (a, i) { nuovo('option', '', (commessa ? '' : a.commessa + ' – ') + a.nome, sa).value = String(i); });
+      if (att.length === 1) sa.value = '0';
+      f.appendChild(sa);
+      var tr = null;
+      if (!treno) { tr = document.createElement('input'); tr.placeholder = 'N° treno'; tr.inputMode = 'numeric'; f.appendChild(tr); }
+      var de = document.createElement('input'); de.placeholder = 'Che lavoro extra (es. ritocchi su richiesta cliente)'; de.maxLength = 300; de.className = 'tr-de'; f.appendChild(de);
+      var or = document.createElement('input'); or.placeholder = 'Ore'; or.inputMode = 'decimal'; or.className = 'tr-or'; f.appendChild(or);
+      var da = document.createElement('input'); da.type = 'date'; da.value = oggi(); da.max = oggi(); f.appendChild(da);
+      var chi = document.createElement('input'); chi.placeholder = 'Fatto da (facoltativo)'; chi.maxLength = 200; f.appendChild(chi);
+      var ok = bottone(f, 'Aggiungi al treno', 'invia', function () {
+        var a = att[+sa.value];
+        if (!a) { alert('Scegli l\'attività.'); return; }
+        ok.disabled = true; ok.textContent = 'Salvo…';
+        google.script.run.withSuccessHandler(function (rr) { datiTreni = rr; treni = rr.treni; ft.aperto = a.commessa + '|' + (treno || String(tr.value).toUpperCase().replace(/^\s*(TRENO|TR\.?|N\.?|N°)\s*/, '').replace(/\s+/g, '')); disegnaTreni(); })
+          .withFailureHandler(function (e2) { ok.disabled = false; ok.textContent = 'Aggiungi al treno'; alert(e2.message); })
+          .aggiungiExtra(cred, { commessa: a.commessa, attivita: a.nome, treno: treno || tr.value, descrizione: de.value, ore: or.value, data: da.value, chi: chi.value });
+      });
+    };
+    var disegnaTreni = function () {
+      boxT.textContent = '';
+      var t = nuovo('div', 'lav-testa', null, boxT);
+      nuovo('h2', '', 'Treni Verniciatura', t);
+      if (treni) bottone(t, 'Aggiorna', 'mini', caricaTreni);
+      nuovo('p', 'spiega', 'Le ore di ogni treno, divise per attività, da quello che inviano i dipendenti (numero del treno nel campo "Seriale cassa / N° treno"). I lavori extra chiesti dal cliente si sommano al treno ma restano a parte, in giallo.', boxT);
+      if (!treni) { nuovo('p', 'spiega', 'Carico…', boxT); return; }
+      if (datiTreni.puoExtra) {
+        var nuovoEx = nuovo('details', 'tr-extra tr-extra-nuovo', null, boxT);
+        nuovo('summary', '', '⭐ + Lavoro extra su un treno', nuovoEx);
+        formExtra(nuovoEx, '', '');
+      }
+      var f = nuovo('div', 'lav-filtri', null, boxT);
+      var q = document.createElement('input'); q.type = 'search'; q.placeholder = 'Numero treno…'; q.value = ft.q; q.className = 'lav-cerca'; f.appendChild(q);
+      var sc = document.createElement('select');
+      nuovo('option', '', 'Tutte le commesse', sc).value = '';
+      treni.map(function (x) { return x.commessa; }).filter(function (v, i, a) { return a.indexOf(v) === i; }).sort().forEach(function (cm) { nuovo('option', '', cm, sc).value = cm; });
+      sc.value = ft.commessa; f.appendChild(sc);
+      var ss = document.createElement('select');
+      [['', 'Tutti'], ['in lavorazione', 'In lavorazione'], ['completato', 'Completati']].forEach(function (x) { nuovo('option', '', x[1], ss).value = x[0]; });
+      ss.value = ft.stato; f.appendChild(ss);
+      var lista = nuovo('div', '', null, boxT);
+      var vis = function () {
+        var s = ft.q.trim().toUpperCase().replace(/^TRENO\s*/, '');
+        return treni.filter(function (x) { return (!s || x.treno.indexOf(s) !== -1) && (!ft.commessa || x.commessa === ft.commessa) && (!ft.stato || x.stato === ft.stato); });
+      };
+      var disegnaLista = function () {
+        lista.textContent = '';
+        var v = vis();
+        var som = nuovo('div', 'lav-somma', null, lista);
+        nuovo('span', '', v.length + (v.length === 1 ? ' treno' : ' treni') + ' · ' + ore(v.reduce(function (s, x) { return s + x.ore + (x.oreExtra || 0); }, 0)), som);
+        var csv = bottone(som, 'Scarica Excel (CSV)', 'mini', function () {
+          var esc = function (s) { s = String(s == null ? '' : s); return /[";\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+          var righe = ['Commessa;Treno;Attività;Ore;Persone;Dal;Al;Stato'];
+          v.forEach(function (x) {
+            x.attivita.forEach(function (a) { righe.push([x.commessa, x.treno, a.nome, String(a.ore).replace('.', ','), a.persone.join(', '), dataIt(a.dal), dataIt(a.al), a.stato].map(esc).join(';')); });
+            (x.extra || []).forEach(function (ex) { righe.push([x.commessa, x.treno, 'EXTRA ' + ex.attivita + ': ' + ex.descrizione, String(ex.ore).replace('.', ','), ex.chi, dataIt(ex.data), dataIt(ex.data), 'extra'].map(esc).join(';')); });
+            righe.push([x.commessa, x.treno, 'TOTALE', String(x.ore + (x.oreExtra || 0)).replace('.', ','), x.persone.join(', '), dataIt(x.dal), dataIt(x.al), x.stato].map(esc).join(';'));
+          });
+          scaricaBase64('Treni Verniciatura.csv', 'text/csv', btoa(unescape(encodeURIComponent('\ufeff' + righe.join('\n')))));
+        });
+        csv.disabled = !v.length;
+        if (!v.length) nuovo('p', 'spiega', treni.length ? 'Nessun treno con questi filtri.' : 'Ancora nessun treno: le ore arrivano quando i dipendenti della Verniciatura compilano.', lista);
+        v.slice(0, 200).forEach(function (x) {
+          var totale = x.ore + (x.oreExtra || 0);
+          var card = nuovo('details', 'lav-card tr-card', null, lista);
+          if (ft.aperto === x.commessa + '|' + x.treno) card.open = true;
+          card.addEventListener('toggle', function () { if (card.open) ft.aperto = x.commessa + '|' + x.treno; });
+          var s = nuovo('summary', 'tr-testa', null, card);
+          var tit = nuovo('div', 'tr-tit', null, s);
+          nuovo('strong', '', x.commessa + ' · Treno ' + x.treno, tit);
+          nuovo('small', '', (x.dal === x.al ? dataIt(x.dal) : dataIt(x.dal) + ' – ' + dataIt(x.al)) + ' · ' + x.persone.length + (x.persone.length === 1 ? ' persona' : ' persone'), tit);
+          var dx = nuovo('div', 'tr-dx', null, s);
+          nuovo('span', 'tr-ore', ore(totale), dx);
+          if (x.oreExtra) nuovo('span', 'tr-pill-extra', '+ ' + ore(x.oreExtra) + ' extra', dx);
+          if (x.stato) nuovo('span', 'lav-passo ' + (x.stato === 'completato' ? 'lav-p-mom' : 'lav-p-dichiarata'), x.stato === 'completato' ? 'Completato' : 'In lavorazione', dx);
+          var barre = nuovo('div', 'tr-barre', null, card);
+          var max = Math.max.apply(null, x.attivita.map(function (a) { return a.ore; }).concat([x.oreExtra || 0, 1]));
+          x.attivita.forEach(function (a) {
+            var r = nuovo('div', 'tr-barra', null, barre);
+            var et = nuovo('div', 'tr-et', null, r);
+            nuovo('span', 'tr-nome', a.nome, et);
+            nuovo('span', 'tr-val', ore(a.ore) + (totale ? ' · ' + Math.round(a.ore / totale * 100) + '%' : ''), et);
+            var b = nuovo('div', 'tr-binario', null, r);
+            nuovo('i', '', null, b).style.width = Math.max(2, a.ore / max * 100) + '%';
+            nuovo('small', 'tr-chi', a.persone.join(', ') + (a.stato ? ' · ' + a.stato : ''), r);
+          });
+          // Lavori extra su richiesta del cliente: a parte, in giallo, con il loro totale.
+          if ((x.extra || []).length || datiTreni.puoExtra) {
+            var bx = nuovo('div', 'tr-extra', null, card);
+            var te = nuovo('div', 'tr-extra-testa', null, bx);
+            nuovo('strong', '', '⭐ Lavori extra su richiesta del cliente', te);
+            if (x.oreExtra) nuovo('span', 'tr-val', ore(x.oreExtra) + (totale ? ' · ' + Math.round(x.oreExtra / totale * 100) + '%' : ''), te);
+            if (!(x.extra || []).length) nuovo('small', 'tr-chi', 'Nessun lavoro extra su questo treno.', bx);
+            (x.extra || []).forEach(function (ex) {
+              var r = nuovo('div', 'tr-extra-riga', null, bx);
+              var t2 = nuovo('div', 'tr-extra-t', null, r);
+              nuovo('strong', '', ex.descrizione, t2);
+              nuovo('small', '', ex.attivita + ' · ' + dataIt(ex.data) + (ex.chi ? ' · fatto da ' + ex.chi : '') + ' · scritto da ' + ex.da, t2);
+              nuovo('span', 'tr-val', ore(ex.ore), r);
+              if (datiTreni.puoExtra) {
+                var del = bottone(r, '✕', 'mini', function () {
+                  if (!confirm('Elimino il lavoro extra "' + ex.descrizione + '" (' + ore(ex.ore) + ')?')) return;
+                  del.disabled = true;
+                  google.script.run.withSuccessHandler(function (rr) { datiTreni = rr; treni = rr.treni; disegnaTreni(); })
+                    .withFailureHandler(function (e2) { del.disabled = false; alert(e2.message); }).eliminaExtra(cred, ex.id);
+                });
+                del.setAttribute('aria-label', 'Elimina il lavoro extra');
+              }
+            });
+            if (datiTreni.puoExtra) formExtra(bx, x.commessa, x.treno);
+          }
+          var dett = nuovo('div', 'tr-dett', null, card);
+          nuovo('h4', '', 'Giorno per giorno', dett);
+          x.righe.forEach(function (rr) {
+            var l = nuovo('div', 'tr-riga', null, dett);
+            nuovo('span', 'tr-d', dataIt(rr.data), l);
+            nuovo('span', 'tr-n', rr.nome, l);
+            nuovo('span', 'tr-a', rr.attivita + ' · ' + ore(rr.ore || 0), l);
+            if (rr.lavorazione) nuovo('small', '', rr.lavorazione, l);
+          });
+        });
+      };
+      q.addEventListener('input', function () { ft.q = q.value; disegnaLista(); });
+      sc.addEventListener('change', function () { ft.commessa = sc.value; disegnaLista(); });
+      ss.addEventListener('change', function () { ft.stato = ss.value; disegnaLista(); });
+      disegnaLista();
+    };
+    var caricaTreni = function () {
+      treni = null;
+      disegnaTreni();
+      google.script.run.withSuccessHandler(function (r) { datiTreni = r; treni = r.treni; disegnaTreni(); })
+        .withFailureHandler(function (e) { boxT.textContent = 'Treni non caricati: ' + e.message; }).lavoriTreni(cred);
+    };
+    caricaTreni();
   }
 
   /* ----- Scheda Autocontrollo (Mod. 25): una a settimana per operatore, compilata dalle attività inviate ----- */
@@ -6402,7 +6597,9 @@ var CONFIG = (function () {
   }
 
   function disegnaAttivita(elenco) {
-    messaggio(elenco.length ? '' : capoPin && CONFIG.vista === 'assegna'
+    messaggio(elenco.length ? '' : window.squadraMia === 'Redolone'
+      ? 'Sei nella squadra Redolone (stabilimento di Serravalle): per ora non devi indicare le attività.'
+      : capoPin && CONFIG.vista === 'assegna'
       ? 'Non hai attività assegnate. In Assegnazioni spunta il tuo nome sull\'attività che svolgi, premi Salva assegnazioni e torna qui.'
       : 'Nessuna attività assegnata: chiedi al tuo capo reparto.');
     if (!elenco.length) return;
@@ -6602,14 +6799,15 @@ var CONFIG = (function () {
   function mostraSquadra(sq) {
     if (CONFIG.sezione && CONFIG.sezione.reparto) return; // la pagina del capo ha già la fascia del reparto
     var banda = $('banda-squadra');
-    if (!sq) { if (banda) banda.remove(); return; }
+    if (!sq) { window.squadraMia = ""; if (banda) banda.remove(); return; }
     if (!banda) {
       banda = document.createElement('div');
       banda.id = 'banda-squadra';
       document.querySelector('header').insertAdjacentElement('afterend', banda);
     }
     banda.className = 'banda-reparto banda-squadra reparto-' + sq.toLowerCase();
-    banda.textContent = 'Squadra ' + sq;
+    banda.textContent = 'Squadra ' + sq + (sq === 'Redolone' ? ' · Serravalle' : '');
+    window.squadraMia = sq;
   }
 
   function entraOperatore() {
@@ -6793,10 +6991,11 @@ var CONFIG = (function () {
       { id: 'registra', testo: 'Registra assenze', el: ['assenze'] }
     ] },
     { id: 'report', testo: 'Ispezioni', sezioni: ['report-cliente'], sotto: SOTTO_REPORT },
-    { id: 'ore', testo: 'Lavori', sezioni: ['lavori-oggi', 'lavori-conferma', 'lavori-storico', 'mod25', 'resoconti', 'attestati', 'registro'], sotto: [
+    { id: 'ore', testo: 'Lavori', sezioni: ['lavori-oggi', 'lavori-conferma', 'lavori-storico', 'lavori-treni', 'mod25', 'resoconti', 'attestati', 'registro'], sotto: [
       { id: 'oggi', testo: 'Oggi', el: ['lavori-oggi'] },
       { id: 'conferma', testo: 'Da confermare', el: ['lavori-conferma'] },
       { id: 'storico-lav', testo: 'Storico', el: ['lavori-storico'] },
+      { id: 'treni-vern', testo: 'Treni Verniciatura', el: ['lavori-treni'] },
       { id: 'mod25', testo: 'Mod. 25', el: ['mod25'] },
       { id: 'excel', testo: 'Excel e attestati', el: ['resoconti', 'attestati', 'registro'] }
     ] },
