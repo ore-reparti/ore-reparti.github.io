@@ -172,7 +172,7 @@
   .viste-capo.schede-capo button.da-fare[aria-pressed=true] { background: #fff; box-shadow: inset 0 0 0 2px #ff3b30, 0 3px 8px rgba(0, 0, 0, .12); }
   .sotto-schede button.da-fare { border-color: #ff3b30; box-shadow: inset 0 0 0 1px #ff3b30; color: #b3261e; background: #fff0ef; }
   .sotto-schede button.da-fare[aria-pressed=true] { background: var(--primario); color: #fff; }
-  .schede-capo .badge-scheda { position: absolute; top: 3px; right: 4px; margin: 0; }
+  .schede-capo .badge-scheda { margin-left: 2px; vertical-align: 1px; }
   .ordina-schede-riga { display: flex; justify-content: flex-end; margin: -10px 0 10px; }
   .ordina-schede-riga button { border: 0; background: transparent; color: var(--primario); font-size: 13px; font-weight: 600; padding: 4px 2px; min-height: 30px; }
   .pannello-ordina { background: #fff; border: 1px solid var(--bordo); border-radius: 12px; padding: 12px; margin: 0 0 14px; }
@@ -210,8 +210,20 @@
   #squadra .sq-chips { display: flex; flex-wrap: wrap; gap: 6px; }
   #squadra .sq-chip { border: 1px solid #d6dbe0; background: #f7f8fa; border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 14px; color: var(--inchiostro); cursor: pointer; text-align: left; }
   #squadra .sq-chip small { display: block; font-size: 11px; color: var(--tenue); }
-  #squadra .sq-chip.assente { background: #fff1e0; border-color: #f0b37a; }
+  #squadra .sq-chip.assente { background: #ececf0; border-color: #a1a1aa; border-style: dashed; color: #6e6e73; }
   #squadra .sq-chip.aiuto { border-style: dashed; background: #fff; }
+  #squadra .sq-chip.sq-verniciatura { background: #e3eefb; border-color: #1d5fa8; }
+  #squadra .sq-chip.sq-carpenteria { background: #efe6fa; border-color: #6b3fa0; }
+  #squadra .sq-chip.sq-verniciatura::before, #squadra .sq-chip.sq-carpenteria::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+  #squadra .sq-chip.sq-verniciatura::before { background: #1d5fa8; }
+  #squadra .sq-chip.sq-carpenteria::before { background: #6b3fa0; }
+  #squadra .sq-chip.assente { background: #ececf0; }
+  #squadra .sq-viste { display: flex; margin: 0 0 10px; }
+  #squadra .sq-viste button { flex: 1; }
+  #squadra .sq-squadra-verniciatura { border-left-color: #1d5fa8; }
+  #squadra .sq-squadra-carpenteria { border-left-color: #6b3fa0; }
+  #squadra .sq-squadra-verniciatura h2 { color: #1d5fa8; }
+  #squadra .sq-squadra-carpenteria h2 { color: #6b3fa0; }
   #squadra .sq-chip.doppio { border: 2px solid var(--errore); background: #fff0ef; }
   #squadra .sq-chip.doppio small { color: var(--errore); font-weight: 600; }
   .sq-menu .sq-nota { color: var(--tenue); font-size: 13px; margin: 10px 4px 0; }
@@ -232,6 +244,174 @@
   .sq-menu label.sq-fino { display: flex; align-items: center; gap: 8px; font-size: 15px; margin: 4px 4px 8px; }
   .sq-toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 20px; z-index: 60; background: #1c1c1e; color: #fff; border-radius: 12px; padding: 10px 14px; font-size: 15px; display: flex; gap: 14px; align-items: center; max-width: calc(100% - 32px); box-shadow: 0 4px 16px rgba(0,0,0,.25); }
   .sq-toast button { background: none; border: 0; color: #64d2ff; font: inherit; font-weight: 600; cursor: pointer; padding: 0; }
+  /* Attrezzature */
+  .att-riga { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-top: .5px solid #e5e5ea; }
+  .att-riga:first-of-type { border-top: 0; }
+  .att-riga .att-testo { flex: 1; min-width: 0; }
+  .att-riga .att-testo small { display: block; color: var(--tenue); font-size: 13px; }
+  .att-riga .att-azioni { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+  .att-persona { padding: 10px 0; border-top: .5px solid #e5e5ea; }
+  .att-persona h3 { font-size: 16px; margin: 0 0 6px; display: flex; gap: 8px; align-items: center; }
+  .att-pallino { width: 10px; height: 10px; border-radius: 50%; display: inline-block; background: #c7c7cc; }
+  .att-pallino.verniciatura { background: #1d5fa8; }
+  .att-pallino.carpenteria { background: #6b3fa0; }
+  .att-chip { display: inline-block; background: #f2f2f7; border-radius: 10px; padding: 4px 10px; margin: 0 6px 6px 0; font-size: 14px; border: 1px solid transparent; cursor: pointer; }
+  .att-chip.da-confermare { border-color: #f0b37a; background: #fff6ec; }
+  .att-chip small { color: var(--tenue); }
+  .att-etichetta { font-size: 12px; font-weight: 600; border-radius: 999px; padding: 1px 8px; background: #f0f0f4; color: var(--tenue); white-space: nowrap; }
+  .att-etichetta.ok { background: var(--ok-sfondo); color: var(--ok); }
+  .att-etichetta.attesa { background: #fff1e0; color: #b25000; }
+  .att-etichetta.no { background: var(--errore-sfondo); color: var(--errore); }
+  .att-form { display: grid; gap: 8px; margin: 8px 0; }
+  details.att-gruppo { border-top: .5px solid #e5e5ea; }
+  details.att-gruppo > summary { padding: 10px 0; font-weight: 600; cursor: pointer; }
+  .att-form label { display: grid; gap: 4px; font-size: 14px; color: var(--tenue); }
+  .att-form input, .att-form select, .att-form textarea { font: inherit; font-size: 16px; padding: 8px 10px; border: 1px solid var(--bordo); border-radius: 10px; color: var(--inchiostro); background: #fff; }
+  .att-due { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .att-scelta { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: .5px solid #e5e5ea; }
+  .att-scelta input[type=checkbox] { width: 20px; height: 20px; }
+  .att-scelta input[type=number] { width: 70px; font: inherit; padding: 4px 6px; border: 1px solid var(--bordo); border-radius: 8px; }
+  .att-scelta .att-testo { flex: 1; }
+  .att-scelta .att-testo small { display: block; color: var(--tenue); font-size: 13px; }
+  #abb-mie { display: none; }
+  #modulo.in-abb #abb-mie { display: block; }
+  #modulo.in-abb #attivita, #modulo.in-abb #scheda-note, #modulo.in-abb #barra-modulo,
+  #modulo.in-abb #campo-data { display: none !important; }
+  /* Lavori */
+  .blocco.di-squadra h2 { cursor: pointer; }
+  .blocco.di-squadra h2::before { content: '▾ '; font-size: .8em; }
+  .blocco.di-squadra.chiuso h2::before { content: '▸ '; }
+  .blocco.chiuso > *:not(h2):not(.nota-squadra) { display: none !important; }
+  .blocco.chiuso { opacity: .82; padding-bottom: 10px; }
+  .nota-squadra { margin: -2px 0 6px; font-size: 13px; color: #3a4a56; cursor: pointer; }
+  .campo-stab { margin-top: 10px; }
+  .etichetta-stab { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .campo-stab.campo-mancante .chip-tipi { outline: 2px solid var(--errore); border-radius: 12px; }
+  .m25-sett { font-weight: 700; font-size: 14px; }
+  .m25-giorni { display: flex; gap: 4px; margin: 8px 0 2px; }
+  .m25-g { width: 28px; height: 28px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+  .m25-g.si { background: var(--ok-sfondo); color: var(--ok); }
+  .m25-g.ass { background: #fff1e0; color: #b25000; }
+  .m25-g.vuoto { background: #eef1f4; color: #a0abb4; }
+  .m25-firma { flex: 1; color: var(--ok); font-size: 12.5px; }
+  .lav-testa { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: space-between; }
+  .lav-testa h2 { margin: 0; }
+  .lav-giorno { display: flex; align-items: center; gap: 6px; }
+  .lav-giorno input { width: auto; }
+  .lav-riassunto { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 4px; }
+  .lav-num { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 6px 12px; font-size: 14px; background: #eef1f4; color: var(--tenue); border: 0; }
+  .lav-num b { font-size: 17px; color: var(--inchiostro); }
+  .lav-num.ok { background: var(--ok-sfondo); color: var(--ok); }
+  .lav-num.ok b { color: var(--ok); }
+  .lav-num.no { background: var(--errore-sfondo); color: var(--errore); cursor: pointer; }
+  .lav-num.no b { color: var(--errore); }
+  .lav-card { background: #fff; border: 1px solid #e3e7eb; border-left: 5px solid #9aa7b1; border-radius: 12px; padding: 10px 12px; margin: 10px 0; }
+  .lav-card-testa { display: flex; align-items: center; gap: 8px; }
+  .lav-card-testa strong { flex: 1; min-width: 0; font-size: 15px; }
+  .lav-rep { color: var(--tenue); font-size: 12px; }
+  .lav-conta { font-size: 13px; font-weight: 700; border-radius: 999px; padding: 2px 9px; background: var(--errore-sfondo); color: var(--errore); }
+  .lav-conta.ok { background: var(--ok-sfondo); color: var(--ok); }
+  .lav-persona { padding: 8px 0 6px; border-top: .5px solid #eceff2; }
+  .lav-persona:first-of-type { border-top: 0; }
+  .lav-chi { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .lav-nome { flex: 1; min-width: 0; font-weight: 600; font-size: 14.5px; }
+  .lav-stato { font-size: 12.5px; font-weight: 700; border-radius: 999px; padding: 2px 9px; background: #eef1f4; color: var(--tenue); }
+  .lav-s-inviato .lav-stato { background: var(--ok-sfondo); color: var(--ok); }
+  .lav-s-manca .lav-stato { background: var(--errore-sfondo); color: var(--errore); }
+  .lav-s-manca .lav-nome { color: var(--errore); }
+  .lav-s-assente .lav-nome, .lav-s-altrove .lav-nome { color: var(--tenue); font-weight: 500; }
+  .lav-casse { display: grid; gap: 4px; margin-top: 6px; }
+  .lav-cassa { background: #f6f8fa; border-radius: 8px; padding: 6px 8px; }
+  .lav-cassa > summary { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; cursor: pointer; list-style: none; }
+  .lav-cassa > summary::-webkit-details-marker { display: none; }
+  .lav-ser { font-weight: 700; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+  .lav-ser.grande { font-size: 16px; }
+  .lav-ore { font-size: 12.5px; color: var(--tenue); }
+  .lav-lavorazione { font-size: 13px; color: var(--inchiostro); margin-top: 4px; }
+  .lav-passo { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; border-radius: 999px; padding: 2px 9px; margin-left: auto; }
+  .lav-punti { display: inline-flex; gap: 2px; }
+  .lav-punti i { width: 6px; height: 6px; border-radius: 999px; background: currentColor; opacity: .25; }
+  .lav-punti i.si { opacity: 1; }
+  .lav-p-dichiarata { background: #fff1e0; color: #b25000; }
+  .lav-p-confermata { background: #e6eefc; color: #1d5fa8; }
+  .lav-p-avanzata { background: #efe7fa; color: #6b3fa0; }
+  .lav-p-mom { background: var(--ok-sfondo); color: var(--ok); }
+  .lav-p-ignorata { background: #eef1f4; color: var(--tenue); text-decoration: line-through; }
+  .lav-legenda { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin: 6px 0 10px; }
+  .lav-legenda .lav-passo { margin-left: 0; }
+  .lav-legenda small { flex-basis: 100%; color: var(--tenue); font-size: 12px; }
+  .lav-freccia { color: var(--tenue); }
+  .lav-conf-cassa { margin-top: 6px; }
+  .lav-conf-cassa small { display: block; color: var(--tenue); font-size: 12.5px; }
+  .lav-azioni { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .lav-data-conf { font-size: 13px; display: flex; align-items: center; gap: 6px; }
+  .lav-data-conf input { width: auto; }
+  .lav-vuoto { background: var(--ok-sfondo); color: var(--ok); border-radius: 10px; padding: 12px; font-weight: 600; text-align: center; }
+  .lav-filtri { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 8px 0; }
+  .lav-filtri label { display: flex; align-items: center; gap: 4px; font-size: 13px; }
+  .lav-filtri input[type=date] { width: auto; }
+  .lav-filtri .lav-cerca { flex: 1 1 180px; }
+  .lav-filtri select { width: auto; }
+  .lav-somma { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13.5px; color: var(--tenue); margin: 6px 0; }
+  .lav-data { font-size: 13px; text-transform: capitalize; color: var(--tenue); margin: 14px 0 4px; }
+  .lav-riga { background: #fff; border: 1px solid #e3e7eb; border-radius: 10px; padding: 8px 10px; margin-bottom: 6px; }
+  .lav-riga-a { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .lav-riga-a small { color: var(--tenue); font-size: 12.5px; }
+  .lav-riga-b { display: flex; align-items: center; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+  .abb-card { background: #fff; border: 1px solid #e3e7eb; border-radius: 14px; padding: 12px 14px; margin: 0 0 10px; box-shadow: 0 1px 2px rgba(0, 0, 0, .04); }
+  .abb-card-testa { display: flex; align-items: center; gap: 10px; }
+  .abb-card-testa > strong, .abb-card-chi { flex: 1; min-width: 0; }
+  .abb-card-chi strong { display: block; font-size: 15px; }
+  .abb-card-chi small { display: block; color: var(--tenue); font-size: 12.5px; }
+  .abb-titolo { display: block; font-size: 16px; margin-bottom: 2px; }
+  .abb-aperta { border-color: #f5c27a; background: #fffaf3; }
+  .abb-pill { flex: none; font-size: 12px; font-weight: 700; border-radius: 999px; padding: 3px 10px; background: #f0f0f4; color: var(--tenue); }
+  .abb-pill.attesa { background: #fff1e0; color: #b25000; }
+  .abb-pill.ok { background: var(--ok-sfondo); color: var(--ok); }
+  .abb-pill.no { background: var(--errore-sfondo); color: var(--errore); }
+  .abb-passi { display: flex; list-style: none; margin: 12px 0 2px; padding: 0; counter-reset: passo; }
+  .abb-passi li { flex: 1; position: relative; text-align: center; font-size: 11.5px; color: var(--tenue); padding-top: 26px; }
+  .abb-passi li::before { counter-increment: passo; content: counter(passo); position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 22px; height: 22px; border-radius: 999px;
+    background: #e5e8ec; color: #fff; font-weight: 700; font-size: 12px; line-height: 22px; z-index: 1; }
+  .abb-passi li::after { content: ''; position: absolute; top: 10px; left: -50%; width: 100%; height: 2px; background: #e5e8ec; }
+  .abb-passi li:first-child::after { display: none; }
+  .abb-passi li.fatto { color: var(--ok); font-weight: 600; }
+  .abb-passi li.fatto::before { content: '✓'; background: var(--ok); }
+  .abb-passi li.ora { color: #b25000; font-weight: 600; }
+  .abb-passi li.ora::before { background: #f29900; }
+  .abb-passi li.fatto + li::after, .abb-passi li.ora::after { background: var(--ok); }
+  .abb-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .abb-chip { display: inline-flex; align-items: center; gap: 4px; background: #f2f4f7; border: 1px solid #e3e6eb; border-radius: 999px; padding: 4px 10px; font-size: 13px; }
+  .abb-chip b { color: var(--primario); margin-left: 2px; }
+  .abb-x { color: var(--tenue); font-weight: 600; }
+  .abb-nota { margin-top: 8px; background: #fff8e1; border-left: 3px solid #f5b300; border-radius: 8px; padding: 6px 10px; font-size: 13.5px; }
+  .abb-azioni { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .abb-lista { margin-top: 4px; }
+  .abb-capo { display: grid; grid-template-columns: 26px minmax(0, 1fr) 92px auto; gap: 8px; align-items: center; padding: 8px 6px; border-radius: 10px; border-top: .5px solid #eceff2; transition: background .15s; }
+  .abb-capo:first-child { border-top: 0; }
+  .abb-capo.scelto { background: #fff3ec; border-top-color: transparent; }
+  .abb-capo .abb-ico { font-size: 20px; text-align: center; }
+  .abb-capo .abb-nome { font-size: 13.5px; font-weight: 600; min-width: 0; }
+  .abb-capo.scelto .abb-nome { color: var(--accento); }
+  .abb-capo input { width: 100%; min-width: 0; padding: 8px 6px; font-size: 15px; text-align: center; box-sizing: border-box; }
+  .abb-capo input.abb-altro { text-align: left; }
+  .abb-capo select.abb-taglia { width: 100%; min-width: 0; padding: 8px 22px 8px 8px; font-size: 14px; border-radius: 10px; background-position: calc(100% - 12px) 50%, calc(100% - 7px) 50%; }
+  .abb-qta { display: flex; align-items: center; gap: 4px; }
+  .abb-qta button { width: 34px; height: 36px; padding: 0; font-size: 18px; font-weight: 600; border-radius: 10px; border: 0; background: #eef0f3; color: var(--primario); }
+  .abb-capo.scelto .abb-qta button { background: #ffe2d3; }
+  .abb-qta span { min-width: 20px; text-align: center; font-weight: 700; font-size: 16px; }
+  .abb-etic-nota { display: block; margin-top: 12px; font-size: 13px; font-weight: 600; }
+  .abb-textarea { width: 100%; box-sizing: border-box; }
+  .abb-firma-box { margin: 10px 0 0; background: #eef4ff; border-radius: 10px; padding: 9px 12px; font-size: 13px; color: #1c3f73; }
+  .abb-piede { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+  .abb-conta { flex: 1; font-size: 13px; color: var(--tenue); }
+  .abb-conta.pieno { color: var(--accento); font-weight: 700; }
+  .abb-mia { border: 1px solid #d8dde3; border-radius: 12px; padding: 10px 12px; margin: 8px 0 14px; background: #fafbfc; }
+  .abb-mia > summary { font-weight: 700; cursor: pointer; }
+  #attrezzi-mie { display: none; }
+  #modulo.in-attrezzi #attrezzi-mie { display: block; }
+  #modulo.in-attrezzi #attivita, #modulo.in-attrezzi #scheda-note, #modulo.in-attrezzi #barra-modulo,
+  #modulo.in-attrezzi #campo-data { display: none !important; }
   .pannello-sposta { background: #fff; border: 2px solid var(--primario); border-radius: 12px; padding: 12px; margin: 8px 0 12px; }
   .pannello-sposta .testo-sposta { font-weight: 600; margin: 0 0 8px; }
   .riga-sposta { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; font-weight: 600; }
@@ -426,11 +606,11 @@
   #riassunto-compilazioni { font-size: 15px; color: var(--ok); }
   #riassunto-compilazioni.mancano { color: var(--errore); }
   .gruppo-reparto { --rep: #1d5fa8; --rep-chiaro: #e8f0fb; border: 2px solid var(--rep); background: var(--rep-chiaro); border-radius: 18px; padding: 0 10px 4px; margin: 0 0 22px; overflow: hidden; }
-  .gruppo-reparto.reparto-carpenteria { --rep: #0a8f86; --rep-chiaro: #e3f6f4; }
+  .gruppo-reparto.reparto-carpenteria { --rep: #6b3fa0; --rep-chiaro: #f3ecfb; }
   h3.reparto { margin: 0 -10px 12px; padding: 10px 16px; background: var(--rep); color: #fff; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
   .gruppo-reparto > .scheda:last-child { margin-bottom: 8px; }
   .banda-reparto { --rep: #1d5fa8; background: var(--rep); color: #fff; text-align: center; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 6px 16px; }
-  .banda-reparto.reparto-carpenteria { --rep: #0a8f86; }
+  .banda-reparto.reparto-carpenteria { --rep: #6b3fa0; }
   .banda-squadra { font-size: 16px; padding: 10px 16px; letter-spacing: .06em; }
   .chi-approva { font-size: 13px; color: var(--tenue); align-self: center; }
   h4.commessa-gruppo { font-size: 15px; font-weight: 600; margin: 16px 4px 6px; color: var(--inchiostro); }
@@ -498,6 +678,7 @@
   #modulo.in-malattia #campo-data { display: none !important; }
   #modulo.in-richieste #attivita, #modulo.in-richieste #scheda-note, #modulo.in-richieste #barra-modulo,
   #modulo.in-richieste #campo-data { display: none !important; }
+  .campo-mancante > label::after { content: ' – scegli Pistoia o Serravalle'; color: var(--errore); font-weight: 600; }
   .titoletto { font-size: 13px; font-weight: 500; color: var(--tenue); text-transform: uppercase; letter-spacing: .02em; margin: 24px 0 8px; }
   #richieste > summary { display: block; position: relative; padding-right: 26px; }
   #richieste > summary::after { position: absolute; right: 4px; top: 10px; margin: 0; }
@@ -623,12 +804,69 @@
   .azione { border: 1px solid rgba(0, 122, 255, .25); }
   .azione.pericolo { border-color: rgba(255, 59, 48, .3); }
   [hidden] { display: none !important; }
+
+  /* Sfondo dell'app "Petrolio" in stile Liquid Glass: verde petrolio scuro in alto a sinistra che sfuma
+     verso un acqua chiaro in basso a destra; schede di vetro smerigliato. Senza backdrop-filter le schede restano quasi bianche. */
+  html body {
+    background-color: #5f9693;
+    background-image: radial-gradient(45% 40% at 6% 6%, rgba(15, 45, 50, .95) 0%, transparent 70%),
+      radial-gradient(45% 40% at 92% 14%, rgba(44, 122, 123, .85) 0%, transparent 70%),
+      radial-gradient(55% 50% at 85% 95%, rgba(196, 230, 224, .95) 0%, transparent 72%),
+      radial-gradient(45% 45% at 12% 90%, rgba(120, 180, 176, .9) 0%, transparent 70%),
+      linear-gradient(160deg, #1b444a 0%, #2f6f72 35%, #6fa9a5 70%, #cfe7e2 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  .scheda, details.scheda, section.scheda, .accesso, .voce, .lav-card, .abb-card, .lav-riga, .abb-stat > div, .abb-vuoto, .abb-mia {
+    background: rgba(255, 255, 255, .9) !important;
+    border: 1px solid rgba(255, 255, 255, .7) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), 0 8px 30px rgba(20, 40, 70, .14) !important;
+    border-radius: 22px !important;
+  }
+  header, .barra, nav.schede, #schede, .viste-capo, .schede-capo, #sotto-schede, .segmenti {
+    background: rgba(255, 255, 255, .85) !important;
+    border: 1px solid rgba(255, 255, 255, .6) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .85), 0 6px 24px rgba(20, 40, 70, .10) !important;
+  }
+  header { border-width: 0 0 1px 0 !important; border-radius: 0 !important; }
+  .viste-capo.schede-capo button, #sotto-schede button, .segmenti button { background: rgba(255, 255, 255, .4) !important; border: 1px solid rgba(255, 255, 255, .55) !important; border-radius: 16px !important; }
+  /* La scheda scelta: petrolio pieno, testo bianco */
+  .viste-capo.schede-capo button[aria-pressed=true], #sotto-schede button[aria-pressed=true], .segmenti button[aria-pressed=true],
+  #schede button[aria-pressed=true], .viste-operatore button[aria-pressed=true] {
+    background: linear-gradient(135deg, #2c7a7b 0%, #38a3a5 100%) !important; color: #fff !important;
+    border-color: rgba(255, 255, 255, .7) !important; font-weight: 700;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 4px 14px rgba(20, 70, 75, .35) !important; }
+  .viste-capo.schede-capo button[aria-pressed=true] *, #sotto-schede button[aria-pressed=true] *, .segmenti button[aria-pressed=true] *,
+  #schede button[aria-pressed=true] *, .viste-operatore button[aria-pressed=true] * { color: #fff !important; }
+  .viste-capo.schede-capo button[aria-pressed=true] .badge-scheda, #sotto-schede button[aria-pressed=true] .badge-scheda, #schede button[aria-pressed=true] .conta { color: #fff !important; background: #ff3b30 !important; }
+  .viste-capo.schede-capo button:not([aria-pressed=true]), #sotto-schede button:not([aria-pressed=true]), .segmenti button:not([aria-pressed=true]), #schede button:not([aria-pressed=true]) { color: #17383c !important; }
+  .lav-cassa { background: rgba(255, 255, 255, .55) !important; }
+  /* Testi che stanno direttamente sullo sfondo colorato: più scuri, con un filo di luce dietro */
+  #vista > .spiega, #vista > p, main > .spiega, .giorno-testa, #vista > h2, #vista > h3, .commessa-gruppo > summary {
+    color: #10292c !important; background: rgba(255, 255, 255, .62); border-radius: 12px; padding: 6px 10px;
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+  .giorno-testa { display: inline-block; }
+  @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .scheda, details.scheda, section.scheda, .accesso, .voce { background: rgba(255, 255, 255, .66) !important; -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%); }
+    .lav-card, .abb-card, .lav-riga, .abb-stat > div, .abb-vuoto, .abb-mia { background: rgba(255, 255, 255, .74) !important; -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%); }
+    header, .barra, nav.schede, #schede, .viste-capo, .schede-capo, #sotto-schede, .segmenti { background: rgba(255, 255, 255, .55) !important; -webkit-backdrop-filter: blur(26px) saturate(190%); backdrop-filter: blur(26px) saturate(190%); }
+    input, select, textarea { background-color: rgba(255, 255, 255, .7) !important; }
+  }
+
+  /* Il logo LD Montaggi nella testata, su un riquadro bianco come una piastrina di vetro */
+  .logo-ld { flex: none; display: flex; align-items: center; height: 64px; padding: 4px 10px; background: #fff; border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(16, 41, 44, .22), inset 0 0 0 1px rgba(255, 255, 255, .9); }
+  .logo-ld img { display: block; height: 56px; width: auto; }
+  .accesso .logo-ld { width: max-content; margin: 0 auto 12px; height: 74px; padding: 6px 12px; }
+  .accesso .logo-ld img { height: 62px; }
+  @media (max-width: 380px) { .logo-ld { height: 54px; padding: 3px 8px; } .logo-ld img { height: 46px; } }
+
 </style>
 </head>
 <body>
 <header>
   <div class="testata">
-    <span class="logo" aria-hidden="true">LD</span>
+    <span class="logo-ld"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQABLAEsAAD/4QDsRXhpZgAATU0AKgAAAAgABwESAAMAAAABAAEAAAEaAAUAAAABAAAAYgEbAAUAAAABAAAAagEoAAMAAAABAAIAAAExAAIAAAAgAAAAcgEyAAIAAAAUAAAAkodpAAQAAAABAAAApgAAAAAAAAEsAAAAAQAAASwAAAABQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKQAyMDEzOjA5OjEwIDA4OjQwOjI3AAADkAQAAgAAABQAAADQoAIABAAAAAEAAADwoAMABAAAAAEAAACSAAAAADIwMTM6MDk6MTAgMDg6Mzg6MzEA/+EKZ2h0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8APD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNi4wLjAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wOkNyZWF0ZURhdGU9IjIwMTMtMDktMTBUMDg6Mzg6MzEiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wOk1vZGlmeURhdGU9IjIwMTMtMDktMTBUMDg6NDA6MjciPiA8ZGM6dGl0bGU+IDxyZGY6QWx0PiA8cmRmOmxpIHhtbDpsYW5nPSJ4LWRlZmF1bHQiPkxEIE1vbnRhZ2dpIExPR088L3JkZjpsaT4gPC9yZGY6QWx0PiA8L2RjOnRpdGxlPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg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" alt="LD Montaggi"></span>
     <div>
       <h1>LD Montaggi</h1>
       <p class="sottotitolo">Verniciatura e Carpenteria · ore, lavorazioni, ferie e permessi</p>
@@ -652,7 +890,7 @@
   <details id="richieste" class="scheda" hidden>
     <summary><span class="titolo-compilazioni">Richieste ferie e permessi</span> <span id="riassunto-richieste"></span></summary>
     <div id="avviso-richieste" class="avviso" role="alert" hidden></div>
-    <p class="spiega piccola" id="spiega-richieste">Il dipendente ha inviato la richiesta dall'app con il suo PIN. Premi Approva e poi Conferma: la richiesta diventa valida e viene registrata tra le assenze. Approvata o respinta, il dipendente lo vede al suo prossimo accesso. Verniciatura: approvano il titolare, i responsabili della Verniciatura o il capo del personale. Foratura: il responsabile della Foratura, il titolare o il responsabile della Carpenteria. Resto della Carpenteria: il titolare o il responsabile della Carpenteria.</p>
+    <p class="spiega piccola" id="spiega-richieste">Il dipendente ha inviato la richiesta dall'app con il suo PIN. Premi Approva e poi Conferma: la richiesta diventa valida e viene registrata tra le assenze. Approvata o respinta, il dipendente lo vede al suo prossimo accesso. Verniciatura: approvano il capo cantiere, i responsabili della Verniciatura o il capo del personale. Foratura: il responsabile della Foratura, il capo cantiere o il responsabile della Carpenteria. Resto della Carpenteria: il capo cantiere o il responsabile della Carpenteria.</p>
     <ul class="elenco-assenze" id="elenco-richieste"></ul>
   </details>
 
@@ -690,6 +928,10 @@
     <ul class="elenco-assenze" id="elenco-in-arrivo"></ul>
   </section>
 
+  <section id="lavori-oggi" class="scheda" hidden></section>
+  <section id="lavori-conferma" class="scheda" hidden></section>
+  <section id="lavori-storico" class="scheda" hidden></section>
+  <section id="mod25" class="scheda" hidden></section>
   <details id="compilazioni" class="scheda" hidden>
     <summary><span class="titolo-compilazioni">Compilazioni</span> <span id="riassunto-compilazioni"></span></summary>
     <div id="avviso-compilazioni" class="avviso" role="alert" hidden></div>
@@ -736,11 +978,32 @@
         <button type="button" id="vista-mio-lavoro" aria-pressed="true"><span class="icona-scheda" aria-hidden="true">🛠️</span><span>Lavoro</span></button>
         <button type="button" id="vista-mie-richieste" aria-pressed="false"><span class="icona-scheda" aria-hidden="true">🏖️</span><span>Ferie e permessi</span></button>
         <button type="button" id="vista-mia-malattia" aria-pressed="false"><span class="icona-scheda" aria-hidden="true">🩺</span><span>Malattia</span></button>
+        <button type="button" id="vista-miei-attrezzi" aria-pressed="false"><span class="icona-scheda" aria-hidden="true">🧰</span><span>Attrezzi e DPI <span class="badge-scheda" id="badge-attrezzi" hidden></span></span></button>
+        <button type="button" id="vista-mio-abb" aria-pressed="false"><span class="icona-scheda" aria-hidden="true">👕</span><span>Abbigliamento</span></button>
       </nav>
       <div class="campo" id="campo-data">
         <label for="data">Data del turno</label>
         <input id="data" type="date">
+        <div class="campo-stab" id="campo-stab">
+          <span class="etichetta-stab">Stabilimento</span>
+          <div class="chip-tipi" id="scelta-stab">
+            <button type="button" class="chip" data-stab="Pistoia" aria-pressed="false">Pistoia</button>
+            <button type="button" class="chip" data-stab="Serravalle" aria-pressed="false">Serravalle</button>
+          </div>
+        </div>
       </div>
+    </section>
+    <section class="scheda" id="attrezzi-mie">
+      <h2>Attrezzi e DPI</h2>
+      <p class="spiega">Gli attrezzi e i DPI che ti ha consegnato il responsabile. Controlla e premi Ricevuto. Se ti manca qualcosa, chiedilo al tuo responsabile.</p>
+      <div id="avviso-attrezzi-mie" class="avviso" role="alert" hidden></div>
+      <div id="contenuto-attrezzi-mie"></div>
+    </section>
+    <section class="scheda" id="abb-mie">
+      <h2>Abbigliamento da lavoro</h2>
+      <p class="spiega">Chiedi i capi che ti servono, con taglia e quantità. Come per le ferie, la richiesta la firmi con il PIN e il modulo PDF si crea subito; chi te la consegna lo firma alla consegna.</p>
+      <div id="avviso-abb-mie" class="avviso" role="alert" hidden></div>
+      <div id="contenuto-abb-mie"></div>
     </section>
     <section class="scheda" id="malattia-mia">
       <h2>Comunica la malattia</h2>
@@ -958,6 +1221,14 @@
     </div>
   </form>
 
+  <section id="attrezzature" hidden>
+    <div id="avviso-attrezzi" class="avviso" role="alert" hidden></div>
+    <section class="scheda" id="att-chi"></section>
+    <section class="scheda" id="att-consegna"></section>
+    <section class="scheda" id="att-elenco"></section>
+    <section class="scheda" id="att-storico"></section>
+    <section class="scheda" id="att-abb"></section>
+  </section>
   <details id="gestione" class="scheda" hidden>
     <summary id="gestione-titolo"></summary>
     <div id="avviso-gestione" class="avviso" role="alert" hidden></div>
@@ -1004,7 +1275,7 @@
 // ----- Pagina su GitHub: collegamento diretto al server di Google -----
 (function () {
   var SERVER = "https://xwrzezvzsjjpghdjypox.supabase.co/functions/v1/api";
-  var NOMI = ["accediGestione", "accediOperatore", "accediPersonale", "accediReport", "accediSezione", "aggiornaFineAssenza", "aggiungiDipendente", "allegaCertificato", "allegaCertificatoPersonale", "allegaFotoPunto", "allegaFotoPuntoCapo", "annullaMiaRichiesta", "annullaPrestito", "assenzeDelMese", "attestatiDelMese", "av_accedi", "av_aggiorna", "av_aggiungiDipendente", "av_aggiungiTipo", "av_attivaAttivita", "av_azzeraStoria", "av_cambiaMioPin", "av_caricaPosizioni", "av_collegaRegistroOre", "av_confermaDichiarata", "av_controlla", "av_eliminaAttivita", "av_eliminaDipendente", "av_eliminaStatino", "av_ignoraDichiarata", "av_inviaAttivita", "av_linkRegistro", "av_modificaAttivita", "av_modificaOrdine", "av_modificaPosizioni", "av_modificaTipo", "av_nuovoOrdine", "av_nuovoPin", "av_pagina", "av_salvaCassa", "av_salvaConsumabili", "av_salvaGruppiOrdini", "av_salvaMomConfig", "av_salvaNotaMom", "av_salvaStatino", "av_scaricaStatino", "av_segna", "av_segnaMom", "av_storico", "azzeraRegistro", "cambiaMioPin", "cambiaPinMaster", "cambiaPunto", "cambiaSquadra", "caricaReport", "chiudiReport", "comunicaMalattia", "creaPrestito", "documentoRichiesta", "eliminaAssenza", "eliminaDipendente", "eliminaReport", "fileReport", "fotoPunto", "generaPinMancanti", "gestisciRichiesta", "inviaCompilazione", "inviaRichiesta", "mieMalattie", "mieRichieste", "mioDocumento", "nuovoPin", "personaAvanzamenti", "pinPersonale", "registraAssenza", "riepilogoPersonale", "salvaAssegnazioni", "salvaAttestati", "salvaOrdineSchede", "salvaSquadra", "scaricaAttestato", "scaricaMioModulo", "scaricaModulo", "scaricaResoconto", "scaricaRiepilogoPersonale", "segnaEsitiVisti", "segnaMom", "segnaPunto", "segnaRichiesteViste", "statoCompilazioni", "titoloPagina", "vediCertificato", "vediResoconto"];
+  var NOMI = ["abbigliamento", "accediGestione", "accediOperatore", "accediPersonale", "accediReport", "accediSezione", "aggiornaFineAssenza", "aggiungiDipendente", "allegaCertificato", "allegaCertificatoPersonale", "allegaFotoPunto", "allegaFotoPuntoCapo", "annullaAbbigliamento", "annullaAbbigliamentoMio", "annullaMiaRichiesta", "annullaPrestito", "assenzeDelMese", "attestatiDelMese", "attrezzature", "av_abbigliamentoElenco", "av_accedi", "av_aggiorna", "av_aggiungiDipendente", "av_aggiungiTipo", "av_attivaAttivita", "av_azzeraStoria", "av_cambiaMioPin", "av_caricaPosizioni", "av_collegaRegistroOre", "av_confermaDichiarata", "av_consegnaAbbigliamento", "av_controlla", "av_dpiElenco", "av_eliminaAttivita", "av_eliminaDipendente", "av_eliminaStatino", "av_ignoraDichiarata", "av_inviaAttivita", "av_linkRegistro", "av_modificaAttivita", "av_modificaOrdine", "av_modificaPosizioni", "av_modificaTipo", "av_nuovoOrdine", "av_nuovoPin", "av_pagina", "av_respingiAbbigliamento", "av_salvaCassa", "av_salvaConsumabili", "av_salvaDpi", "av_salvaGruppiOrdini", "av_salvaMomConfig", "av_salvaNotaMom", "av_salvaStatino", "av_scaricaAbbigliamentoAv", "av_scaricaStatino", "av_segna", "av_segnaMom", "av_storico", "azzeraRegistro", "cambiaMioPin", "cambiaPinMaster", "cambiaPunto", "cambiaSquadra", "caricaReport", "chiudiReport", "comunicaMalattia", "confermaRicevuto", "consegnaAttrezzi", "consegnaBumpCap", "creaPrestito", "documentoRichiesta", "eliminaAssenza", "eliminaDipendente", "eliminaReport", "fileReport", "firmaMod25", "fotoPunto", "generaPinMancanti", "gestisciRichiesta", "importaAttrezzi", "inviaCompilazione", "inviaRichiesta", "lavoriDaConfermare", "lavoriGiorno", "lavoriStorico", "mieAttrezzature", "mieMalattie", "mieRichieste", "mioAbbigliamento", "mioDocumento", "mod25Settimana", "nuovoPin", "personaAvanzamenti", "pinPersonale", "registraAssenza", "richiediAbbigliamento", "richiediAbbigliamentoMio", "rientroAttrezzo", "riepilogoPersonale", "salvaAssegnazioni", "salvaAttestati", "salvaAttrezzo", "salvaOrdineSchede", "salvaSquadra", "scaricaAbbigliamento", "scaricaAttestato", "scaricaMioAbbigliamento", "scaricaMioModulo", "scaricaMod25", "scaricaModulo", "scaricaResoconto", "scaricaRiepilogoPersonale", "segnaEsitiVisti", "segnaMom", "segnaPunto", "segnaRichiesteViste", "statoCompilazioni", "titoloPagina", "vediCertificato", "vediResoconto"];
   function chiamaServer(nome, args) {
     // text/plain: Google risponde senza controlli preliminari, più veloce.
     return fetch(SERVER, { method: 'POST', body: JSON.stringify({ f: nome, a: args }), redirect: 'follow' })
@@ -1215,12 +1486,14 @@ var CONFIG = (function () {
           $('attestati').parentNode.insertBefore($('attestati'), $('esito'));
           avviaAttestati(cred);
           avviaCompilazioni(cred);
+          avviaLavori(cred, !!dati.avanzamenti);
           avviaAssenze(cred);
           avviaRichieste(cred, dati.richieste);
           mostraInArrivo(dati.inArrivo || []);
           if (dati.attivitaReport && dati.attivitaReport.length) avviaReport(cred, dati.report, dati.attivitaReport, false, dati.persone, true);
           if (dati.io) avviaLavoroCapo(pin);
           if (dati.avanzamenti) avviaAvanzamenti(cred);
+          avviaAttrezzature(cred);
           avviaSchede(!!dati.io, null, { cred: cred, ordine: dati.ordineSchede });
         })
         .withFailureHandler(ko)
@@ -1554,16 +1827,24 @@ var CONFIG = (function () {
     ['riepilogo-assegna', 'attivita-assegna'].forEach(function (id) { $(id).hidden = true; });
     $('salva').closest('.barra').hidden = true;
     $('prestiti').hidden = true;
-    $('spiega-assegna').textContent = 'Ogni dipendente sta nella squadra di Verniciatura o di Carpenteria e si assegna alle attività della sua squadra. Tocca un nome per spostarlo, aggiungerlo su un\'altra attività o toglierlo; per uno scambio di qualche giorno con l\'altra squadra usa "In aiuto". Ogni scelta si salva subito; per qualche secondo puoi premere Annulla. In arancione chi è in ferie, in permesso o assente.';
+    $('spiega-assegna').textContent = 'Ogni dipendente sta nella squadra di Verniciatura o di Carpenteria e si assegna alle attività della sua squadra. Tocca un nome per spostarlo, aggiungerlo su un\'altra attività o toglierlo; per uno scambio di qualche giorno con l\'altra squadra usa "In aiuto". Ogni scelta si salva subito; per qualche secondo puoi premere Annulla. In grigio, con il bordo tratteggiato, chi è in ferie, in permesso o assente.';
     var nonAss = dati.nonDaAssegnare || [];
     var squadre = dati.squadre || {};
     var squadraDi = function (n) { return (squadre[n] || {}).r || ''; };
     var puoSquadre = !!(dati.generale && !dati.reparto && dati.puoMom);
-    var SQ = { rep: '', cerca: '' };
+    var SQ = { rep: '', cerca: '', vista: 'oggi' };
     var reparti = blocchi.map(function (b) { return b.dataset.reparto; }).filter(function (r, i, a) { return r && a.indexOf(r) === i; });
     var box = document.createElement('div');
     box.id = 'squadra';
     $('attivita-assegna').parentNode.insertBefore(box, $('riepilogo-assegna'));
+    // Due viste: la squadra di oggi (chi fa cosa) e le squadre (chi sta in Verniciatura e chi in Carpenteria).
+    var viste = nuovo('div', 'sq-seg sq-viste', null, box);
+    [['oggi', 'Chi fa cosa oggi'], ['squadre', 'Le squadre']].forEach(function (v) {
+      var b = nuovo('button', '', v[1], viste);
+      b.type = 'button';
+      b.dataset.v = v[0];
+      b.onclick = function () { SQ.vista = v[0]; disegnaSquadra(); };
+    });
     var filtri = nuovo('div', 'sq-filtri', null, box);
     if (reparti.length > 1) {
       var seg = nuovo('div', 'sq-seg', null, filtri);
@@ -1626,6 +1907,8 @@ var CONFIG = (function () {
         }
         c.checked = true;
         ricalcola();
+        // Chi non aveva squadra entra in quella dell'attività: si colora subito.
+        if (!squadraDi(nome) && mettiSu.dataset.reparto) squadre[nome] = { r: mettiSu.dataset.reparto };
       }
       salvaModifica(testo, prima);
     }
@@ -1670,6 +1953,8 @@ var CONFIG = (function () {
     function chip(padre, nome, sotto, classe, click) {
       var b = nuovo('button', 'sq-chip' + (classe ? ' ' + classe : ''), nome, padre);
       b.type = 'button';
+      // Il colore della squadra: blu Verniciatura, verde Carpenteria.
+      if (squadraDi(nome)) b.classList.add('sq-' + squadraDi(nome).toLowerCase());
       var ass = testoAssenza(nome);
       if (ass && ass.oggi) b.classList.add('assente');
       var due = repartiDi(nome);
@@ -1679,9 +1964,32 @@ var CONFIG = (function () {
       b.onclick = click;
       return b;
     }
+    // Le squadre: un riquadro per squadra con tutti i suoi dipendenti, e chi è ancora senza squadra.
+    function disegnaSquadre() {
+      var aiuti = aiutiOggi();
+      reparti.filter(function (r) { return !SQ.rep || r === SQ.rep; }).concat(['']).forEach(function (r) {
+        var membri = CONFIG.operatori.filter(function (n) { return squadraDi(n) === r && trova(n); });
+        if (!r && !membri.length) return;
+        var card = nuovo('div', 'sq-card sq-squadra' + (r ? ' sq-squadra-' + r.toLowerCase() : ''), null, corpo);
+        var h = nuovo('h2', '', r ? 'Squadra ' + r : 'Senza squadra', card);
+        nuovo('span', 'n', String(membri.length), h);
+        if (!r) nuovo('p', 'sq-vuoto', 'Tocca un nome e scegli "Metti nella squadra…".', card);
+        if (!membri.length) nuovo('p', 'sq-vuoto', SQ.cerca ? 'Nessuno con questo nome.' : 'Ancora nessuno.', card);
+        var cc = nuovo('div', 'sq-chips', null, card);
+        membri.forEach(function (n) {
+          var su = blocchi.filter(function (b) { return nomiIn(b).indexOf(n) !== -1; }).map(function (b) { return b.dataset.titolo; });
+          var aiuto = aiuti.filter(function (x) { return x.nome === n; }).map(function (x) { return 'in aiuto su ' + x.commessa + ' – ' + x.attivita; });
+          var tutte = su.concat(aiuto);
+          var sotto = tutte.length > 1 ? tutte.length + ' attività' : tutte[0] || (nonAss.indexOf(n) !== -1 ? '' : 'da assegnare');
+          chip(cc, n, sotto, '', function () { menuPersona(n, null); });
+        });
+      });
+    }
     function disegnaSquadra() {
       Array.prototype.forEach.call(filtri.querySelectorAll('.sq-seg button'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.r === SQ.rep)); });
+      Array.prototype.forEach.call(viste.querySelectorAll('button'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === SQ.vista)); });
       corpo.textContent = '';
+      if (SQ.vista === 'squadre') { disegnaSquadre(); return; }
       // Da assegnare: presenti senza attività, senza capi, report e personale.
       var liberi = CONFIG.operatori.filter(function (n) { return libero(n) && nonAss.indexOf(n) === -1 && trova(n); });
       var da = nuovo('div', 'sq-card sq-da', null, corpo);
@@ -1790,7 +2098,7 @@ var CONFIG = (function () {
       }
       voce(m, 'Chiudi', '', '', chiudiMenu);
     }
-    // Cambio di squadra (solo il titolare): prima lo toglie dalle attività dell'altro reparto, poi salva la squadra.
+    // Cambio di squadra (solo il capo cantiere): prima lo toglie dalle attività dell'altro reparto, poi salva la squadra.
     function cambiaSquadra(nome, r, dalle) {
       var registra = function () {
         toast('Salvo…');
@@ -1863,6 +2171,511 @@ var CONFIG = (function () {
     }
     $('assegna').addEventListener('ricalcola', function () { disegnaSquadra(); });
     disegnaSquadra();
+  }
+
+  /* ----- Attrezzature e DPI dati ai dipendenti ----- */
+
+  function avviaAttrezzature(cred) {
+    $('attrezzature').hidden = false;
+    var D = null, scelto = '', cerca = '', modifica = null;
+    var avviso = function (testo, ok) { mostraAvviso('avviso-attrezzi', testo, ok); if (!ok) window.scrollTo(0, 0); };
+    var chiama = function (fn, arg, ok) {
+      return new Promise(function (fatto, ko) {
+        google.script.run.withSuccessHandler(function (r) { D = r; disegna(); if (ok) avviso(ok, true); fatto(r); })
+          .withFailureHandler(function (e) { avviso(e.message); ko(e); })[fn](cred, arg);
+      });
+    };
+    var dataIt = function (s) { return s ? s.slice(8, 10) + '/' + s.slice(5, 7) + '/' + s.slice(0, 4) : ''; };
+    var nomeAtt = function (a) { return (a.codice ? a.codice + ' · ' : '') + a.descrizione + (a.serie ? ' · ' + a.serie : ''); };
+    var catAtt = '';
+    var squadraDi = function (n) { var d = (D.dipendenti || []).filter(function (x) { return x.nome === n; })[0]; return d ? d.squadra : ''; };
+    var titolo = function (box, t, spiega) { box.textContent = ''; nuovo('h2', '', t, box); if (spiega) nuovo('p', 'spiega', spiega, box); };
+
+    // ----- Verbale di consegna (PDF fatto qui nella pagina) -----
+    var caricaPdf = function () {
+      if (window.jspdf && window.jspdf.jsPDF && window.jspdf.jsPDF.API.autoTable) return Promise.resolve();
+      var js = function (u) { return new Promise(function (ok, ko) { var sc = document.createElement('script'); sc.src = u; sc.onload = ok; sc.onerror = function () { ko(new Error('Il generatore di PDF non si è caricato: controlla la connessione.')); }; document.head.appendChild(sc); }); };
+      return js('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js')
+        .then(function () { return js('https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js'); });
+    };
+    // Le righe del verbale: dai movimenti di consegna, con marca e numero di serie dall'elenco.
+    var righeVerbale = function (movs) {
+      var per = {};
+      D.attrezzi.forEach(function (a) { per[a.id] = a; });
+      return movs.map(function (m) {
+        var a = per[m.attrezzo] || {};
+        return { tipo: m.movimento === 'Consegna DPI' ? 'DPI' : 'Attrezzo', descrizione: a.descrizione || m.descrizione, marca: a.marca || '',
+          serie: a.serie || '', qta: m.qta || 1, data: m.data, ricevuto: m.ricevuto, da: m.da };
+      });
+    };
+    function verbale(nome, movs, bottoneUsato) {
+      if (!movs.length) { avviso('Niente da mettere nel verbale.'); return; }
+      if (bottoneUsato) bottoneUsato.disabled = true;
+      caricaPdf().then(function () {
+        var righe = righeVerbale(movs);
+        var doc = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4' });
+        var W = 210, M = 16, y;
+        doc.setFillColor(31, 58, 77); doc.rect(0, 0, W, 26, 'F');
+        doc.setFillColor(217, 84, 30); doc.rect(0, 26, W, 1.6, 'F');
+        doc.setTextColor(255); doc.setFont('helvetica', 'bold'); doc.setFontSize(17); doc.text('LD MONTAGGI', M, 12);
+        doc.setFont('helvetica', 'normal'); doc.setFontSize(11.5); doc.text('Verbale di consegna attrezzature e DPI', M, 20);
+        var date = righe.map(function (r) { return r.data.slice(0, 10); }).sort();
+        var dIt = function (s) { return s.slice(8, 10) + '/' + s.slice(5, 7) + '/' + s.slice(0, 4); };
+        doc.setTextColor(23, 36, 45); doc.setFontSize(11);
+        y = 38;
+        [['Dipendente', nome + (squadraDi(nome) ? '   (squadra ' + squadraDi(nome) + ')' : '')],
+         ['Data di consegna', date[0] === date[date.length - 1] ? dIt(date[0]) : 'dal ' + dIt(date[0]) + ' al ' + dIt(date[date.length - 1])],
+         ['Consegnato da', righe.map(function (r) { return r.da; }).filter(function (x, i, a) { return x && a.indexOf(x) === i; }).join(', ') || '']].forEach(function (x) {
+          doc.setFont('helvetica', 'bold'); doc.text(x[0] + ':', M, y);
+          doc.setFont('helvetica', 'normal'); doc.text(x[1], M + 38, y);
+          y += 6.5;
+        });
+        doc.autoTable({
+          startY: y + 2, margin: { left: M, right: M },
+          head: [['N°', 'Tipo', 'Descrizione', 'Marca e modello', 'N° serie / taglia', 'Q.tà', 'Data']],
+          body: righe.map(function (r, i) { return [i + 1, r.tipo, r.descrizione, r.marca, r.serie, r.qta, dIt(r.data.slice(0, 10))]; }),
+          styles: { fontSize: 9.5, cellPadding: 2, textColor: [23, 36, 45] },
+          headStyles: { fillColor: [31, 58, 77], textColor: 255 },
+          columnStyles: { 0: { cellWidth: 9 }, 1: { cellWidth: 18 }, 5: { cellWidth: 12, halign: 'right' }, 6: { cellWidth: 22 } }
+        });
+        y = doc.lastAutoTable.finalY + 9;
+        doc.setFontSize(10);
+        var testo = 'Il/La sottoscritto/a dichiara di aver ricevuto in buono stato gli attrezzi e i dispositivi di protezione individuale (DPI) sopra elencati, ' +
+          'di essere stato/a informato/a sul loro corretto utilizzo e si impegna a: custodirli con cura; usarli solo per l\'attività lavorativa e secondo le istruzioni; ' +
+          'non cederli ad altri; segnalare subito guasti, smarrimenti o usura; restituire gli attrezzi quando richiesto e comunque alla fine del rapporto di lavoro ' +
+          '(D.Lgs. 81/2008, artt. 20 e 78).';
+        var linee = doc.splitTextToSize(testo, W - 2 * M);
+        if (y + linee.length * 4.6 + 40 > 285) { doc.addPage(); y = 20; }
+        doc.text(linee, M, y);
+        y += linee.length * 4.6 + 5;
+        var conf = righe.filter(function (r) { return r.ricevuto; }).map(function (r) { return r.ricevuto; }).sort();
+        if (conf.length === righe.length) {
+          doc.setTextColor(28, 107, 60);
+          doc.text('Ricevuto confermato dal dipendente con il suo PIN nell\'app il ' + dIt(conf[conf.length - 1].slice(0, 10)) + ' alle ' + conf[conf.length - 1].slice(11, 16) + '.', M, y);
+          doc.setTextColor(23, 36, 45);
+          y += 8;
+        }
+        y = Math.max(y + 10, 250);
+        doc.text('Luogo e data ______________________', M, y);
+        y += 14;
+        doc.text('Il consegnatario', M, y); doc.text('Il dipendente', W / 2 + 6, y);
+        doc.line(M, y + 12, M + 70, y + 12); doc.line(W / 2 + 6, y + 12, W - M, y + 12);
+        var nomeFile = 'Verbale consegna - ' + nome + ' - ' + date[date.length - 1] + '.pdf';
+        doc.save(nomeFile);
+        if (bottoneUsato) bottoneUsato.disabled = false;
+      }).catch(function (e) { if (bottoneUsato) bottoneUsato.disabled = false; avviso(e.message); });
+    }
+    // Le consegne ancora valide di un dipendente: attrezzi che ha adesso e DPI ricevuti.
+    function consegneDi(nome) {
+      var adesso = {};
+      D.attrezzi.forEach(function (a) { if (a.a === nome) adesso[a.movimento] = true; });
+      return D.movimenti.filter(function (m) { return m.nome === nome && (adesso[m.id] || m.movimento === 'Consegna DPI'); }).reverse();
+    }
+
+    function disegnaChi() {
+      var box = $('att-chi');
+      titolo(box, 'Chi ha cosa', 'Gli attrezzi in carico a ogni dipendente. In arancione quelli che il dipendente non ha ancora confermato con "Ricevuto". Tocca un attrezzo per farlo rientrare.');
+      var per = {};
+      D.attrezzi.forEach(function (a) { if (a.a) (per[a.a] = per[a.a] || []).push(a); });
+      var dpiDi = {};
+      D.movimenti.forEach(function (m) { if (m.movimento === 'Consegna DPI') (dpiDi[m.nome] = dpiDi[m.nome] || []).push(m); });
+      var nomi = D.dipendenti.map(function (d) { return d.nome; }).filter(function (n) { return per[n] || dpiDi[n]; });
+      if (!nomi.length) nuovo('p', 'spiega', 'Ancora nessun attrezzo consegnato.', box);
+      nomi.forEach(function (n) {
+        var div = nuovo('div', 'att-persona', null, box);
+        var h = nuovo('h3', '', null, div);
+        nuovo('span', 'att-pallino ' + (squadraDi(n) || '').toLowerCase(), null, h);
+        nuovo('span', '', n, h);
+        var b = bottone(h, 'Consegna', 'mini', function () { scelto = n; mostraSotto('consegna'); disegnaConsegna(); });
+        b.style.marginLeft = 'auto';
+        bottone(h, 'Verbale', 'mini', function (x) { verbale(n, consegneDi(n), x); });
+        bottone(h, 'Storico', 'mini', function () { filtro.nome = n; disegnaStorico(); mostraSotto('storico-att'); });
+        (per[n] || []).forEach(function (a) {
+          var c = nuovo('span', 'att-chip' + (a.ricevuto ? '' : ' da-confermare'), nomeAtt(a) + ' ', div);
+          nuovo('small', '', 'dal ' + dataIt(a.dal) + (a.ricevuto ? '' : ' · da confermare'), c);
+          c.onclick = function () { menuRientro(a); };
+        });
+        var d = dpiDi[n] || [];
+        if (d.length) nuovo('p', 'spiega piccola', 'DPI: ' + d.slice(0, 4).map(function (m) { return m.descrizione + ' ×' + m.qta + ' (' + dataIt(m.data) + ')'; }).join(', ') + (d.length > 4 ? '…' : ''), div);
+      });
+    }
+    function menuRientro(a) {
+      var box = $('att-chi');
+      var vecchio = box.querySelector('.att-rientro'); if (vecchio) vecchio.remove();
+      var p = nuovo('div', 'pannello-sposta att-rientro', null, box);
+      nuovo('p', 'testo-sposta', 'Rientro di ' + nomeAtt(a) + ' da ' + a.a, p);
+      var nota = nuovo('input', '', null, nuovo('label', 'riga-sposta', 'Nota ', p));
+      nota.placeholder = 'facoltativa';
+      var az = nuovo('div', 'azioni-sposta', null, p);
+      [['Ok', 'Rientrato, tutto ok'], ['Danneggiato', 'Rientrato danneggiato'], ['Mancante', 'Non restituito']].forEach(function (x) {
+        bottone(az, x[1], x[0] === 'Ok' ? '' : 'pericolo', function (b) {
+          b.disabled = true;
+          chiama('rientroAttrezzo', { id: a.id, stato: x[0], nota: nota.value }, nomeAtt(a) + ': rientro registrato.');
+        });
+      });
+      bottone(az, 'Chiudi', '', function () { p.remove(); });
+      p.scrollIntoView({ block: 'center' });
+    }
+
+    function disegnaConsegna() {
+      var box = $('att-consegna');
+      titolo(box, 'Consegna', 'Scegli il dipendente, spunta gli attrezzi e scrivi quanti DPI gli dai. Il dipendente conferma con "Ricevuto" dalla sua pagina.');
+      var f = nuovo('div', 'att-form', null, box);
+      var sel = nuovo('select', '', null, nuovo('label', '', 'Dipendente', f));
+      nuovo('option', '', 'Scegli il dipendente', sel).value = '';
+      D.dipendenti.forEach(function (d) { var o = nuovo('option', '', d.nome + (d.squadra ? ' · ' + d.squadra : ''), sel); o.value = d.nome; });
+      sel.value = scelto;
+      sel.onchange = function () { scelto = sel.value; };
+      var categorie = D.attrezzi.filter(function (a) { return a.tipo === 'Attrezzo'; }).map(function (a) { return a.categoria || 'Senza categoria'; })
+        .filter(function (c, i, a) { return a.indexOf(c) === i; }).sort();
+      var cat = nuovo('select', '', null, nuovo('label', '', 'Categoria', f));
+      nuovo('option', '', 'Tutte le categorie', cat).value = '';
+      categorie.forEach(function (c) { nuovo('option', '', c, cat).value = c; });
+      cat.value = catAtt;
+      cat.onchange = function () { catAtt = cat.value; dis(); };
+      var cer = nuovo('input', '', null, nuovo('label', '', 'Cerca', f));
+      cer.type = 'search'; cer.placeholder = 'Codice, descrizione, marca, n° serie'; cer.value = cerca;
+      var lista = nuovo('div', '', null, box);
+      var spunte = {}, quanti = {};
+      var spunteN = function () { return Object.keys(spunte).filter(function (k) { return spunte[k]; }).length; };
+      var dis = function () {
+        lista.textContent = '';
+        var q = cerca.toLowerCase();
+        var va = function (a) { return !q || ((a.codice || '') + ' ' + a.descrizione + ' ' + a.marca + ' ' + a.serie + ' ' + a.categoria).toLowerCase().indexOf(q) !== -1; };
+        var liberi = D.attrezzi.filter(function (a) { return a.tipo === 'Attrezzo' && !a.a && a.stato === 'Disponibile' && va(a) && (!catAtt || (a.categoria || 'Senza categoria') === catAtt); });
+        var tanti = liberi.length > 80 && !spunteN();
+        if (tanti) { nuovo('h3', 'titoletto', 'Attrezzi disponibili (' + liberi.length + ')', lista); nuovo('p', 'spiega piccola', 'Sono tanti: scegli la categoria o cerca il codice o la descrizione.', lista); liberi = []; }
+        var dpi = D.attrezzi.filter(function (a) { return a.tipo === 'DPI' && a.stato !== 'Dismesso' && va(a); });
+        if (!tanti) nuovo('h3', 'titoletto', 'Attrezzi disponibili (' + liberi.length + ')', lista);
+        if (!tanti && !liberi.length) nuovo('p', 'spiega piccola', 'Nessun attrezzo disponibile' + (q ? ' con questa ricerca.' : '.'), lista);
+        liberi.forEach(function (a) {
+          var r = nuovo('label', 'att-scelta', null, lista);
+          var c = nuovo('input', '', null, r); c.type = 'checkbox'; c.checked = !!spunte[a.id];
+          c.onchange = function () { spunte[a.id] = c.checked; };
+          var t = nuovo('span', 'att-testo', nomeAtt(a), r);
+          nuovo('small', '', [a.categoria, a.marca].filter(Boolean).join(' · '), t);
+        });
+        nuovo('h3', 'titoletto', 'DPI', lista);
+        if (!dpi.length) nuovo('p', 'spiega piccola', 'Nessun DPI in elenco: aggiungili in Elenco.', lista);
+        dpi.forEach(function (a) {
+          var r = nuovo('div', 'att-scelta', null, lista);
+          var t = nuovo('span', 'att-testo', nomeAtt(a), r);
+          nuovo('small', '', 'in magazzino: ' + a.qta + (a.categoria ? ' · ' + a.categoria : ''), t);
+          var n = nuovo('input', '', null, r); n.type = 'number'; n.min = 0; n.max = a.qta; n.placeholder = '0'; n.value = quanti[a.id] || '';
+          n.oninput = function () { quanti[a.id] = n.value; };
+        });
+      };
+      cer.oninput = function () { cerca = cer.value.trim(); dis(); };
+      dis();
+      var nota = nuovo('input', '', null, nuovo('label', '', 'Nota (facoltativa)', nuovo('div', 'att-form', null, box)));
+      var b = nuovo('button', 'invia', 'Consegna', box);
+      b.type = 'button';
+      b.onclick = function () {
+        if (!scelto) { avviso('Scegli il dipendente.'); return; }
+        var ids = Object.keys(spunte).filter(function (k) { return spunte[k]; });
+        var dpi = Object.keys(quanti).filter(function (k) { return Number(quanti[k]) > 0; }).map(function (k) { return { id: k, qta: Number(quanti[k]) }; });
+        if (!ids.length && !dpi.length) { avviso('Spunta almeno un attrezzo o scrivi la quantità di un DPI.'); return; }
+        b.disabled = true; b.textContent = 'Salvo…';
+        var chi = scelto;
+        chiama('consegnaAttrezzi', { nome: chi, attrezzi: ids, dpi: dpi, nota: nota.value },
+          'Consegnato a ' + chi + ': ' + (ids.length ? ids.length + (ids.length === 1 ? ' attrezzo' : ' attrezzi') : '') + (ids.length && dpi.length ? ' e ' : '') +
+          (dpi.length ? dpi.length + ' DPI' : '') + '. Ora lo conferma dalla sua pagina.')
+          .then(function () {
+            scelto = '';
+            // Il verbale di questa consegna: i movimenti appena registrati per lui.
+            var suoi = D.movimenti.filter(function (m) { return m.nome === chi && /^Consegna/.test(m.movimento); });
+            var ultima = suoi.length ? suoi[0].data : '';
+            var lotto = suoi.filter(function (m) { return m.data === ultima; }).reverse();
+            var av = $('avviso-attrezzi');
+            var bv = nuovo('button', 'azione mini', 'Scarica il verbale', av);
+            bv.type = 'button'; bv.style.marginLeft = '8px';
+            bv.onclick = function () { verbale(chi, lotto, bv); };
+            window.scrollTo(0, 0);
+          }, function () { b.disabled = false; b.textContent = 'Consegna'; });
+      };
+    }
+
+    function disegnaElenco() {
+      var box = $('att-elenco');
+      titolo(box, 'Elenco attrezzi e DPI', 'Gli attrezzi si registrano uno per uno (con il numero di serie). L\'elenco dei DPI, con le taglie e le quantità in magazzino, lo tengono gli addetti agli avanzamenti dalla loro scheda DPI' + (D.puoDpi ? ' (da qui puoi correggerlo anche tu).' : '.'));
+      var f = nuovo('div', 'att-form', null, box);
+      var x = modifica || { tipo: 'Attrezzo', stato: 'Disponibile', qta: 0 };
+      nuovo('h3', 'titoletto', modifica ? 'Modifica: ' + nomeAtt(modifica) : 'Aggiungi', f);
+      var tipo = nuovo('select', '', null, nuovo('label', '', 'Tipo', f));
+      (D.puoDpi ? ['Attrezzo', 'DPI'] : ['Attrezzo']).forEach(function (t) { nuovo('option', '', t, tipo).value = t; });
+      tipo.value = x.tipo;
+      var campo = function (etichetta, val, ph) { var i = nuovo('input', '', null, nuovo('label', '', etichetta, f)); i.value = val || ''; if (ph) i.placeholder = ph; return i; };
+      var desc = campo('Descrizione', x.descrizione, 'es. Smerigliatrice 125, Guanti antitaglio');
+      var cat = campo('Categoria', x.categoria, 'es. Utensili elettrici, Misura, Guanti, Scarpe');
+      var due = nuovo('div', 'att-due', null, f);
+      var marca = nuovo('input', '', null, nuovo('label', '', 'Marca e modello', due)); marca.value = x.marca || '';
+      var serie = nuovo('input', '', null, nuovo('label', '', 'N° serie / taglia', due)); serie.value = x.serie || '';
+      var qtaL = nuovo('label', '', 'Quantità in magazzino', f);
+      var qta = nuovo('input', '', null, qtaL); qta.type = 'number'; qta.min = 0; qta.value = x.qta || 0;
+      var statoL = nuovo('label', '', 'Stato', f);
+      var stato = nuovo('select', '', null, statoL);
+      ['Disponibile', 'In riparazione', 'Mancante', 'Dismesso'].forEach(function (t) { nuovo('option', '', t, stato).value = t; });
+      stato.value = x.stato;
+      var note = campo('Note', x.note, '');
+      var tipoCambia = function () { qtaL.hidden = tipo.value !== 'DPI'; };
+      tipo.onchange = tipoCambia; tipoCambia();
+      var az = nuovo('div', 'azioni-gestione', null, f);
+      var salva = bottone(az, modifica ? 'Salva le modifiche' : 'Aggiungi all\'elenco', 'invia', function () {
+        salva.disabled = true;
+        chiama('salvaAttrezzo', { id: modifica ? modifica.id : '', tipo: tipo.value, descrizione: desc.value, categoria: cat.value, marca: marca.value,
+          serie: serie.value, qta: qta.value, stato: stato.value, note: note.value }, (modifica ? 'Salvato: ' : 'Aggiunto: ') + desc.value)
+          .then(function () { modifica = null; disegna(); }, function () { salva.disabled = false; });
+      });
+      if (modifica) bottone(az, 'Annulla', '', function () { modifica = null; disegnaElenco(); });
+      // Importazione dell'inventario dall'Excel (solo il capo cantiere): il CODICE tiene insieme le revisioni.
+      if (D.puoDpi) {
+        var imp = nuovo('div', 'att-form', null, box);
+        nuovo('h3', 'titoletto', 'Importa l\'inventario dall\'Excel', imp);
+        nuovo('p', 'spiega piccola', 'Il file dell\'attrezzatura (es. rev.27): ogni foglio diventa una categoria. Le voci nuove si aggiungono, quelle già presenti (stesso CODICE) si aggiornano tenendo consegne e stato.', imp);
+        var lab = nuovo('label', 'azione', 'Scegli il file Excel', imp);
+        lab.style.cursor = 'pointer'; lab.style.justifySelf = 'start';
+        var file = nuovo('input', '', null, lab); file.type = 'file'; file.accept = '.xlsx,.xls'; file.style.display = 'none'; file.id = 'file-inventario';
+        var esito = nuovo('div', '', null, imp);
+        file.onchange = function () {
+          var fx = file.files && file.files[0];
+          if (!fx) return;
+          esito.textContent = 'Leggo il file…';
+          leggiInventario(fx).then(function (voci) {
+            esito.textContent = '';
+            var gia = {}; D.attrezzi.forEach(function (a) { gia[a.id] = true; });
+            var nuove = voci.filter(function (v) { return !gia[v.codice]; }).length;
+            var cats = voci.map(function (v) { return v.categoria; }).filter(function (c, i, a) { return a.indexOf(c) === i; });
+            nuovo('p', 'spiega', fx.name + ': ' + voci.length + ' attrezzi in ' + cats.length + ' categorie (' + nuove + ' nuovi, ' + (voci.length - nuove) + ' già in elenco da aggiornare).', esito);
+            var ok = bottone(esito, 'Importa', 'invia', function () {
+              ok.disabled = true; ok.textContent = 'Importo…';
+              chiama('importaAttrezzi', voci).then(function (r) {
+                var x = r.importate || {};
+                avviso('Inventario importato: ' + x.nuove + ' nuovi, ' + x.aggiornate + ' aggiornati' + (x.nonNelFile ? '; ' + x.nonNelFile + ' non sono più nel file (restano in elenco).' : '.'), true);
+              }, function () { ok.disabled = false; ok.textContent = 'Importa'; });
+            });
+          }).catch(function (e) { esito.textContent = ''; avviso(e.message); file.value = ''; });
+        };
+      }
+      var cerElenco = nuovo('input', 'sq-cerca', null, nuovo('label', '', 'Cerca nell\'elenco', nuovo('div', 'att-form', null, box)));
+      cerElenco.type = 'search'; cerElenco.placeholder = 'Codice, descrizione, marca'; cerElenco.value = cercaElenco;
+      var contElenco = nuovo('div', '', null, box);
+      cerElenco.oninput = function () { cercaElenco = cerElenco.value.trim(); disegnaVoci(); };
+      function disegnaVoci() {
+      contElenco.textContent = '';
+      var q = cercaElenco.toLowerCase();
+      ['Attrezzo', 'DPI'].forEach(function (t) {
+        var voci = D.attrezzi.filter(function (a) { return a.tipo === t && (!q || ((a.codice || '') + ' ' + a.descrizione + ' ' + a.marca + ' ' + a.serie).toLowerCase().indexOf(q) !== -1); });
+        nuovo('h3', 'titoletto', (t === 'DPI' ? 'DPI' : 'Attrezzi') + ' (' + voci.length + ')', contElenco);
+        var gruppi = {};
+        voci.forEach(function (a) { (gruppi[a.categoria || 'Senza categoria'] = gruppi[a.categoria || 'Senza categoria'] || []).push(a); });
+        Object.keys(gruppi).sort().forEach(function (g) {
+        var det = nuovo('details', 'att-gruppo', null, contElenco);
+        det.open = !!q || Object.keys(gruppi).length === 1;
+        nuovo('summary', '', g + ' (' + gruppi[g].length + ')', det);
+        gruppi[g].sort(function (a, b) { return ((a.codice || '') + a.descrizione).localeCompare((b.codice || '') + b.descrizione); }).forEach(function (a) {
+          var r = nuovo('div', 'att-riga', null, det);
+          var tx = nuovo('div', 'att-testo', nomeAtt(a), r);
+          nuovo('small', '', [a.categoria, a.marca, a.note].filter(Boolean).join(' · '), tx);
+          var az2 = nuovo('div', 'att-azioni', null, r);
+          if (t === 'DPI') nuovo('span', 'att-etichetta' + (a.qta > 0 ? ' ok' : ' no'), 'magazzino ' + a.qta, az2);
+          else if (a.a) nuovo('span', 'att-etichetta attesa', 'a ' + a.a, az2);
+          else nuovo('span', 'att-etichetta' + (a.stato === 'Disponibile' ? ' ok' : ' no'), a.stato, az2);
+          if (t === 'Attrezzo' || D.puoDpi) bottone(az2, 'Modifica', 'mini', function () { modifica = a; disegnaElenco(); $('att-elenco').scrollIntoView(); });
+        });
+        });
+      });
+      }
+      disegnaVoci();
+    }
+    var cercaElenco = '';
+    // Legge l'Excel dell'inventario: in ogni foglio la riga con "CODICE" è l'intestazione; le colonne si trovano per nome.
+    function leggiInventario(fx) {
+      var carica = window.XLSX ? Promise.resolve() : new Promise(function (ok, ko) {
+        var sc = document.createElement('script');
+        sc.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+        sc.onload = ok; sc.onerror = function () { ko(new Error('Il lettore di file Excel non si è caricato: controlla la connessione.')); };
+        document.head.appendChild(sc);
+      });
+      return carica.then(function () { return fx.arrayBuffer(); }).then(function (buf) {
+        var wb = window.XLSX.read(buf, { type: 'array' }), voci = [], visti = {};
+        wb.SheetNames.forEach(function (nomeFoglio) {
+          var righe = window.XLSX.utils.sheet_to_json(wb.Sheets[nomeFoglio], { header: 1, raw: false, defval: '' });
+          var hi = -1;
+          for (var i = 0; i < Math.min(8, righe.length); i++) if (righe[i].some(function (v) { return String(v).trim().toUpperCase() === 'CODICE'; })) { hi = i; break; }
+          if (hi < 0) return;
+          var h = righe[hi].map(function (v) { return String(v).replace(/\s+/g, ' ').trim().toUpperCase(); });
+          var c = function (nome) { return h.indexOf(nome); };
+          var categoria = nomeFoglio.replace(/_/g, ' / ').trim();
+          righe.slice(hi + 1).forEach(function (r) {
+            var codice = String(r[c('CODICE')] || '').trim(), descr = String(r[c('DESCRIZIONE ARTICOLO')] || '').replace(/\s+/g, ' ').trim();
+            if (!codice || !descr) return;
+            if (visti[codice]) { var k = 2; while (visti[codice + '-' + k]) k++; codice = codice + '-' + k; }
+            visti[codice] = true;
+            var val = function (nome) { return c(nome) >= 0 ? String(r[c(nome)] || '').replace(/\s+/g, ' ').trim() : ''; };
+            var qta = val("QUANTITA'");
+            voci.push({ codice: codice, categoria: categoria, descrizione: descr,
+              marca: [val('MARCA'), val('MODELLO')].filter(Boolean).join(' '), serie: val('TARGA'),
+              note: (qta && qta !== '1' ? 'Q.tà ' + qta + (val('U.M.') ? ' ' + val('U.M.') : '') : '') });
+          });
+        });
+        if (!voci.length) throw new Error('Nel file non ho trovato attrezzi (serve la colonna CODICE).');
+        return voci;
+      });
+    }
+
+    // Storico: tutte le consegne e i rientri, con data e ora, filtrabili per dipendente, tipo e periodo.
+    var filtro = { nome: '', tipo: '', dal: '', al: '', q: '' };
+    function disegnaStorico() {
+      var box = $('att-storico');
+      titolo(box, 'Storico consegne', 'Cosa è stato consegnato (o è rientrato), a chi, quando e da chi. In arancione le consegne che il dipendente non ha ancora confermato.');
+      var f = nuovo('div', 'att-form', null, box);
+      var due = nuovo('div', 'att-due', null, f);
+      var sn = nuovo('select', '', null, nuovo('label', '', 'Dipendente', due));
+      nuovo('option', '', 'Tutti', sn).value = '';
+      D.dipendenti.forEach(function (d) { nuovo('option', '', d.nome, sn).value = d.nome; });
+      sn.value = filtro.nome;
+      var st = nuovo('select', '', null, nuovo('label', '', 'Cosa', due));
+      [['', 'Attrezzi e DPI'], ['Attrezzo', 'Solo attrezzi'], ['DPI', 'Solo DPI']].forEach(function (x) { nuovo('option', '', x[1], st).value = x[0]; });
+      st.value = filtro.tipo;
+      var tre = nuovo('div', 'att-due', null, f);
+      var sd = nuovo('input', '', null, nuovo('label', '', 'Dal', tre)); sd.type = 'date'; sd.value = filtro.dal;
+      var sa = nuovo('input', '', null, nuovo('label', '', 'Al', tre)); sa.type = 'date'; sa.value = filtro.al;
+      var sq = nuovo('input', '', null, nuovo('label', '', 'Cerca', f)); sq.type = 'search'; sq.placeholder = 'Descrizione, n° serie'; sq.value = filtro.q;
+      var lista = nuovo('div', '', null, box);
+      var voci = [];
+      var dis = function () {
+        lista.textContent = '';
+        var q = filtro.q.toLowerCase();
+        voci = D.movimenti.filter(function (m) {
+          var dpi = m.movimento === 'Consegna DPI';
+          return (!filtro.nome || m.nome === filtro.nome) && (!filtro.tipo || (filtro.tipo === 'DPI') === dpi) &&
+            (!filtro.dal || m.data.slice(0, 10) >= filtro.dal) && (!filtro.al || m.data.slice(0, 10) <= filtro.al) &&
+            (!q || m.descrizione.toLowerCase().indexOf(q) !== -1);
+        });
+        nuovo('p', 'spiega piccola', voci.length + (voci.length === 1 ? ' movimento' : ' movimenti'), lista);
+        voci.slice(0, 300).forEach(function (m) {
+          var r = nuovo('div', 'att-riga', null, lista);
+          var rientro = m.movimento === 'Rientro attrezzo';
+          var tx = nuovo('div', 'att-testo', m.descrizione + (m.qta > 1 ? ' ×' + m.qta : ''), r);
+          nuovo('small', '', dataIt(m.data) + ' ' + m.data.slice(11, 16) + ' · ' + m.nome + ' · ' + (rientro ? 'rientro' + (m.statoRientro && m.statoRientro !== 'Ok' ? ' (' + m.statoRientro.toLowerCase() + ')' : '') : 'consegnato') +
+            (m.da ? ' da ' + m.da : '') + (m.nota ? ' · ' + m.nota : ''), tx);
+          var az = nuovo('div', 'att-azioni', null, r);
+          if (rientro) nuovo('span', 'att-etichetta', 'Rientro', az);
+          else nuovo('span', 'att-etichetta' + (m.ricevuto ? ' ok' : ' attesa'), m.ricevuto ? 'Ricevuto ' + dataIt(m.ricevuto) : 'Da confermare', az);
+        });
+        if (voci.length > 300) nuovo('p', 'spiega piccola', 'Ne vedi 300: restringi con i filtri o scarica l\'Excel.', lista);
+      };
+      sn.onchange = function () { filtro.nome = sn.value; dis(); };
+      st.onchange = function () { filtro.tipo = st.value; dis(); };
+      sd.onchange = function () { filtro.dal = sd.value; dis(); };
+      sa.onchange = function () { filtro.al = sa.value; dis(); };
+      sq.oninput = function () { filtro.q = sq.value.trim(); dis(); };
+      var az = nuovo('div', 'azioni-gestione', null, f);
+      bottone(az, 'Scarica Excel', '', function () {
+        var c = function (v) { v = String(v === undefined || v === null ? '' : v); return /[";\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+        var righe = [['Data', 'Ora', 'Dipendente', 'Movimento', 'Descrizione', 'Quantità', 'Fatto da', 'Stato al rientro', 'Nota', 'Ricevuto il']].concat(voci.map(function (m) {
+          return [dataIt(m.data), m.data.slice(11, 16), m.nome, m.movimento, m.descrizione, m.qta, m.da, m.statoRientro, m.nota, m.ricevuto ? dataIt(m.ricevuto) + ' ' + m.ricevuto.slice(11, 16) : ''];
+        }));
+        var blob = new Blob(['﻿' + righe.map(function (r) { return r.map(c).join(';'); }).join('\r\n')], { type: 'text/csv;charset=utf-8' });
+        var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+        a.download = 'Consegne attrezzi e DPI' + (filtro.nome ? ' - ' + filtro.nome : '') + '.csv';
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+      });
+      dis();
+    }
+
+    function disegna() {
+      if (!D) return;
+      disegnaChi(); disegnaConsegna(); disegnaElenco(); disegnaStorico();
+    }
+    // Dalla scheda "Chi ha cosa" alla sottoscheda Consegna.
+    function mostraSotto(id) { var b = document.getElementById('sotto-' + id) || document.querySelector('[data-sotto="' + id + '"]'); if (b) b.click(); }
+    // ----- Abbigliamento: le richieste le gestisce il responsabile dell'abbigliamento; qui si vedono e basta -----
+    var abb = null, filtroAbb = 'Aperta', cercaAbb = '', abbMiaAperta = false;
+    function disegnaAbb() {
+      var box = $('att-abb');
+      titolo(box, 'Abbigliamento', 'Le richieste dei dipendenti' + (abb && abb.reparto ? ' della tua squadra' : '') +
+        ' con il modulo firmato con il PIN. Le consegnano gli addetti agli avanzamenti: quelle degli altri qui si possono solo vedere.');
+      if (!abb) { nuovo('p', 'spiega', 'Carico…', box); return; }
+      // La propria richiesta (anche i responsabili e il capo cantiere chiedono il loro abbigliamento).
+      var mia = nuovo('details', 'abb-mia', null, box);
+      var apertaMia = abb.mie.filter(function (a) { return a.stato === 'Aperta'; })[0];
+      mia.open = !!abbMiaAperta;
+      nuovo('summary', '', 'La mia richiesta di abbigliamento' + (apertaMia ? ' · in attesa' : ''), mia);
+      mia.addEventListener('toggle', function () { abbMiaAperta = mia.open; });
+      var corpoMio = nuovo('div', '', null, mia);
+      var apiMia = {
+        richiedi: function (d, ok, ko) { google.script.run.withSuccessHandler(function (x) { abb = x; ok({ capi: x.capi, richieste: x.mie }); }).withFailureHandler(ko).richiediAbbigliamentoMio(cred, d); },
+        annulla: function (id, ok, ko) { google.script.run.withSuccessHandler(function (x) { abb = x; ok({ capi: x.capi, richieste: x.mie }); }).withFailureHandler(ko).annullaAbbigliamentoMio(cred, id); },
+        scarica: function (id, ok, ko) { google.script.run.withSuccessHandler(ok).withFailureHandler(ko).scaricaAbbigliamento(cred, id); }
+      };
+      disegnaAbbPersona(corpoMio, { capi: abb.capi, richieste: abb.mie }, apiMia, avviso);
+      nuovo('h3', 'titoletto', 'Richieste ' + (abb.reparto ? 'della tua squadra' : 'di tutti'), box);
+      var conta = {};
+      abb.richieste.forEach(function (a) { conta[a.stato] = (conta[a.stato] || 0) + 1; });
+      var fil = nuovo('div', 'att-filtri', null, box);
+      fil.style.display = 'flex'; fil.style.gap = '6px'; fil.style.flexWrap = 'wrap'; fil.style.margin = '6px 0 10px';
+      [['Aperta', 'Da consegnare'], ['Consegnata', 'Consegnate'], ['Respinta', 'Respinte'], ['', 'Tutte']].forEach(function (x) {
+        var b = bottone(fil, x[1] + ' (' + (x[0] ? conta[x[0]] || 0 : abb.richieste.length) + ')', 'mini', function () { filtroAbb = x[0]; disegnaAbb(); });
+        b.setAttribute('aria-pressed', filtroAbb === x[0] ? 'true' : 'false');
+        if (filtroAbb === x[0]) { b.style.background = '#1f3a4d'; b.style.color = '#fff'; }
+      });
+      var ce = document.createElement('input');
+      ce.type = 'search'; ce.placeholder = 'Cerca dipendente o capo'; ce.value = cercaAbb; ce.style.width = '100%'; ce.style.marginBottom = '8px';
+      box.appendChild(ce);
+      var lista = nuovo('div', '', null, box);
+      var dataIt = function (s) { return s ? s.slice(8, 10) + '/' + s.slice(5, 7) + '/' + s.slice(0, 4) : ''; };
+      var disegnaLista = function () {
+        lista.textContent = '';
+        var q = cercaAbb.toLowerCase();
+        var righe = abb.richieste.filter(function (a) {
+          return (!filtroAbb || a.stato === filtroAbb) &&
+            (!q || (a.nome + ' ' + (a.consegnato.length ? a.consegnato : a.richiesto).map(function (x) { return x.capo; }).join(' ')).toLowerCase().indexOf(q) !== -1);
+        });
+        if (!righe.length) nuovo('p', 'spiega', 'Niente da mostrare.', lista);
+        righe.forEach(function (a) {
+          var c = nuovo('div', 'att-riga', null, lista);
+          var consegnata = a.stato === 'Consegnata';
+          var t = nuovo('div', 'att-testo', a.nome, c);
+          t.style.fontWeight = '600';
+          nuovo('small', '', 'Richiesta del ' + dataIt(a.data) + (a.il && a.stato !== 'Aperta' ? ' · ' + (consegnata ? 'consegnata' : a.stato.toLowerCase()) + ' il ' + dataIt(a.il) + (a.da ? ' da ' + a.da : '') : ''), t);
+          chipsAbb(consegnata ? a.consegnato : a.richiesto, t).style.fontWeight = '400';
+          if (a.nota) nuovo('small', '', 'Nota del dipendente: ' + a.nota, t);
+          if (a.notaConsegna) nuovo('small', '', (consegnata ? 'Nota alla consegna: ' : 'Motivo: ') + a.notaConsegna, t);
+          var az = nuovo('div', 'att-azioni', null, c);
+          pillAbb(a.stato, az);
+          if (abb.puoBumpCap && a.stato === 'Aperta' && a.richiesto.some(function (x) { return x.capo === 'BUMP CAP'; })) {
+            var bc = bottone(az, '⛑️ Consegna bump cap e firma', 'mini', function () {
+              var altri = a.richiesto.filter(function (x) { return x.capo !== 'BUMP CAP'; }).length;
+              if (!confirm('Consegni il bump cap a ' + a.nome + ' e firmi con il tuo PIN?' + (altri ? ' Gli altri capi della richiesta restano in attesa per gli addetti.' : ''))) return;
+              bc.disabled = true;
+              google.script.run.withSuccessHandler(function (r) { abb = r; disegnaAbb(); avviso('Bump cap consegnato a ' + a.nome + ' e firmato.', true); })
+                .withFailureHandler(function (e) { bc.disabled = false; avviso(e.message); }).consegnaBumpCap(cred, a.id);
+            });
+            bc.style.background = '#1f3a4d'; bc.style.color = '#fff';
+          }
+          if (a.pdf) {
+            var sc = bottone(az, 'Modulo PDF', 'mini', function () {
+              sc.disabled = true;
+              google.script.run.withSuccessHandler(function (f) { sc.disabled = false; scaricaBase64(f.nome, 'application/pdf', f.pdf); })
+                .withFailureHandler(function (e) { sc.disabled = false; avviso(e.message); }).scaricaAbbigliamento(cred, a.id);
+            });
+          }
+        });
+      };
+      ce.addEventListener('input', function () { cercaAbb = ce.value; disegnaLista(); });
+      disegnaLista();
+    }
+    disegnaAbb();
+    google.script.run.withSuccessHandler(function (r) { abb = r; disegnaAbb(); })
+      .withFailureHandler(function (e) { $('att-abb').textContent = 'Abbigliamento non caricato: ' + e.message; })
+      .abbigliamento(cred);
+
+    $('att-chi').textContent = 'Carico le attrezzature…';
+    google.script.run.withSuccessHandler(function (r) { D = r; disegna(); })
+      .withFailureHandler(function (e) { $('att-chi').textContent = 'Attrezzature non caricate: ' + e.message; })
+      .attrezzature(cred);
   }
 
   /* ----- Avanzamenti Carpenteria: l'app degli avanzamenti in una cornice, con lo stesso PIN ----- */
@@ -2204,9 +3017,9 @@ var CONFIG = (function () {
     return { punti: punti, titolo: /^\d+$/.test(doc) ? 'Report N. ' + doc : '', treno: numeroTreno, ispezione: ispezione };
   }
 
-  // Sezione "Report del cliente": responsabili, il titolare e chi carica i report.
+  // Sezione "Report del cliente": responsabili, il capo cantiere e chi carica i report.
   // puoAssegnare = false per chi carica solo i report: squadra e "a chi" li decidono
-  // i capi reparto e il titolare.
+  // i capi reparto e il capo cantiere.
   function avviaReport(cred, iniziali, attivitaPagina, puoMom, persone, puoAssegnare) {
     var elenco = iniziali || [];
     persone = persone || [];
@@ -2424,7 +3237,7 @@ var CONFIG = (function () {
             bottone(lato, p.fattoDa ? 'Da rifare' : 'Fatto', 'mini', function (b) {
               chiama(b, 'cambiaPunto', [r.id, p.n, { fatto: !p.fattoDa }]);
             });
-            // I responsabili della Verniciatura, chi carica i report e il titolare scattano o allegano la foto del punto.
+            // I responsabili della Verniciatura, chi carica i report e il capo cantiere scattano o allegano la foto del punto.
             if (puoAssegnare || puoMom) {
               bottoniFoto(lato, p.conFoto, function (foto, ripristina) {
                 chiama(null, 'allegaFotoPuntoCapo', [r.id, p.n, foto], function () { avvisoReport('Foto allegata al punto ' + p.n + '.', true); });
@@ -2618,7 +3431,7 @@ var CONFIG = (function () {
       nuovoReport.punti.forEach(function (p) { if (p.chi && nomi.indexOf(p.chi) === -1) p.chi = ''; });
       $('controllo-punti').hidden = false;
       $('chi-assegnati').textContent = !puoAssegnare
-        ? 'Le note vanno a chi è assegnato a ' + a.commessa + ' – ' + a.nome + '. La squadra e chi fa cosa li decidono il responsabile della Verniciatura o il titolare. Spunta le note assegnate a LD Montaggi: quelle senza spunta non vengono mandate a nessuno.'
+        ? 'Le note vanno a chi è assegnato a ' + a.commessa + ' – ' + a.nome + '. La squadra e chi fa cosa li decidono il responsabile della Verniciatura o il capo cantiere. Spunta le note assegnate a LD Montaggi: quelle senza spunta non vengono mandate a nessuno.'
         : (squadra.length
         ? 'Squadra: ' + squadra.join(', ') + '. Con "Tutta la squadra" la nota la vede ognuno di loro.'
         : nomi.length ? 'Nessuna squadra scelta: le note vanno agli assegnati a ' + a.commessa + ' – ' + a.nome + ' (' + nomi.join(', ') + ').'
@@ -2724,7 +3537,7 @@ var CONFIG = (function () {
           disegna();
           if (window.vaiSottoscheda) vaiSottoscheda('treni');
           avvisoReport('Report salvato: ' + scelti.length + (scelti.length === 1 ? ' nota mandata' : ' note mandate') +
-            (puoAssegnare ? ' alla squadra, che le vede in Il mio lavoro.' : ' a chi è assegnato all\'attività. Il responsabile della Verniciatura o il titolare possono scegliere la squadra e chi fa cosa.') +
+            (puoAssegnare ? ' alla squadra, che le vede in Il mio lavoro.' : ' a chi è assegnato all\'attività. Il responsabile della Verniciatura o il capo cantiere possono scegliere la squadra e chi fa cosa.') +
             testoAggiunti(res.aggiunti), true);
         })
         .withFailureHandler(function (err) {
@@ -2884,6 +3697,8 @@ var CONFIG = (function () {
           var cred = { pin: pin };
           mostraAssegnazioni(dati, cred, 'Assegnazioni di tutti i reparti');
           avviaCompilazioni(cred);
+          avviaLavori(cred, !!dati.avanzamenti);
+          avviaMod25(cred);
           avviaResoconti(cred);
           avviaRegistro(cred, dati.registro);
           avviaAttestati(cred, true);
@@ -2896,6 +3711,7 @@ var CONFIG = (function () {
           mostraInArrivo(dati.inArrivo || []);
           if (dati.attivitaReport && dati.attivitaReport.length) avviaReport(cred, dati.report, dati.attivitaReport, true, dati.persone, true);
           if (dati.avanzamenti) avviaAvanzamenti(cred);
+          avviaAttrezzature(cred);
           avviaSchede(false, null, { cred: cred, ordine: dati.ordineSchede });
         })
         .withFailureHandler(ko)
@@ -2904,6 +3720,332 @@ var CONFIG = (function () {
   }
 
   // Avviso in cima alla pagina: chi ha compilato il turno e chi manca ancora.
+  /* ----- Lavori: quello che inseriscono i dipendenti, in un posto solo ----- */
+  // Oggi (chi ha inviato cosa e chi manca), Da confermare (casse dichiarate da registrare negli avanzamenti), Storico.
+  // Ogni cassa mostra il suo punto: Dichiarata → Confermata → Avanzata → A MOM.
+  var PASSI_LAVORO = [['dichiarata', 'Dichiarata'], ['confermata', 'Confermata'], ['avanzata', 'Avanzata'], ['mom', 'A MOM']];
+  function passoLavoro(passo, padre) {
+    if (!passo) return null;
+    var box = nuovo('span', 'lav-passo lav-p-' + passo.stato, null, padre);
+    if (passo.stato === 'ignorata') { box.textContent = 'Ignorata'; box.title = 'Segnata da non registrare negli avanzamenti'; return box; }
+    var tot = passo.stato === 'dichiarata' ? 4 : !passo.avanza ? 2 : passo.mom ? 4 : 3;
+    var n = { dichiarata: 1, confermata: 2, avanzata: 3, mom: 4 }[passo.stato];
+    var punti = nuovo('span', 'lav-punti', null, box);
+    punti.setAttribute('aria-hidden', 'true');
+    for (var i = 1; i <= tot; i++) nuovo('i', i <= n ? 'si' : '', null, punti);
+    var testo = PASSI_LAVORO[n - 1][1];
+    if (passo.stato === 'confermata' && passo.avanza) testo = 'Confermata · da avanzare';
+    if (passo.stato === 'avanzata' && passo.mom) testo = 'Avanzata · da inserire a MOM';
+    nuovo('span', '', testo, box);
+    var dett = [];
+    if (passo.conferma) dett.push('confermata il ' + dataBreve(passo.conferma));
+    if (passo.avIl) dett.push('avanzata il ' + dataBreve(passo.avIl.slice(0, 10)) + (passo.ordine ? ' (ordine ' + passo.ordine + ')' : ''));
+    if (passo.momIl) dett.push('a MOM il ' + dataBreve(passo.momIl.slice(0, 10)));
+    box.title = dett.join(' · ') || 'Dichiarata dal dipendente: da confermare';
+    return box;
+  }
+  function legendaPassi(padre) {
+    var l = nuovo('div', 'lav-legenda', null, padre);
+    PASSI_LAVORO.forEach(function (p, i) {
+      if (i) nuovo('span', 'lav-freccia', '→', l);
+      var s = nuovo('span', 'lav-passo lav-p-' + p[0], null, l);
+      nuovo('span', '', p[1], s);
+    });
+    nuovo('small', '', 'Dichiarata dal dipendente → confermata dal capo → avanzata dagli addetti agli avanzamenti → inserita a MOM.', l);
+  }
+
+  function avviaLavori(cred, conConferma) {
+    $('compilazioni').hidden = true;   // sostituita da Lavori → Oggi
+    ['lavori-oggi', 'lavori-storico'].forEach(function (id) { $(id).hidden = false; });
+    $('lavori-conferma').hidden = !conConferma;
+    var dataIt = function (d) { return d ? d.slice(8, 10) + '/' + d.slice(5, 7) + '/' + d.slice(0, 4) : ''; };
+    var giornoNome = function (d) { return ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'][new Date(d + 'T12:00').getDay()]; };
+    var ore = function (n) { return String(Math.round(n * 100) / 100).replace('.', ',') + ' h'; };
+
+    // ----- Oggi -----
+    var turno = new Date();
+    if (turno.getHours() < 16) turno.setDate(turno.getDate() - 1);   // il turno finisce a mezzanotte: prima delle 16 si guarda ieri
+    var giorno = iso(turno), soloMancano = false, datiGiorno = null;
+    var boxO = $('lavori-oggi');
+    var disegnaOggi = function () {
+      boxO.textContent = '';
+      var testa = nuovo('div', 'lav-testa', null, boxO);
+      nuovo('h2', '', 'Lavori del giorno', testa);
+      var nav = nuovo('div', 'lav-giorno', null, testa);
+      var spost = function (n) { var d = new Date(giorno + 'T12:00'); d.setDate(d.getDate() + n); if (iso(d) <= oggi()) { giorno = iso(d); carica(); } };
+      var prima = bottone(nav, '‹', 'mini', function () { spost(-1); });
+      prima.setAttribute('aria-label', 'Giorno prima');
+      var inp = document.createElement('input');
+      inp.type = 'date'; inp.value = giorno; inp.max = oggi();
+      inp.setAttribute('aria-label', 'Giorno');
+      inp.addEventListener('change', function () { if (inp.value) { giorno = inp.value; carica(); } });
+      nav.appendChild(inp);
+      var dopo = bottone(nav, '›', 'mini', function () { spost(1); });
+      dopo.setAttribute('aria-label', 'Giorno dopo');
+      dopo.disabled = giorno >= oggi();
+      if (!datiGiorno) { nuovo('p', 'spiega', 'Carico…', boxO); return; }
+      var r = datiGiorno;
+      var rias = nuovo('div', 'lav-riassunto', null, boxO);
+      nuovo('span', 'lav-num ok', null, rias).innerHTML = '<b>' + r.conta.inviato + '</b> hanno inviato';
+      var m = nuovo('button', 'lav-num ' + (r.conta.manca ? 'no' : 'ok'), null, rias);
+      m.type = 'button';
+      m.innerHTML = '<b>' + r.conta.manca + '</b> ' + (r.conta.manca === 1 ? 'manca' : 'mancano') + (soloMancano ? ' · mostra tutti' : r.conta.manca ? ' · vedi chi' : '');
+      m.disabled = !r.conta.manca && !soloMancano;
+      m.addEventListener('click', function () { soloMancano = !soloMancano; disegnaOggi(); });
+      if (r.conta.assente) nuovo('span', 'lav-num', null, rias).innerHTML = '<b>' + r.conta.assente + '</b> assenti';
+      nuovo('p', 'spiega piccola', giornoNome(r.data) + ' ' + dataIt(r.data) + (r.data === r.oggi ? ' (oggi)' : '') + '. Tocca una cassa per vedere la lavorazione.', boxO);
+      var att = r.attivita.filter(function (v) { return !soloMancano || v.persone.some(function (p) { return p.stato === 'manca'; }); });
+      if (!att.length) nuovo('p', 'spiega', soloMancano ? 'Non manca nessuno.' : 'Nessuna attività assegnata in questo giorno.', boxO);
+      att.forEach(function (v) {
+        var card = nuovo('div', 'lav-card', null, boxO);
+        if (v.colore) card.style.borderLeftColor = v.colore;
+        var t = nuovo('div', 'lav-card-testa', null, card);
+        nuovo('strong', '', v.commessa + ' – ' + v.nome, t);
+        var inv = v.persone.filter(function (p) { return p.stato === 'inviato'; }).length;
+        var tot = v.persone.filter(function (p) { return p.stato !== 'assente' && p.stato !== 'altrove'; }).length;
+        nuovo('span', 'lav-conta' + (inv >= tot ? ' ok' : ''), inv + '/' + tot, t);
+        if (v.reparto) nuovo('small', 'lav-rep', v.reparto, card);
+        v.persone.filter(function (p) { return !soloMancano || p.stato === 'manca'; }).forEach(function (p) {
+          var riga = nuovo('div', 'lav-persona lav-s-' + p.stato, null, card);
+          var c = nuovo('div', 'lav-chi', null, riga);
+          nuovo('span', 'lav-nome', p.nome + (p.aiuto ? ' (in aiuto)' : '') + (p.capo ? ' (capo)' : '') + (p.fuori ? ' (non assegnato)' : ''), c);
+          var st = { inviato: v.conOre ? 'Inviato · ' + ore(p.ore) : 'Inviato', manca: 'Manca', assente: 'Assente' + (p.tipo ? ' · ' + p.tipo.toLowerCase() : ''), altrove: 'Ha inviato su un\'altra attività' }[p.stato];
+          nuovo('span', 'lav-stato', st, c);
+          if (p.righe.length) {
+            var cs = nuovo('div', 'lav-casse', null, riga);
+            p.righe.forEach(function (x) {
+              var d = nuovo('details', 'lav-cassa', null, cs);
+              var s = nuovo('summary', '', null, d);
+              nuovo('span', 'lav-ser', x.seriale, s);
+              if (v.conOre && x.ore) nuovo('span', 'lav-ore', ore(x.ore), s);
+              passoLavoro(x.passo, s);
+              nuovo('div', 'lav-lavorazione', x.lavorazione + (x.note ? ' · Note: ' + x.note : ''), d);
+            });
+          }
+        });
+      });
+    };
+    var carica = function () {
+      datiGiorno = null;
+      disegnaOggi();
+      google.script.run.withSuccessHandler(function (r) { datiGiorno = r; disegnaOggi(); })
+        .withFailureHandler(function (e) { boxO.textContent = 'Lavori non caricati: ' + e.message; }).lavoriGiorno(cred, giorno);
+    };
+    carica();
+
+    // ----- Da confermare -----
+    var boxC = $('lavori-conferma'), conferme = null;
+    var disegnaConferma = function (msg, ok) {
+      boxC.textContent = '';
+      nuovo('h2', '', 'Da confermare', boxC);
+      nuovo('p', 'spiega', 'Le casse che i dipendenti hanno dichiarato e che non sono ancora registrate negli avanzamenti. Conferma quando il lavoro è finito: la cassa passa agli addetti agli avanzamenti (se va avanzata). Ignora se era una prova o un errore.', boxC);
+      legendaPassi(boxC);
+      if (msg) { var a = nuovo('div', 'avviso' + (ok ? ' conferma' : ''), msg, boxC); a.style.display = 'block'; }
+      if (!conferme) { nuovo('p', 'spiega', 'Carico…', boxC); return; }
+      if (!conferme.length) { nuovo('p', 'lav-vuoto', '✓ Niente da confermare.', boxC); return; }
+      conferme.forEach(function (g) {
+        var card = nuovo('div', 'lav-card', null, boxC);
+        var t = nuovo('div', 'lav-card-testa', null, card);
+        nuovo('strong', '', g.commessa + ' – ' + g.attivita, t);
+        passoLavoro({ stato: 'dichiarata' }, t);
+        var ser = nuovo('div', 'lav-conf-cassa', null, card);
+        nuovo('span', 'lav-ser grande', (g.treno ? 'Treno ' : 'Cassa ') + g.seriale, ser);
+        nuovo('small', '', (g.dal === g.al ? 'il ' + dataIt(g.dal) : 'dal ' + dataIt(g.dal) + ' al ' + dataIt(g.al)) + ' · ' + g.giorni + (g.giorni === 1 ? ' giorno' : ' giorni') +
+          (g.ore ? ' · ' + ore(g.ore) : '') + ' · ' + g.operatori.join(', '), ser);
+        if (g.lavorazioni.length) nuovo('div', 'lav-lavorazione', g.lavorazioni.join(' · '), card);
+        var az = nuovo('div', 'lav-azioni', null, card);
+        var lab = nuovo('label', 'lav-data-conf', 'Finita il ', az);
+        var d = document.createElement('input');
+        d.type = 'date'; d.value = g.al; d.min = g.dal; d.max = oggi();
+        lab.appendChild(d);
+        var ok = bottone(az, 'Conferma', 'invia', function () {
+          ok.disabled = no.disabled = true;
+          google.script.run.withSuccessHandler(function () { caricaConferme('Confermata: ' + g.commessa + ' – ' + g.attivita + ', ' + g.seriale + '.', true); carica(); })
+            .withFailureHandler(function (e) { ok.disabled = no.disabled = false; disegnaConferma(e.message); })
+            .av_confermaDichiarata({ ld: cred }, g.chiave, d.value || g.al, '');
+        });
+        var no = bottone(az, 'Ignora', 'mini', function () {
+          if (!confirm('Ignoro ' + g.seriale + '? Non verrà registrata negli avanzamenti (ricompare solo con nuove dichiarazioni).')) return;
+          ok.disabled = no.disabled = true;
+          google.script.run.withSuccessHandler(function () { caricaConferme('Ignorata: ' + g.seriale + '.', true); carica(); })
+            .withFailureHandler(function (e) { ok.disabled = no.disabled = false; disegnaConferma(e.message); })
+            .av_ignoraDichiarata({ ld: cred }, g.chiave, g.al);
+        });
+      });
+    };
+    var caricaConferme = function (msg, ok) {
+      if (!conConferma) return;
+      google.script.run.withSuccessHandler(function (r) {
+        conferme = r.dichiarate || [];
+        boxC.dataset.conta = String(conferme.length);
+        disegnaConferma(msg, ok);
+        if (window.numeriSchede) window.numeriSchede();
+      }).withFailureHandler(function (e) { boxC.textContent = 'Da confermare non caricato: ' + e.message; }).lavoriDaConfermare(cred);
+    };
+    if (conConferma) { disegnaConferma(); caricaConferme(); }
+
+    // ----- Storico -----
+    var boxS = $('lavori-storico'), storico = null, filtro = { q: '', passo: '' };
+    var oggiD = new Date(), primo = iso(new Date(oggiD.getFullYear(), oggiD.getMonth(), 1));
+    var periodo = { dal: primo, al: oggi() };
+    var disegnaStorico = function () {
+      boxS.textContent = '';
+      nuovo('h2', '', 'Storico dei lavori', boxS);
+      var f = nuovo('div', 'lav-filtri', null, boxS);
+      var campoData = function (et, k) {
+        var l = nuovo('label', '', et, f);
+        var i = document.createElement('input');
+        i.type = 'date'; i.value = periodo[k]; i.max = oggi();
+        i.addEventListener('change', function () { if (i.value) { periodo[k] = i.value; caricaStorico(); } });
+        l.appendChild(i);
+      };
+      campoData('Dal ', 'dal'); campoData('al ', 'al');
+      var q = document.createElement('input');
+      q.type = 'search'; q.placeholder = 'Cerca dipendente, cassa, commessa…'; q.value = filtro.q; q.className = 'lav-cerca';
+      f.appendChild(q);
+      var sel = document.createElement('select');
+      [['', 'Tutti i punti'], ['dichiarata', 'Dichiarate'], ['confermata', 'Confermate'], ['avanzata', 'Avanzate'], ['mom', 'A MOM']].forEach(function (x) { nuovo('option', '', x[1], sel).value = x[0]; });
+      sel.value = filtro.passo;
+      f.appendChild(sel);
+      var lista = nuovo('div', '', null, boxS);
+      var disegnaLista = function () {
+        lista.textContent = '';
+        if (!storico) { nuovo('p', 'spiega', 'Carico…', lista); return; }
+        var t = filtro.q.toLowerCase();
+        var righe = storico.righe.filter(function (x) {
+          return (!filtro.passo || (x.passo && x.passo.stato === filtro.passo)) &&
+            (!t || (x.nome + ' ' + x.seriale + ' ' + x.commessa + ' ' + x.attivita + ' ' + x.lavorazione).toLowerCase().indexOf(t) !== -1);
+        });
+        var tot = righe.reduce(function (s, x) { return s + x.ore; }, 0);
+        var som = nuovo('div', 'lav-somma', null, lista);
+        nuovo('span', '', righe.length + (righe.length === 1 ? ' riga' : ' righe') + (tot ? ' · ' + ore(tot) : ''), som);
+        var csv = bottone(som, 'Scarica CSV', 'mini', function () {
+          var esc = function (s) { s = String(s == null ? '' : s); return /[";\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+          var testo = ['Data;Dipendente;Commessa;Attività;Cassa / treno;Ore;Lavorazione;Punto'].concat(righe.map(function (x) {
+            return [dataIt(x.data), x.nome, x.commessa, x.attivita, x.seriale, String(x.ore).replace('.', ','), x.lavorazione, x.passo ? x.passo.stato : ''].map(esc).join(';');
+          })).join('\n');
+          scaricaBase64('Lavori ' + periodo.dal + ' - ' + periodo.al + '.csv', 'text/csv', btoa(unescape(encodeURIComponent('﻿' + testo))));
+        });
+        csv.disabled = !righe.length;
+        if (storico.troppe) nuovo('p', 'spiega piccola', 'Mostro solo le prime 3000 righe: restringi il periodo.', lista);
+        var ultimo = '';
+        righe.slice(0, 600).forEach(function (x) {
+          if (x.data !== ultimo) { ultimo = x.data; nuovo('h3', 'lav-data', giornoNome(x.data) + ' ' + dataIt(x.data), lista); }
+          var r = nuovo('div', 'lav-riga', null, lista);
+          var a = nuovo('div', 'lav-riga-a', null, r);
+          nuovo('strong', '', x.nome, a);
+          nuovo('small', '', x.commessa + ' – ' + x.attivita, a);
+          var b = nuovo('div', 'lav-riga-b', null, r);
+          nuovo('span', 'lav-ser', x.seriale, b);
+          if (x.ore) nuovo('span', 'lav-ore', ore(x.ore), b);
+          passoLavoro(x.passo, b);
+          if (x.lavorazione) nuovo('div', 'lav-lavorazione', x.lavorazione, r);
+        });
+        if (righe.length > 600) nuovo('p', 'spiega piccola', 'Altre ' + (righe.length - 600) + ' righe: usa la ricerca o scarica il CSV.', lista);
+      };
+      q.addEventListener('input', function () { filtro.q = q.value; disegnaLista(); });
+      sel.addEventListener('change', function () { filtro.passo = sel.value; disegnaLista(); });
+      disegnaLista();
+    };
+    var caricaStorico = function () {
+      storico = null;
+      disegnaStorico();
+      google.script.run.withSuccessHandler(function (r) { storico = r; disegnaStorico(); })
+        .withFailureHandler(function (e) { boxS.textContent = 'Storico non caricato: ' + e.message; }).lavoriStorico(cred, periodo.dal, periodo.al);
+    };
+    caricaStorico();
+  }
+
+  /* ----- Scheda Autocontrollo (Mod. 25): una a settimana per operatore, compilata dalle attività inviate ----- */
+  // La vede il capo del personale (e scarica i PDF); il capo cantiere la firma con il suo PIN.
+  function avviaMod25(cred) {
+    var box = $('mod25');
+    box.hidden = false;
+    var D = null, giorno = oggi(), cerca = '';
+    var dataIt = function (s) { return s ? s.slice(8, 10) + '/' + s.slice(5, 7) + '/' + s.slice(0, 4) : ''; };
+    var ore = function (n) { return String(Math.round(n * 100) / 100).replace('.', ',') + ' h'; };
+    var scarica = function (b, nome) {
+      b.disabled = true;
+      google.script.run.withSuccessHandler(function (f) { b.disabled = false; scaricaBase64(f.nome, 'application/pdf', f.pdf); })
+        .withFailureHandler(function (e) { b.disabled = false; alert(e.message); }).scaricaMod25(cred, D.lunedi, nome || '');
+    };
+    var disegna = function (msg) {
+      box.textContent = '';
+      var t = nuovo('div', 'lav-testa', null, box);
+      nuovo('h2', '', 'Scheda Autocontrollo (Mod. 25)', t);
+      var nav = nuovo('div', 'lav-giorno', null, t);
+      var sposta = function (n) { var x = new Date((D ? D.lunedi : giorno) + 'T12:00'); x.setDate(x.getDate() + 7 * n); if (iso(x) <= oggi()) { giorno = iso(x); carica(); } };
+      bottone(nav, '‹', 'mini', function () { sposta(-1); }).setAttribute('aria-label', 'Settimana prima');
+      nuovo('span', 'm25-sett', D ? 'Sett. ' + D.numero + ' · ' + dataIt(D.lunedi).slice(0, 5) + '–' + dataIt(D.sabato).slice(0, 5) : '…', nav);
+      var dopo = bottone(nav, '›', 'mini', function () { sposta(1); });
+      dopo.setAttribute('aria-label', 'Settimana dopo');
+      dopo.disabled = !D || D.sabato >= oggi();
+      nuovo('p', 'spiega', 'Una scheda a settimana per ogni operatore, compilata da sola con quello che ha inviato (firmato con il suo PIN): orari dal turno delle 16:00, casse e treni, lavorazioni, ambito operativo. ' +
+        'Il capo cantiere la firma con il suo PIN; poi si scarica in PDF.', box);
+      if (msg) { var a = nuovo('div', 'avviso conferma', msg, box); a.style.display = 'block'; }
+      if (!D) { nuovo('p', 'spiega', 'Carico…', box); return; }
+      var firmate = D.schede.filter(function (s) { return s.firma; }).length, daFirmare = D.schede.length - firmate;
+      var rias = nuovo('div', 'lav-riassunto', null, box);
+      nuovo('span', 'lav-num', null, rias).innerHTML = '<b>' + D.schede.length + '</b> schede';
+      nuovo('span', 'lav-num ok', null, rias).innerHTML = '<b>' + firmate + '</b> firmate';
+      if (daFirmare) nuovo('span', 'lav-num no', null, rias).innerHTML = '<b>' + daFirmare + '</b> da firmare';
+      var az = nuovo('div', 'lav-azioni', null, box);
+      if (D.puoFirmare && daFirmare) {
+        var f = bottone(az, '✍️ Firma tutte (' + daFirmare + ') con il PIN', 'invia', function () {
+          if (!confirm('Firmi con il tuo PIN le ' + daFirmare + ' schede della settimana ' + D.numero + '?')) return;
+          f.disabled = true;
+          google.script.run.withSuccessHandler(function (r) { D = r; disegna('Schede firmate.'); })
+            .withFailureHandler(function (e) { f.disabled = false; alert(e.message); }).firmaMod25(cred, D.lunedi, []);
+        });
+      }
+      if (D.schede.length) { var tutte = bottone(az, 'PDF di tutte', 'mini', function () { scarica(tutte, ''); }); }
+      if (D.schede.length > 6) {
+        var q = document.createElement('input');
+        q.type = 'search'; q.placeholder = 'Cerca operatore'; q.value = cerca; q.className = 'lav-cerca';
+        q.style.margin = '8px 0'; q.style.width = '100%';
+        q.addEventListener('input', function () { cerca = q.value; disegnaLista(); });
+        box.appendChild(q);
+      }
+      var lista = nuovo('div', '', null, box);
+      var GG = ['L', 'M', 'M', 'G', 'V', 'S'];
+      var disegnaLista = function () {
+        lista.textContent = '';
+        var v = D.schede.filter(function (s) { return !cerca || s.nome.toLowerCase().indexOf(cerca.toLowerCase()) !== -1; });
+        if (!D.schede.length) nuovo('p', 'spiega', 'In questa settimana nessuno ha inviato attività.', lista);
+        v.forEach(function (s) {
+          var c = nuovo('div', 'lav-card m25-card', null, lista);
+          var tt = nuovo('div', 'lav-card-testa', null, c);
+          nuovo('strong', '', s.nome, tt);
+          nuovo('span', 'lav-conta' + (s.firma ? ' ok' : ''), s.firma ? 'Firmata' : 'Da firmare', tt);
+          nuovo('small', 'lav-rep', s.commesse.join(', ') + (s.stabilimenti.length ? ' · ' + s.stabilimenti.join(', ') : '') + ' · ' + s.giorniLavorati + (s.giorniLavorati === 1 ? ' giorno' : ' giorni') + ' · ' + ore(s.ore), c);
+          var gg = nuovo('div', 'm25-giorni', null, c);
+          s.giorni.forEach(function (g, i) {
+            var x = nuovo('span', 'm25-g ' + (g.vuoto ? (g.causale ? 'ass' : 'vuoto') : 'si'), GG[i], gg);
+            x.title = dataIt(g.data) + ': ' + (g.vuoto ? (g.causale || 'niente') : ore(g.ore) + ' · ' + g.convogli.join(', '));
+          });
+          var az2 = nuovo('div', 'lav-azioni', null, c);
+          if (s.firma) nuovo('small', 'm25-firma', 'Firmata da ' + s.firma.da + ' il ' + dataIt(s.firma.il.slice(0, 10)), az2);
+          var b = bottone(az2, 'PDF', 'mini', function () { scarica(b, s.nome); });
+          if (D.puoFirmare && !s.firma) {
+            var fb = bottone(az2, 'Firma', 'mini', function () {
+              fb.disabled = true;
+              google.script.run.withSuccessHandler(function (r) { D = r; disegna('Scheda di ' + s.nome + ' firmata.'); })
+                .withFailureHandler(function (e) { fb.disabled = false; alert(e.message); }).firmaMod25(cred, D.lunedi, [s.nome]);
+            });
+          }
+        });
+      };
+      disegnaLista();
+    };
+    var carica = function () {
+      D = null;
+      disegna();
+      google.script.run.withSuccessHandler(function (r) { D = r; disegna(); })
+        .withFailureHandler(function (e) { box.textContent = 'Scheda Autocontrollo non caricata: ' + e.message; }).mod25Settimana(cred, giorno);
+    };
+    carica();
+  }
+
   function avviaCompilazioni(cred) {
     var it = function (d) { var p = d.split('-'); return p[2] + '/' + p[1] + '/' + p[0]; };
     // Il turno è dalle 16 a mezzanotte: prima delle 16 si guarda quello di ieri, già concluso.
@@ -3201,7 +4343,7 @@ var CONFIG = (function () {
       { campo: 'malattia', classe: 'malattia', nome: 'Malattia', corto: 'mal.' }], 'gg');
   }
 
-  // Attestato mensile di ogni operatore: si scarica in PDF; il titolare li salva anche su Drive.
+  // Attestato mensile di ogni operatore: si scarica in PDF; il capo cantiere li salva anche su Drive.
   function avviaAttestati(cred, master) {
     var credServer = cred.sezioneId ? cred : { pin: cred.pin };
     $('attestati').hidden = false;
@@ -3305,7 +4447,7 @@ var CONFIG = (function () {
     carica();
   }
 
-  // Solo per il titolare e i capi reparto: le assenze le gestiscono loro.
+  // Solo per il capo cantiere e i capi reparto: le assenze le gestiscono loro.
   function avviaAssenze(cred, tipiGestiti) {
     tipiGestiti = tipiGestiti || ['Ferie', 'Permesso'];
     var credServer = cred.sezioneId || cred.personale ? cred : { pin: cred.pin };
@@ -3515,7 +4657,7 @@ var CONFIG = (function () {
     img.alt = 'LD Montaggi';
     var destra = el('div', '', null, testa);
     el('div', 'm-titolo', 'RICHIESTA FERIE / PERMESSI', destra);
-    el('div', 'm-numero', 'N. ' + r.numero, destra);
+    el('div', 'm-numero', 'N. ' + (r.codice || r.numero), destra);
     var riga = el('div', 'm-riga');
     el('span', '', 'Con la presente il sottoscritto', riga);
     campo(riga, r.nome, 'largo');
@@ -3578,7 +4720,7 @@ var CONFIG = (function () {
     var luogo = el('div', 'm-riga');
     luogo.style.marginTop = '8mm';
     el('span', '', 'Luogo', luogo);
-    campo(luogo, 'Pistoia');
+    campo(luogo, r.sede || 'Pistoia');
     el('span', '', 'Data', luogo);
     campo(luogo, dataBreve(r.il.slice(0, 10)));
     // Niente spazi per la firma: richiesta e approvazione si fanno nell'app con il PIN personale.
@@ -3628,7 +4770,7 @@ var CONFIG = (function () {
       }
       testo.appendChild(r1);
       var r2 = document.createElement('span');
-      r2.textContent = 'N. ' + r.numero + (perCapo ? ' · ' + descriviRichiesta(r) : '') + (r.gestita ? ' · ' + r.stato.toLowerCase() + ' da ' + r.gestita : '');
+      r2.textContent = 'N. ' + (r.codice || r.numero) + (perCapo ? ' · ' + descriviRichiesta(r) : '') + (r.gestita ? ' · ' + r.stato.toLowerCase() + ' da ' + r.gestita : '');
       testo.appendChild(r2);
       var bottoni = document.createElement('div');
       bottoni.className = 'azioni-richiesta';
@@ -3686,6 +4828,26 @@ var CONFIG = (function () {
       tipi.appendChild(b);
     });
     contenitore.appendChild(tipi);
+    // La sede (decide il numero del modulo: P/anno Pistoia, S/anno Serravalle): si ricorda l'ultima scelta.
+    var sede = '';
+    try { sede = localStorage.getItem('sede-richiesta') || ''; } catch (e) { sede = ''; }
+    var cSede = crea('div', 'campo');
+    cSede.appendChild(crea('label', '', 'Sede'));
+    var sedi = crea('div', 'chip-tipi');
+    ['Pistoia', 'Serravalle'].forEach(function (x) {
+      var b = crea('button', 'chip', x);
+      b.type = 'button';
+      b.setAttribute('aria-pressed', x === sede ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        sede = x;
+        try { localStorage.setItem('sede-richiesta', x); } catch (e) {}
+        sedi.querySelectorAll('button').forEach(function (y) { y.setAttribute('aria-pressed', y === b ? 'true' : 'false'); });
+        cSede.classList.remove('campo-mancante');
+      });
+      sedi.appendChild(b);
+    });
+    cSede.appendChild(sedi);
+    contenitore.appendChild(cSede);
     var input = function (tipoInput, valore) {
       var i = crea('input');
       i.type = tipoInput;
@@ -3725,8 +4887,9 @@ var CONFIG = (function () {
       if (ev.key === 'Enter' && ev.target.tagName === 'INPUT') { ev.preventDefault(); manda.click(); }
     });
     manda.addEventListener('click', function () {
+      if (!sede) { cSede.classList.add('campo-mancante'); cSede.scrollIntoView({ block: 'center' }); return; }
       manda.disabled = true;
-      invia({ tipo: tipo, dal: dal.value, al: tipo === 'Permesso' ? dal.value : al.value, dalle: dalle.value, alle: alle.value,
+      invia({ tipo: tipo, sede: sede, dal: dal.value, al: tipo === 'Permesso' ? dal.value : al.value, dalle: dalle.value, alle: alle.value,
         motivo: motivo.value, firma: !pad || pad.vuota() ? '' : pad.immagine() },
         function (ok) {
           manda.disabled = false;
@@ -3741,7 +4904,7 @@ var CONFIG = (function () {
 
   var richiesteMiePronte = false;
   function mostraRichiesteMie(attiva) {
-    if (attiva) mostraMalattiaMia(false, true);
+    if (attiva) { mostraMalattiaMia(false, true); mostraAttrezziMiei(false); }
     $('modulo').classList.toggle('in-richieste', attiva);
     $('vista-mio-lavoro').setAttribute('aria-pressed', attiva || $('modulo').classList.contains('in-malattia') ? 'false' : 'true');
     $('vista-mie-richieste').setAttribute('aria-pressed', attiva ? 'true' : 'false');
@@ -3774,7 +4937,7 @@ var CONFIG = (function () {
         google.script.run
           .withSuccessHandler(function (r) {
             fine(true);
-            avviso('Richiesta N. ' + r.richiesta.numero + ' inviata: chi la approva riceve l\'avviso.' +
+            avviso('Richiesta N. ' + (r.richiesta.codice || r.richiesta.numero) + ' inviata: chi la approva riceve l\'avviso.' +
               (r.avviso ? ' ' + r.avviso : ''), !r.avviso);
             disegna(r.mie);
             apriDocumento(r.richiesta);
@@ -3943,7 +5106,267 @@ var CONFIG = (function () {
   }
 
   var malattiaMiaPronta = false;
+  // All'accesso: quante consegne aspettano il "Ricevuto" del dipendente (numero rosso sulla scheda).
+  function badgeAttrezzi(pin) {
+    google.script.run.withSuccessHandler(function (r) {
+      var n = r.inCarico.filter(function (a) { return !a.ricevuto; }).length + r.dpi.filter(function (m) { return !m.ricevuto; }).length;
+      $('badge-attrezzi').textContent = String(n);
+      $('badge-attrezzi').hidden = !n;
+    }).withFailureHandler(function () {}).mieAttrezzature(pin);
+  }
+
+  // Attrezzi e DPI del dipendente: cosa ha in carico, "Ricevuto", e la richiesta dei DPI che gli mancano.
+  function mostraAttrezziMiei(attiva) {
+    spegniAbbMio();
+    $('modulo').classList.toggle('in-attrezzi', attiva);
+    $('vista-miei-attrezzi').setAttribute('aria-pressed', attiva ? 'true' : 'false');
+    if (!attiva) return;
+    $('modulo').classList.remove('in-richieste', 'in-malattia');
+    ['vista-mio-lavoro', 'vista-mie-richieste', 'vista-mia-malattia'].forEach(function (id) { $(id).setAttribute('aria-pressed', 'false'); });
+    var box = $('contenuto-attrezzi-mie');
+    var avviso = function (testo, ok) { mostraAvviso('avviso-attrezzi-mie', testo, ok); window.scrollTo(0, 0); };
+    var dataIt = function (s) { return s ? s.slice(8, 10) + '/' + s.slice(5, 7) + '/' + s.slice(0, 4) : ''; };
+    var disegna = function (r) {
+      box.textContent = '';
+      var daConf = r.inCarico.filter(function (a) { return !a.ricevuto; }).map(function (a) { return a.movimento; })
+        .concat(r.dpi.filter(function (m) { return !m.ricevuto; }).map(function (m) { return m.id; }));
+      $('badge-attrezzi').textContent = String(daConf.length);
+      $('badge-attrezzi').hidden = !daConf.length;
+      if (daConf.length) {
+        var c = nuovo('div', 'avviso', 'Ti hanno consegnato ' + (daConf.length === 1 ? 'una cosa' : daConf.length + ' cose') + ' da confermare: controlla e premi Ricevuto.', box);
+        c.style.display = 'block';
+        var b = bottone(box, 'Ricevuto tutto', 'invia', function () {
+          b.disabled = true;
+          google.script.run.withSuccessHandler(function (x) { disegna(x); avviso('Grazie: consegna confermata.', true); })
+            .withFailureHandler(function (e) { b.disabled = false; avviso(e.message); }).confermaRicevuto(pinOperatore, daConf);
+        });
+      }
+      nuovo('h3', 'titoletto', 'Attrezzi in carico a te (' + r.inCarico.length + ')', box);
+      if (!r.inCarico.length) nuovo('p', 'spiega', 'Nessun attrezzo in carico.', box);
+      r.inCarico.forEach(function (a) {
+        var riga = nuovo('div', 'att-riga', null, box);
+        var t = nuovo('div', 'att-testo', a.descrizione + (a.serie ? ' · ' + a.serie : ''), riga);
+        nuovo('small', '', [a.marca, 'dal ' + dataIt(a.dal)].filter(Boolean).join(' · '), t);
+        nuovo('span', 'att-etichetta' + (a.ricevuto ? ' ok' : ' attesa'), a.ricevuto ? 'Ricevuto' : 'Da confermare', nuovo('div', 'att-azioni', null, riga));
+      });
+      nuovo('h3', 'titoletto', 'DPI ricevuti', box);
+      if (!r.dpi.length) nuovo('p', 'spiega', 'Nessun DPI ricevuto.', box);
+      r.dpi.forEach(function (m) {
+        var riga = nuovo('div', 'att-riga', null, box);
+        var t = nuovo('div', 'att-testo', m.descrizione + ' ×' + m.qta, riga);
+        nuovo('small', '', dataIt(m.data), t);
+        nuovo('span', 'att-etichetta' + (m.ricevuto ? ' ok' : ' attesa'), m.ricevuto ? 'Ricevuto' : 'Da confermare', nuovo('div', 'att-azioni', null, riga));
+      });
+      nuovo('h3', 'titoletto', 'Storico: cosa ti è stato consegnato e quando', box);
+      if (!r.storico.length) nuovo('p', 'spiega', 'Ancora niente.', box);
+      r.storico.forEach(function (m) {
+        var riga = nuovo('div', 'att-riga', null, box);
+        var rientro = m.movimento === 'Rientro attrezzo';
+        var t = nuovo('div', 'att-testo', m.descrizione + (m.qta > 1 ? ' ×' + m.qta : ''), riga);
+        nuovo('small', '', dataIt(m.data) + ' ' + m.data.slice(11, 16) + ' · ' + (rientro ? 'restituito' : 'consegnato'), t);
+      });
+    };
+    box.textContent = 'Carico…';
+    google.script.run.withSuccessHandler(disegna).withFailureHandler(function (e) { box.textContent = ''; avviso(e.message); }).mieAttrezzature(pinOperatore);
+  }
+
+  // ----- Abbigliamento del dipendente: la richiesta (capi del modulo, taglia, quantità) e le consegne firmate -----
+  function spegniAbbMio() {
+    $('modulo').classList.remove('in-abb');
+    $('vista-mio-abb').setAttribute('aria-pressed', 'false');
+  }
+  function leggiTaglie() { try { return JSON.parse(localStorage.getItem('taglie-abb') || '{}') || {}; } catch (e) { return {}; } }
+  function ricordaTaglie(t) { try { localStorage.setItem('taglie-abb', JSON.stringify(t)); } catch (e) {} }
+  function righeAbbTesto(righe, padre) {
+    var ul = nuovo('ul', 'abb-capi-elenco', null, padre);
+    (righe || []).forEach(function (x) { nuovo('li', '', x.capo + (x.taglia ? ' · taglia ' + x.taglia : '') + ' · ×' + x.qta, ul); });
+    return ul;
+  }
+  var STATI_ABB = { Aperta: ['attesa', 'In attesa'], Consegnata: ['ok', 'Consegnata'], Respinta: ['no', 'Respinta'], Annullata: ['', 'Annullata'] };
+  function etichettaAbb(stato, padre) {
+    var s = STATI_ABB[stato] || ['', stato];
+    return nuovo('span', 'att-etichetta' + (s[0] ? ' ' + s[0] : ''), s[1], padre);
+  }
+  function mostraAbbMio() {
+    ['vista-mio-lavoro', 'vista-mie-richieste', 'vista-mia-malattia', 'vista-miei-attrezzi'].forEach(function (id) { $(id).setAttribute('aria-pressed', 'false'); });
+    $('modulo').classList.remove('in-richieste', 'in-malattia', 'in-attrezzi');
+    $('modulo').classList.add('in-abb');
+    $('vista-mio-abb').setAttribute('aria-pressed', 'true');
+    $('avviso-abb-mie').hidden = true;
+    var box = $('contenuto-abb-mie');
+    var avviso = function (testo, ok) { mostraAvviso('avviso-abb-mie', testo, ok); window.scrollTo(0, 0); };
+    var api = {
+      richiedi: function (d, ok, ko) { google.script.run.withSuccessHandler(ok).withFailureHandler(ko).richiediAbbigliamento(pinOperatore, d); },
+      annulla: function (id, ok, ko) { google.script.run.withSuccessHandler(ok).withFailureHandler(ko).annullaAbbigliamento(pinOperatore, id); },
+      scarica: function (id, ok, ko) { google.script.run.withSuccessHandler(ok).withFailureHandler(ko).scaricaMioAbbigliamento(pinOperatore, id); }
+    };
+    box.textContent = 'Carico…';
+    google.script.run.withSuccessHandler(function (r) { disegnaAbbPersona(box, r, api, avviso); })
+      .withFailureHandler(function (e) { box.textContent = ''; avviso(e.message); }).mioAbbigliamento(pinOperatore);
+  }
+  /** Le taglie da scegliere per ogni capo: lettere per i vestiti, numeri per le scarpe, unica per bump cap e scaldacollo. */
+  function tagliePer(capo) {
+    capo = String(capo || '');
+    if (/SCARPA/.test(capo)) { var n = []; for (var i = 36; i <= 48; i++) n.push(String(i)); return n; }
+    if (/BUMP CAP|SCALDACOLLO/.test(capo)) return ['UNICA'];
+    var l = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL'];
+    if (/PANTALONE/.test(capo)) for (var t = 42; t <= 62; t += 2) l.push(String(t));
+    return l;
+  }
+  /** Icona e "chip" dei capi d'abbigliamento (uguali a quelli degli avanzamenti). */
+  function iconaCapo(c) {
+    c = String(c || '');
+    return /T-SHIRT/.test(c) ? '👕' : /PANTALONE/.test(c) ? '👖' : /GILET/.test(c) ? '🦺' : /SCALDACOLLO/.test(c) ? '🧣' : /SCARPA/.test(c) ? '👟' :
+      /BUMP CAP/.test(c) ? '⛑️' : /^ALTRO/.test(c) ? '📦' : '🧥';
+  }
+  function chipsAbb(righe, padre) {
+    var box = nuovo('div', 'abb-chips', null, padre);
+    (righe || []).forEach(function (x) {
+      var ch = nuovo('span', 'abb-chip', null, box);
+      nuovo('span', '', iconaCapo(x.capo), ch).setAttribute('aria-hidden', 'true');
+      ch.appendChild(document.createTextNode(String(x.capo).replace(/^ALTRO:\s*/, '') + ' '));
+      if (x.taglia) nuovo('b', '', x.taglia, ch);
+      nuovo('span', 'abb-x', ' ×' + x.qta, ch);
+    });
+    return box;
+  }
+  var STATI_ABB = { Aperta: ['attesa', 'In attesa'], Consegnata: ['ok', 'Consegnata'], Respinta: ['no', 'Respinta'] };
+  function pillAbb(stato, padre) { var s = STATI_ABB[stato] || ['', stato]; return nuovo('span', 'abb-pill ' + s[0], s[1], padre); }
+  /** Richiesta di abbigliamento e storico di una persona: la usano il dipendente, i responsabili e il capo cantiere.
+   *  Come ferie e permessi: inviando la richiesta la si firma con il PIN e il modulo PDF c'è subito. */
+  function disegnaAbbPersona(box, r, api, avviso) {
+    var dataIt = function (s) { return s ? s.slice(8, 10) + '/' + s.slice(5, 7) + '/' + s.slice(0, 4) : ''; };
+    var bottonePdf = function (padre, a, testo) {
+      var sc = bottone(padre, testo || 'Modulo PDF', 'mini', function () {
+        sc.disabled = true;
+        api.scarica(a.id, function (f) { sc.disabled = false; scaricaBase64(f.nome, 'application/pdf', f.pdf); }, function (e) { sc.disabled = false; avviso(e.message); });
+      });
+      return sc;
+    };
+    var disegna = function (r) {
+      box.textContent = '';
+      var aperta = r.richieste.filter(function (a) { return a.stato === 'Aperta'; })[0];
+      if (aperta) {
+        var c = nuovo('div', 'abb-card abb-aperta', null, box);
+        var t = nuovo('div', 'abb-card-testa', null, c);
+        nuovo('strong', '', 'La tua richiesta del ' + dataIt(aperta.data), t);
+        pillAbb('Aperta', t);
+        var passi = nuovo('ol', 'abb-passi', null, c);
+        [['fatto', 'Richiesta firmata con il PIN'], ['ora', 'In consegna'], ['', 'Consegnata']].forEach(function (x) { nuovo('li', x[0], x[1], passi); });
+        chipsAbb(aperta.richiesto, c);
+        if (aperta.nota) nuovo('div', 'abb-nota', aperta.nota, c);
+        var az = nuovo('div', 'abb-azioni', null, c);
+        bottonePdf(az, aperta);
+        var ann = bottone(az, 'Annulla la richiesta', 'mini', function () {
+          if (!confirm('Annullo la richiesta?')) return;
+          ann.disabled = true;
+          api.annulla(aperta.id, function (x) { disegna(x); avviso('Richiesta annullata.', true); }, function (e) { ann.disabled = false; avviso(e.message); });
+        });
+      } else {
+        var f = nuovo('div', 'abb-card', null, box);
+        nuovo('strong', 'abb-titolo', 'Nuova richiesta', f);
+        nuovo('p', 'spiega', 'Premi + sui capi che ti servono e scrivi la taglia.', f);
+        var taglie = leggiTaglie(), scelte = {};
+        var lista = nuovo('div', 'abb-lista', null, f);
+        var conta = nuovo('div', 'abb-conta', null, null);
+        var aggiornaConta = function () {
+          var n = Object.keys(scelte).reduce(function (t, k) { return t + scelte[k]().qta; }, 0);
+          conta.textContent = n ? n + (n === 1 ? ' capo scelto' : ' capi scelti') : 'Nessun capo scelto';
+          conta.classList.toggle('pieno', n > 0);
+        };
+        var riga = function (capo, altro) {
+          var d = nuovo('div', 'abb-capo', null, lista), stato = { qta: 0 };
+          nuovo('span', 'abb-ico', iconaCapo(altro ? 'ALTRO' : capo), d).setAttribute('aria-hidden', 'true');
+          var nomeEl;
+          if (altro) {
+            nomeEl = document.createElement('input');
+            nomeEl.placeholder = 'Altro: quale capo?';
+            nomeEl.className = 'abb-altro';
+            nomeEl.maxLength = 50;
+            d.appendChild(nomeEl);
+          } else nuovo('span', 'abb-nome', capo, d);
+          // La taglia si sceglie dal menu (per "Altro" si scrive); quella dell'ultima volta è già scelta.
+          var tg;
+          if (altro) {
+            tg = document.createElement('input');
+            tg.placeholder = 'Taglia';
+            tg.maxLength = 10;
+            tg.autocapitalize = 'characters';
+          } else {
+            tg = document.createElement('select');
+            tg.className = 'abb-taglia';
+            nuovo('option', '', 'Taglia', tg).value = '';
+            var opz = tagliePer(capo);
+            if (taglie[capo] && opz.indexOf(taglie[capo]) === -1) opz = [taglie[capo]].concat(opz);
+            opz.forEach(function (t) { nuovo('option', '', t, tg).value = t; });
+            tg.value = taglie[capo] || (opz.length === 1 ? opz[0] : '');
+          }
+          tg.setAttribute('aria-label', 'Taglia ' + (capo || 'altro'));
+          d.appendChild(tg);
+          var q = nuovo('div', 'abb-qta', null, d);
+          var meno = nuovo('button', '', '−', q), n = nuovo('span', '', '0', q), piu = nuovo('button', '', '+', q);
+          meno.type = piu.type = 'button';
+          meno.setAttribute('aria-label', 'Uno in meno'); piu.setAttribute('aria-label', 'Uno in più');
+          var aggiorna = function (v) { stato.qta = Math.max(0, Math.min(20, v)); n.textContent = String(stato.qta); d.classList.toggle('scelto', stato.qta > 0); aggiornaConta(); };
+          meno.onclick = function () { aggiorna(stato.qta - 1); };
+          piu.onclick = function () {
+            aggiorna(stato.qta + 1);
+            // Al primo + senza taglia si apre subito il menu delle taglie.
+            if (!tg.value) { tg.focus(); if (tg.showPicker) { try { tg.showPicker(); } catch (e) {} } }
+          };
+          if (tg.tagName === 'SELECT') tg.addEventListener('change', function () { if (tg.value && !stato.qta) aggiorna(1); });
+          scelte[altro ? '__altro' : capo] = function () {
+            var nome = altro ? nomeEl.value.trim() : capo;
+            return { capo: altro && nome ? 'ALTRO: ' + nome : nome, taglia: tg.value.trim().toUpperCase(), qta: stato.qta, base: capo };
+          };
+        };
+        r.capi.forEach(function (capo) { riga(capo, false); });
+        riga('', true);
+        var lb = nuovo('label', 'abb-etic-nota', 'Nota (facoltativa)', f);
+        var nota = document.createElement('textarea');
+        nota.rows = 2; nota.maxLength = 300; nota.className = 'abb-textarea';
+        nota.placeholder = 'es. la mia giacca si è strappata';
+        lb.htmlFor = nota.id = 'abb-nota-' + Math.random().toString(36).slice(2, 7);
+        f.appendChild(nota);
+        nuovo('div', 'abb-firma-box', '✍️ Inviando la richiesta la firmi con il tuo PIN. Il modulo si crea subito; alla consegna lo firma chi te la consegna.', f);
+        var piede = nuovo('div', 'abb-piede', null, f);
+        piede.appendChild(conta);
+        aggiornaConta();
+        var invia = bottone(piede, 'Firma e invia', 'invia', function () {
+          var righe = Object.keys(scelte).map(function (k) { return scelte[k](); }).filter(function (x) { return x.qta > 0; });
+          if (!righe.length) { avviso('Scegli almeno un capo con il +.'); return; }
+          var senzaNome = righe.filter(function (x) { return !x.capo; })[0];
+          if (senzaNome) { avviso('Scrivi quale capo ti serve nella riga "Altro".'); return; }
+          var senza = righe.filter(function (x) { return !x.taglia; })[0];
+          if (senza) { avviso('Scrivi la taglia di ' + senza.capo.replace(/^ALTRO:\s*/, '') + '.'); return; }
+          righe.forEach(function (x) { if (x.base) taglie[x.base] = x.taglia; });
+          ricordaTaglie(taglie);
+          invia.disabled = true;
+          api.richiedi({ righe: righe.map(function (x) { return { capo: x.capo, taglia: x.taglia, qta: x.qta }; }), nota: nota.value.trim() },
+            function (x) { disegna(x); avviso('Richiesta firmata e inviata: te la consegnano appena possibile.', true); }, function (e) { invia.disabled = false; avviso(e.message); });
+        });
+      }
+      var fatte = r.richieste.filter(function (a) { return a.stato !== 'Aperta'; });
+      nuovo('h3', 'titoletto', 'Storico', box);
+      if (!fatte.length) nuovo('p', 'spiega', 'Ancora nessuna consegna.', box);
+      fatte.forEach(function (a) {
+        var c = nuovo('div', 'abb-card abb-storico', null, box);
+        var consegnata = a.stato === 'Consegnata';
+        var t = nuovo('div', 'abb-card-testa', null, c);
+        var tx = nuovo('div', 'abb-card-chi', null, t);
+        nuovo('strong', '', consegnata ? 'Consegnata il ' + dataIt(a.il) : 'Richiesta del ' + dataIt(a.data), tx);
+        nuovo('small', '', consegnata ? 'da ' + a.da + ' · richiesta del ' + dataIt(a.data) : 'respinta il ' + dataIt(a.il) + (a.da ? ' da ' + a.da : ''), tx);
+        pillAbb(a.stato, t);
+        chipsAbb(consegnata ? a.consegnato : a.richiesto, c);
+        if (a.notaConsegna) nuovo('div', 'abb-nota', (consegnata ? '' : 'Motivo: ') + a.notaConsegna, c);
+        if (a.pdf) bottonePdf(nuovo('div', 'abb-azioni', null, c), a);
+      });
+    };
+    disegna(r);
+  }
+
   function mostraMalattiaMia(attiva, senzaPulsanti) {
+    if (attiva) mostraAttrezziMiei(false);
     $('modulo').classList.toggle('in-malattia', attiva);
     if (!senzaPulsanti) {
       if (attiva) $('modulo').classList.remove('in-richieste');
@@ -4304,8 +5727,9 @@ var CONFIG = (function () {
           avviaAssenze(cred, ['Malattia', 'Ferie', 'Permesso', 'Ingiustificata']);
           $('assenze').querySelector('summary').textContent = 'Registra assenze e grafici';
           $('richieste').querySelector('.spiega.piccola').textContent =
-            'Le richieste di ferie e permessi di tutti i dipendenti. Quelle della Verniciatura le approvi tu (Approva e poi Conferma), oppure il titolare o i responsabili della Verniciatura; per le altre è scritto chi le approva. I moduli approvati si scaricano in PDF.';
+            'Le richieste di ferie e permessi di tutti i dipendenti. Quelle della Verniciatura le approvi tu (Approva e poi Conferma), oppure il capo cantiere o i responsabili della Verniciatura; per le altre è scritto chi le approva. I moduli approvati si scaricano in PDF.';
           // Una scheda per argomento: Malattie, Ferie e permessi, Assenze, Riepilogo.
+          avviaMod25(cred);
           if (d.io) avviaLavoroCapo(pin);
           avviaSchede(!!d.io, SCHEDE_PERSONALE, { cred: cred, ordine: d.ordineSchede });
         })
@@ -4396,7 +5820,7 @@ var CONFIG = (function () {
     }
   }
 
-  // Per il titolare e i capi reparto: avviso delle nuove richieste e gestione.
+  // Per il capo cantiere e i capi reparto: avviso delle nuove richieste e gestione.
   function avviaRichieste(cred, iniziali, soloLettura) {
     var credServer = cred.sezioneId || cred.personale ? cred : { pin: cred.pin };
     if (CONFIG.firmaApprovazione) {
@@ -4424,7 +5848,7 @@ var CONFIG = (function () {
         if (soloLettura || !r.approvabile) {
           var chi = document.createElement('span');
           chi.className = 'chi-approva';
-          chi.textContent = 'La approvano: ' + (r.approvatori || 'il titolare');
+          chi.textContent = 'La approvano: ' + (r.approvatori || 'il capo cantiere');
           padre.appendChild(chi);
           return;
         }
@@ -4434,7 +5858,7 @@ var CONFIG = (function () {
           conPrimaConferma(si, 'Approva', function () {
             google.script.run
               .withSuccessHandler(function (n) {
-                avviso('Richiesta N. ' + r.numero + ' approvata: registrata tra le assenze. ' + r.nome + ' lo vedrà al prossimo accesso.', true);
+                avviso('Richiesta N. ' + (r.codice || r.numero) + ' approvata: registrata tra le assenze. ' + r.nome + ' lo vedrà al prossimo accesso.', true);
                 disegna(n);
               })
               .withFailureHandler(function (err) { si.disabled = false; avviso(err.message); })
@@ -4458,7 +5882,7 @@ var CONFIG = (function () {
             conferma.disabled = true;
             google.script.run
               .withSuccessHandler(function (n) {
-                avviso('Richiesta N. ' + r.numero + ' approvata: registrata tra le assenze. ' + r.nome + ' lo vedrà al prossimo accesso.', true);
+                avviso('Richiesta N. ' + (r.codice || r.numero) + ' approvata: registrata tra le assenze. ' + r.nome + ' lo vedrà al prossimo accesso.', true);
                 disegna(n);
               })
               .withFailureHandler(function (err) { conferma.disabled = false; avviso(err.message); })
@@ -4468,7 +5892,7 @@ var CONFIG = (function () {
         var no = bottone(padre, 'Respingi', 'pericolo', function () {});
         conPrimaConferma(no, 'Respingi', function () {
           google.script.run
-            .withSuccessHandler(function (n) { avviso('Richiesta N. ' + r.numero + ' respinta. ' + r.nome + ' lo vedrà al prossimo accesso.', true); disegna(n); })
+            .withSuccessHandler(function (n) { avviso('Richiesta N. ' + (r.codice || r.numero) + ' respinta. ' + r.nome + ' lo vedrà al prossimo accesso.', true); disegna(n); })
             .withFailureHandler(function (err) { no.disabled = false; avviso(err.message); })
             .gestisciRichiesta(credServer, r.id, 'respinta');
         });
@@ -4843,7 +6267,7 @@ var CONFIG = (function () {
           bottone.disabled = false;
           bottone.classList.remove('conferma');
           bottone.textContent = 'Cambia il mio PIN';
-          mostraPin([{ nome: 'Titolare', pin: r.pin }]);
+          mostraPin([{ nome: 'Capo cantiere', pin: r.pin }]);
         })
         .withFailureHandler(function (err) {
           var bottone = $('cambia-master');
@@ -4861,7 +6285,7 @@ var CONFIG = (function () {
           .withSuccessHandler(function (r) {
             cred.pin = r.pin;
             $('zona-master-a-mano').textContent = '';
-            mostraPin([{ nome: 'Titolare', pin: r.pin }]);
+            mostraPin([{ nome: 'Capo cantiere', pin: r.pin }]);
           })
           .withFailureHandler(function (err) {
             mostraErroreMano(err.message);
@@ -4995,6 +6419,17 @@ var CONFIG = (function () {
       titolo.textContent = attivita.commessa + ' – ' + attivita.nome;
       scheda.appendChild(titolo);
 
+      // Per il capo: le attività della sua squadra dove non è assegnato restano chiuse; si aprono toccando il titolo.
+      if (attivita.squadra) {
+        scheda.classList.add('di-squadra', 'chiuso');
+        var ns = document.createElement('p');
+        ns.className = 'nota-squadra';
+        ns.textContent = 'Della tua squadra: tocca per compilarla se ci hai lavorato';
+        scheda.appendChild(ns);
+        var apri = function () { scheda.classList.toggle('chiuso'); };
+        titolo.addEventListener('click', apri);
+        ns.addEventListener('click', apri);
+      }
       if (attivita.prestito) {
         var np = document.createElement('p');
         np.className = 'nota-prestito';
@@ -5193,6 +6628,7 @@ var CONFIG = (function () {
         $('accesso-operatore').hidden = true;
         $('nome-operatore').textContent = r.nome;
         mostraSquadra(r.squadra);
+        badgeAttrezzi(pinOperatore);
         $('operatore-attivo').hidden = false;
         $('viste-operatore').hidden = false;
         disegnaAttivita(r.attivita);
@@ -5264,14 +6700,39 @@ var CONFIG = (function () {
       mostraAvviso('avviso', 'Inserisci almeno un seriale cassa / numero treno.');
       return null;
     }
+    var stab = stabilimentoScelto();
+    if (!stab) {
+      $('campo-stab').classList.add('campo-mancante');
+      mostraAvviso('avviso', 'Scegli lo stabilimento: Pistoia o Serravalle.');
+      return null;
+    }
     return {
       id: idCompilazione,
       pin: pinOperatore,
       data: data,
       note: $('note').value.trim(),
+      stabilimento: stab,
       righe: righe
     };
   }
+
+  // Lo stabilimento dove si lavora (va nella Scheda Autocontrollo): si ricorda l'ultima scelta.
+  function stabilimentoScelto() {
+    var b = document.querySelector('#scelta-stab [aria-pressed=true]');
+    return b ? b.dataset.stab : '';
+  }
+  (function () {
+    var salvato = '';
+    try { salvato = localStorage.getItem('stabilimento') || localStorage.getItem('sede-richiesta') || ''; } catch (e) { salvato = ''; }
+    document.querySelectorAll('#scelta-stab button').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.dataset.stab === salvato ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        document.querySelectorAll('#scelta-stab button').forEach(function (y) { y.setAttribute('aria-pressed', y === b ? 'true' : 'false'); });
+        $('campo-stab').classList.remove('campo-mancante');
+        try { localStorage.setItem('stabilimento', b.dataset.stab); } catch (e) {}
+      });
+    });
+  })();
 
   function mostraEsito(dati) {
     var lista = $('esito-righe');
@@ -5295,6 +6756,7 @@ var CONFIG = (function () {
         pinOperatore = capoPin;
         $('nome-operatore').textContent = r.nome;
         mostraSquadra(r.squadra);
+        badgeAttrezzi(pinOperatore);
         $('operatore-attivo').hidden = false;
         // Anche il capo chiede ferie e permessi e comunica la malattia, come ogni dipendente.
         $('viste-operatore').hidden = false;
@@ -5312,7 +6774,7 @@ var CONFIG = (function () {
       .accediOperatore(capoPin);
   }
 
-  // Le schede della pagina dei responsabili e del titolare: ogni argomento per conto suo.
+  // Le schede della pagina dei responsabili e del capo cantiere: ogni argomento per conto suo.
   // "sotto" = le sottoschede: ognuna mostra solo i suoi elementi (il primo decide se c'è).
   var SOTTO_REPORT = [
     { id: 'treni', testo: 'Treni', el: ['elenco-report', 'archivio-report'] },
@@ -5331,13 +6793,21 @@ var CONFIG = (function () {
       { id: 'registra', testo: 'Registra assenze', el: ['assenze'] }
     ] },
     { id: 'report', testo: 'Ispezioni', sezioni: ['report-cliente'], sotto: SOTTO_REPORT },
-    { id: 'ore', testo: 'Ore e resoconti', sezioni: ['compilazioni', 'resoconti', 'attestati', 'registro'], sotto: [
-      { id: 'compilazioni', testo: 'Compilazioni', el: ['compilazioni'] },
-      { id: 'resoconti', testo: 'Resoconti Excel', el: ['resoconti'] },
-      { id: 'attestati', testo: 'Attestati', el: ['attestati'] },
-      { id: 'registro', testo: 'Registro', el: ['registro'] }
+    { id: 'ore', testo: 'Lavori', sezioni: ['lavori-oggi', 'lavori-conferma', 'lavori-storico', 'mod25', 'resoconti', 'attestati', 'registro'], sotto: [
+      { id: 'oggi', testo: 'Oggi', el: ['lavori-oggi'] },
+      { id: 'conferma', testo: 'Da confermare', el: ['lavori-conferma'] },
+      { id: 'storico-lav', testo: 'Storico', el: ['lavori-storico'] },
+      { id: 'mod25', testo: 'Mod. 25', el: ['mod25'] },
+      { id: 'excel', testo: 'Excel e attestati', el: ['resoconti', 'attestati', 'registro'] }
     ] },
     { id: 'avanzamenti', testo: 'Avanzamenti', sezioni: ['avanzamenti-carp'], apri: true },
+    { id: 'attrezzi', testo: 'Attrezzature', sezioni: ['attrezzature'], sotto: [
+      { id: 'chi-ha', testo: 'Chi ha cosa', el: ['att-chi'] },
+      { id: 'consegna', testo: 'Consegna', el: ['att-consegna'] },
+      { id: 'storico-att', testo: 'Storico', el: ['att-storico'] },
+      { id: 'elenco', testo: 'Elenco', el: ['att-elenco'] },
+      { id: 'abbigliamento', testo: 'Abbigliamento', el: ['att-abb'] }
+    ] },
     { id: 'dipendenti', testo: 'Dipendenti e PIN', sezioni: ['gestione'] }
   ];
   // Le schede della pagina del capo del personale.
@@ -5348,14 +6818,15 @@ var CONFIG = (function () {
       { id: 'promemoria', testo: 'Promemoria', el: ['in-arrivo'] },
       { id: 'registra', testo: 'Registra assenze e grafici', el: ['assenze'] }
     ] },
-    { id: 'riepilogo', testo: 'Riepilogo', sezioni: ['riepilogo-personale'] }
+    { id: 'riepilogo', testo: 'Riepilogo', sezioni: ['riepilogo-personale'] },
+    { id: 'mod25', testo: 'Mod. 25 Autocontrollo', sezioni: ['mod25'] }
   ];
   // La pagina di chi carica i report.
   var SCHEDE_REPORT = [
     { id: 'report', testo: 'Ispezioni', sezioni: ['report-cliente'], sotto: SOTTO_REPORT }
   ];
   // Un'icona per scheda: si riconoscono a colpo d'occhio.
-  var ICONE_SCHEDE = { assegna: '📋', ferie: '🏖️', report: '🔍', ore: '⏱️', avanzamenti: '📈', dipendenti: '👥',
+  var ICONE_SCHEDE = { assegna: '📋', ferie: '🏖️', report: '🔍', ore: '🗂️', mod25: '📝', avanzamenti: '📈', attrezzi: '🧰', dipendenti: '👥',
     lavoro: '🛠️', malattie: '🩺', assenze: '📅', riepilogo: '📊' };
   var schedaAttiva = null;
   // Elementi nascosti dalle sottoschede: si rimettono tutti prima di cambiare scheda.
@@ -5393,8 +6864,8 @@ var CONFIG = (function () {
         b.id = 'vista-' + x.id;
         b.setAttribute('aria-pressed', schedaAttiva === x.id ? 'true' : 'false');
         nuovo('span', 'icona-scheda', ICONE_SCHEDE[x.id] || '•', b).setAttribute('aria-hidden', 'true');
-        nuovo('span', '', x.testo, b);
-        nuovo('span', 'badge-scheda', null, b).hidden = true;
+        // Il numero sta subito dopo il nome della scheda.
+        nuovo('span', 'badge-scheda', null, nuovo('span', '', x.testo + ' ', b)).hidden = true;
         b.addEventListener('click', function () { mostra(x.id); });
       });
     };
@@ -5515,7 +6986,8 @@ var CONFIG = (function () {
       var conta = {
         malattie: certificati ? String(certificati) : '',
         ferie: (/(\d+) da approvare/.exec($('riassunto-richieste').textContent) || [])[1],
-        report: (/(\d+) da caricare/.exec($('riassunto-report').textContent) || /(\d+) punt/.exec($('riassunto-report').textContent) || [])[1]
+        report: (/(\d+) da caricare/.exec($('riassunto-report').textContent) || /(\d+) punt/.exec($('riassunto-report').textContent) || [])[1],
+        ore: $('lavori-conferma').hidden ? '' : $('lavori-conferma').dataset.conta || ''
       };
       Object.keys(conta).forEach(function (id) {
         var b = $('vista-' + id);
@@ -5529,7 +7001,8 @@ var CONFIG = (function () {
       var sotto = {
         richieste: conta.ferie,
         mom: (/(\d+) da caricare/.exec($('riassunto-report').textContent) || [])[1],
-        treni: (/(\d+) punt/.exec($('riassunto-report').textContent) || [])[1]
+        treni: (/(\d+) punt/.exec($('riassunto-report').textContent) || [])[1],
+        conferma: $('lavori-conferma').dataset.conta || ''
       };
       $('sotto-schede').querySelectorAll('button').forEach(function (b) {
         var n = sotto[b.dataset.sotto];
@@ -5539,6 +7012,7 @@ var CONFIG = (function () {
         b.classList.toggle('da-fare', !badge.hidden);
       });
     }
+    window.numeriSchede = numeri;
     mostra(ricordata || presenti[0].id, true);
     setInterval(numeri, 3000);
   }
@@ -5565,7 +7039,13 @@ var CONFIG = (function () {
       $('esiti-richieste').hidden = true;
       google.script.run.withFailureHandler(function () {}).segnaEsitiVisti(pinOperatore);
     });
-    $('vista-mio-lavoro').addEventListener('click', function () { mostraRichiesteMie(false); mostraMalattiaMia(false); });
+    $('vista-mio-lavoro').addEventListener('click', function () { mostraRichiesteMie(false); mostraMalattiaMia(false); mostraAttrezziMiei(false); });
+    $('vista-mio-abb').addEventListener('click', function () {
+      if (!$('modulo').classList.contains('in-abb')) mostraAbbMio();
+    });
+    $('vista-miei-attrezzi').addEventListener('click', function () {
+      if (!$('modulo').classList.contains('in-attrezzi')) mostraAttrezziMiei(true);
+    });
     $('vista-mie-richieste').addEventListener('click', function () {
       if (!$('modulo').classList.contains('in-richieste')) mostraRichiesteMie(true);
     });
