@@ -3762,7 +3762,10 @@ var CONFIG = (function () {
           if (dati.attivitaReport && dati.attivitaReport.length) avviaReport(cred, dati.report, dati.attivitaReport, true, dati.persone, true);
           if (dati.avanzamenti) avviaAvanzamenti(cred);
           avviaAttrezzature(cred);
-          avviaSchede(false, null, { cred: cred, ordine: dati.ordineSchede });
+          // Anche il capo cantiere chiede ferie e permessi (li approva il capo del personale) e comunica la malattia.
+          window.paginaCapoCantiere = true;
+          avviaLavoroCapo(pin);
+          avviaSchede(true, null, { cred: cred, ordine: dati.ordineSchede, testoLavoro: 'Le mie ferie' });
         })
         .withFailureHandler(ko)
         .accediGestione(pin);
@@ -6961,6 +6964,14 @@ var CONFIG = (function () {
         $('vista-mie-richieste').textContent = 'Mie ferie e permessi';
         $('vista-mia-malattia').textContent = 'Mia malattia';
         mostraEsiti(r.esiti || []);
+        // Il capo cantiere non compila le ore: niente "Lavoro", si apre su ferie e permessi.
+        if (window.paginaCapoCantiere) {
+          $('vista-mio-lavoro').hidden = true;
+          var sp = $('richieste-mie').querySelector('.spiega');
+          if (sp) sp.textContent = 'La richiesta compila il modulo Mod. 34 e parte con il tuo PIN, senza firma. È valida quando la approva il capo del personale.';
+          if (!$('modulo').classList.contains('in-malattia') && !$('modulo').classList.contains('in-attrezzi') && !$('modulo').classList.contains('in-abb')) mostraRichiesteMie(true);
+          return;
+        }
         if ($('modulo').classList.contains('in-richieste') || $('modulo').classList.contains('in-malattia')) return;
         disegnaAttivita(r.attivita);
       })
@@ -7036,7 +7047,7 @@ var CONFIG = (function () {
     var nav = $('viste-capo');
     nav.textContent = '';
     var presenti = SCHEDE_PAGINA.filter(function (x) { return x.sezioni.some(function (id) { return $(id) && !$(id).hidden; }); });
-    if (conLavoro) presenti.push({ id: 'lavoro', testo: 'Il mio lavoro', sezioni: [], lavoro: true });
+    if (conLavoro) presenti.push({ id: 'lavoro', testo: opzioni.testoLavoro || 'Il mio lavoro', icona: opzioni.testoLavoro ? '🌴' : '', sezioni: [], lavoro: true });
     var iniziale = presenti.map(function (x) { return x.id; });
     var tutte = [];
     SCHEDE_PAGINA.forEach(function (x) { tutte = tutte.concat(x.sezioni); });
@@ -7062,7 +7073,7 @@ var CONFIG = (function () {
         b.type = 'button';
         b.id = 'vista-' + x.id;
         b.setAttribute('aria-pressed', schedaAttiva === x.id ? 'true' : 'false');
-        nuovo('span', 'icona-scheda', ICONE_SCHEDE[x.id] || '•', b).setAttribute('aria-hidden', 'true');
+        nuovo('span', 'icona-scheda', x.icona || ICONE_SCHEDE[x.id] || '•', b).setAttribute('aria-hidden', 'true');
         // Il numero sta subito dopo il nome della scheda.
         nuovo('span', 'badge-scheda', null, nuovo('span', '', x.testo + ' ', b)).hidden = true;
         b.addEventListener('click', function () { mostra(x.id); });

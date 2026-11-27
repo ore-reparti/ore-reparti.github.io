@@ -1,6 +1,6 @@
 // Conserva la pagina sul telefono: si apre subito con la copia salvata e intanto scarica quella nuova,
 // che si vede dall'apertura successiva. I dati arrivano sempre dal server, mai dalla copia.
-var CACHE = 'ld-montaggi-7b06246db2';
+var CACHE = 'ld-montaggi-06d27f4cb7';
 var FILE = ['./index.html', './manifest.webmanifest', './icona-180.png', './icona-192.png', './icona-512.png'];
 
 self.addEventListener('install', function (e) {
