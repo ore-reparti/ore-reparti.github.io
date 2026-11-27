@@ -282,6 +282,9 @@
   #modulo.in-abb #abb-mie { display: block; }
   #modulo.in-abb #attivita, #modulo.in-abb #scheda-note, #modulo.in-abb #barra-modulo,
   #modulo.in-abb #campo-data { display: none !important; }
+  /* Primo accesso: finché non sceglie il suo PIN, il dipendente vede solo il cambio del PIN */
+  #modulo.pin-obbligato > :not(:has(#cambio-pin)) { display: none !important; }
+  #modulo.pin-obbligato #viste-operatore, #modulo.pin-obbligato #campo-data, #modulo.pin-obbligato #apri-cambio-pin { display: none !important; }
   /* Lavori */
   .tr-pill-oltre { font-size: 12px; font-weight: 800; border-radius: 999px; padding: 2px 9px; background: var(--errore-sfondo); color: var(--errore); border: 1px solid #f3b4ae; }
   .tr-su { font-size: 11.5px; color: var(--tenue); }
@@ -6395,6 +6398,33 @@ var CONFIG = (function () {
       $('avviso-gestione').hidden = false;
       $('avviso-gestione').scrollIntoView({ block: 'center' });
     };
+    // PDF con un foglietto per dipendente (10 per pagina): nome, PIN provvisorio, link e istruzioni.
+    var foglliettiPin = function (righe, bott) {
+      bott.disabled = true;
+      var js = function (u) { return new Promise(function (ok, ko) { var sc = document.createElement('script'); sc.src = u; sc.onload = ok; sc.onerror = function () { ko(new Error('Il generatore di PDF non si è caricato: controlla la connessione.')); }; document.head.appendChild(sc); }); };
+      (window.jspdf && window.jspdf.jsPDF ? Promise.resolve() : js('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js')).then(function () {
+        var doc = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4' });
+        var logo = document.querySelector('.logo-ld img'), W = 95, H = 55, X0 = 10, Y0 = 11;
+        righe.forEach(function (r, i) {
+          var k = i % 10;
+          if (i && !k) doc.addPage();
+          var x = X0 + (k % 2) * W, y = Y0 + Math.floor(k / 2) * H;
+          doc.setLineDashPattern([1.5, 1.5], 0); doc.setDrawColor(170); doc.rect(x, y, W, H); doc.setLineDashPattern([], 0);
+          if (logo && /^data:image\/jpeg/.test(logo.src)) { try { doc.addImage(logo.src, 'JPEG', x + 4, y + 4, 22, 13.4); } catch (e) {} }
+          doc.setTextColor(23, 56, 60); doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+          doc.text('App LD Montaggi', x + 30, y + 9);
+          doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.text('ore, lavori, ferie, attrezzi', x + 30, y + 13.5);
+          doc.setFont('helvetica', 'bold'); doc.setFontSize(11.5); doc.setTextColor(0);
+          doc.text(r.nome, x + 4, y + 25);
+          doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.text('PIN provvisorio:', x + 4, y + 33);
+          doc.setFont('courier', 'bold'); doc.setFontSize(20); doc.text(String(r.pin), x + 33, y + 34);
+          doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(60);
+          doc.text(doc.splitTextToSize('Apri ore-reparti.github.io sul telefono, entra con questo PIN e scegline subito uno tuo (da 4 a 8 cifre). Il PIN è personale: non darlo a nessuno.', W - 8), x + 4, y + 41);
+        });
+        doc.save('PIN iniziali dipendenti.pdf');
+        bott.disabled = false;
+      }).catch(function (e) { bott.disabled = false; alert(e.message); });
+    };
     var mostraPin = function (righe) {
       var zona = $('pin-mostrato');
       zona.textContent = '';
@@ -6407,8 +6437,17 @@ var CONFIG = (function () {
         zona.appendChild(riga);
       });
       var nota = document.createElement('div');
-      nota.textContent = 'Annota il PIN adesso: non verrà più mostrato.';
+      nota.textContent = 'Annota il PIN adesso: non verrà più mostrato. Al primo accesso il dipendente dovrà sceglierne uno suo.';
       zona.appendChild(nota);
+      // I foglietti da stampare e ritagliare: uno per dipendente, con il PIN provvisorio e come entrare.
+      var dip = righe.filter(function (r) { return !/^Capo /.test(r.nome); });
+      if (dip.length) {
+        var bf = document.createElement('button');
+        bf.type = 'button'; bf.className = 'azione'; bf.style.marginTop = '8px';
+        bf.textContent = '🖨️ Scarica i foglietti con i PIN da stampare (PDF)';
+        bf.addEventListener('click', function () { foglliettiPin(dip, bf); });
+        zona.appendChild(bf);
+      }
       zona.hidden = false;
       $('avviso-gestione').hidden = true;
       zona.scrollIntoView({ block: 'center' });
@@ -6809,7 +6848,21 @@ var CONFIG = (function () {
     aggiornaTotali();
   }
 
+  var cambioObbligato = false;
+  function obbligaCambioPin() {
+    cambioObbligato = true;
+    $('modulo').classList.add('pin-obbligato');
+    $('cambio-pin').hidden = false;
+    $('annulla-pin').hidden = true;
+    var av = $('avviso-cambio-pin');
+    av.textContent = 'Primo accesso: il PIN che ti hanno dato è provvisorio. Scegline uno tuo (da 4 a 8 cifre) e ricordatelo: da ora entrerai con quello.';
+    av.classList.add('conferma');
+    av.hidden = false;
+    $('nuovo-pin').focus();
+    $('cambio-pin').scrollIntoView({ block: 'center' });
+  }
   function chiudiCambioPin() {
+    if (cambioObbligato) return;
     $('cambio-pin').hidden = true;
     $('avviso-cambio-pin').hidden = true;
     $('nuovo-pin').value = '';
@@ -6833,6 +6886,12 @@ var CONFIG = (function () {
       .withSuccessHandler(function () {
         $('salva-pin').disabled = false;
         pinOperatore = nuovo;
+        if (cambioObbligato) {
+          cambioObbligato = false;
+          $('modulo').classList.remove('pin-obbligato');
+          $('annulla-pin').hidden = false;
+          $('avviso-cambio-pin').classList.remove('conferma');
+        }
         chiudiCambioPin();
         mostraAvviso('avviso', 'PIN cambiato. Dalla prossima volta entra con il nuovo PIN.', true);
         window.scrollTo(0, 0);
@@ -6965,6 +7024,8 @@ var CONFIG = (function () {
         $('viste-operatore').hidden = false;
         disegnaAttivita(r.attivita);
         mostraEsiti(r.esiti || []);
+        // Primo accesso con il PIN dato dal capo: prima di tutto si sceglie il proprio PIN personale.
+        if (r.pinDaCambiare) obbligaCambioPin();
       })
       .withFailureHandler(function (err) {
         messaggio('');
