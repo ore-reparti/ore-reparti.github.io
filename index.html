@@ -283,6 +283,21 @@
   #modulo.in-abb #attivita, #modulo.in-abb #scheda-note, #modulo.in-abb #barra-modulo,
   #modulo.in-abb #campo-data { display: none !important; }
   /* Lavori */
+  .tr-pill-oltre { font-size: 12px; font-weight: 800; border-radius: 999px; padding: 2px 9px; background: var(--errore-sfondo); color: var(--errore); border: 1px solid #f3b4ae; }
+  .tr-su { font-size: 11.5px; color: var(--tenue); }
+  .tr-oltre { color: var(--errore); }
+  .tr-binario.con-ordine { display: flex; }
+  .tr-binario.con-ordine i { border-radius: 0; }
+  .tr-binario.con-ordine i:first-child { border-radius: 999px 0 0 999px; background: linear-gradient(90deg, #2c7a7b, #38a3a5); }
+  .tr-binario.con-ordine i:only-child { border-radius: 999px; }
+  .tr-binario i.oltre { background: repeating-linear-gradient(45deg, #d93025 0 6px, #ef6b5f 6px 12px); border-radius: 0 999px 999px 0; }
+  .tr-rnc { font-size: 13px; color: #17383c; background: #eef6f6; border-radius: 8px; padding: 6px 10px; }
+  .tr-rnc small { color: var(--tenue); }
+  .tr-ore-ordine { margin: 8px 0 10px; background: #f3f7f8; border: 1px solid #d5e2e4; border-radius: 12px; padding: 10px 12px; }
+  .tr-ore-ordine > summary { cursor: pointer; font-weight: 700; color: #17383c; }
+  .tr-ore-ordine h4 { margin: 10px 0 4px; font-size: 13px; color: var(--tenue); }
+  .tr-ore-riga { display: grid; grid-template-columns: 1fr 80px 18px; align-items: center; gap: 8px; padding: 3px 0; font-size: 14px; font-weight: 600; }
+  .tr-ore-riga input { text-align: right; }
   .tr-pill-extra { font-size: 12px; font-weight: 800; border-radius: 999px; padding: 2px 9px; background: #ffe7a3; color: #8a5a00; border: 1px solid #f2c443; }
   .tr-extra { margin-top: 12px; background: #fff8e1; border: 1.5px solid #f2c443; border-radius: 12px; padding: 10px 12px; }
   .tr-extra-testa { display: flex; justify-content: space-between; align-items: center; gap: 8px; color: #8a5a00; }
@@ -1318,7 +1333,7 @@
 // ----- Pagina su GitHub: collegamento diretto al server di Google -----
 (function () {
   var SERVER = "https://xwrzezvzsjjpghdjypox.supabase.co/functions/v1/api";
-  var NOMI = ["abbigliamento", "accediGestione", "accediOperatore", "accediPersonale", "accediReport", "accediSezione", "aggiornaFineAssenza", "aggiungiDipendente", "aggiungiExtra", "allegaCertificato", "allegaCertificatoPersonale", "allegaFotoPunto", "allegaFotoPuntoCapo", "annullaAbbigliamento", "annullaAbbigliamentoMio", "annullaMiaRichiesta", "annullaPrestito", "assenzeDelMese", "attestatiDelMese", "attrezzature", "av_abbigliamentoElenco", "av_accedi", "av_aggiorna", "av_aggiungiDipendente", "av_aggiungiTipo", "av_attivaAttivita", "av_azzeraStoria", "av_cambiaMioPin", "av_caricaPosizioni", "av_collegaRegistroOre", "av_confermaDichiarata", "av_consegnaAbbigliamento", "av_controlla", "av_dpiElenco", "av_eliminaAttivita", "av_eliminaDipendente", "av_eliminaStatino", "av_ignoraDichiarata", "av_inviaAttivita", "av_linkRegistro", "av_modificaAttivita", "av_modificaOrdine", "av_modificaPosizioni", "av_modificaTipo", "av_nuovoOrdine", "av_nuovoPin", "av_pagina", "av_respingiAbbigliamento", "av_salvaCassa", "av_salvaConsumabili", "av_salvaDpi", "av_salvaGruppiOrdini", "av_salvaMomConfig", "av_salvaNotaMom", "av_salvaStatino", "av_scaricaAbbigliamentoAv", "av_scaricaStatino", "av_segna", "av_segnaMom", "av_storico", "azzeraRegistro", "cambiaMioPin", "cambiaPinMaster", "cambiaPunto", "cambiaSquadra", "caricaReport", "chiudiReport", "comunicaMalattia", "confermaRicevuto", "consegnaAttrezzi", "consegnaBumpCap", "creaPrestito", "documentoRichiesta", "eliminaAssenza", "eliminaDipendente", "eliminaExtra", "eliminaReport", "fileReport", "firmaMod25", "fotoPunto", "generaPinMancanti", "gestisciRichiesta", "importaAttrezzi", "inviaCompilazione", "inviaRichiesta", "lavoriDaConfermare", "lavoriGiorno", "lavoriStorico", "lavoriTreni", "mieAttrezzature", "mieMalattie", "mieRichieste", "mioAbbigliamento", "mioDocumento", "mod25Settimana", "nuovoPin", "personaAvanzamenti", "pinPersonale", "registraAssenza", "richiediAbbigliamento", "richiediAbbigliamentoMio", "rientroAttrezzo", "riepilogoPersonale", "salvaAssegnazioni", "salvaAttestati", "salvaAttrezzo", "salvaOrdineSchede", "salvaSquadra", "scaricaAbbigliamento", "scaricaAttestato", "scaricaMioAbbigliamento", "scaricaMioModulo", "scaricaMod25", "scaricaModulo", "scaricaResoconto", "scaricaRiepilogoPersonale", "segnaEsitiVisti", "segnaMom", "segnaPunto", "segnaRichiesteViste", "statoCompilazioni", "titoloPagina", "vediCertificato", "vediResoconto"];
+  var NOMI = ["abbigliamento", "accediGestione", "accediOperatore", "accediPersonale", "accediReport", "accediSezione", "aggiornaFineAssenza", "aggiungiDipendente", "aggiungiExtra", "allegaCertificato", "allegaCertificatoPersonale", "allegaFotoPunto", "allegaFotoPuntoCapo", "annullaAbbigliamento", "annullaAbbigliamentoMio", "annullaMiaRichiesta", "annullaPrestito", "assenzeDelMese", "attestatiDelMese", "attrezzature", "av_abbigliamentoElenco", "av_accedi", "av_aggiorna", "av_aggiungiDipendente", "av_aggiungiTipo", "av_attivaAttivita", "av_azzeraStoria", "av_cambiaMioPin", "av_caricaPosizioni", "av_collegaRegistroOre", "av_confermaDichiarata", "av_consegnaAbbigliamento", "av_controlla", "av_dpiElenco", "av_eliminaAttivita", "av_eliminaDipendente", "av_eliminaStatino", "av_ignoraDichiarata", "av_inviaAttivita", "av_linkRegistro", "av_modificaAttivita", "av_modificaOrdine", "av_modificaPosizioni", "av_modificaTipo", "av_nuovoOrdine", "av_nuovoPin", "av_pagina", "av_respingiAbbigliamento", "av_salvaCassa", "av_salvaConsumabili", "av_salvaDpi", "av_salvaGruppiOrdini", "av_salvaMomConfig", "av_salvaNotaMom", "av_salvaStatino", "av_scaricaAbbigliamentoAv", "av_scaricaStatino", "av_segna", "av_segnaMom", "av_storico", "azzeraRegistro", "cambiaMioPin", "cambiaPinMaster", "cambiaPunto", "cambiaSquadra", "caricaReport", "chiudiReport", "comunicaMalattia", "confermaRicevuto", "consegnaAttrezzi", "consegnaBumpCap", "creaPrestito", "documentoRichiesta", "eliminaAssenza", "eliminaDipendente", "eliminaExtra", "eliminaReport", "fileReport", "firmaMod25", "fotoPunto", "generaPinMancanti", "gestisciRichiesta", "importaAttrezzi", "inviaCompilazione", "inviaRichiesta", "lavoriDaConfermare", "lavoriGiorno", "lavoriStorico", "lavoriTreni", "mieAttrezzature", "mieMalattie", "mieRichieste", "mioAbbigliamento", "mioDocumento", "mod25Settimana", "nuovoPin", "personaAvanzamenti", "pinPersonale", "registraAssenza", "richiediAbbigliamento", "richiediAbbigliamentoMio", "rientroAttrezzo", "riepilogoPersonale", "salvaAssegnazioni", "salvaAttestati", "salvaAttrezzo", "salvaOrdineSchede", "salvaOreTreno", "salvaSquadra", "scaricaAbbigliamento", "scaricaAttestato", "scaricaMioAbbigliamento", "scaricaMioModulo", "scaricaMod25", "scaricaModulo", "scaricaResoconto", "scaricaRiepilogoPersonale", "segnaEsitiVisti", "segnaMom", "segnaPunto", "segnaRichiesteViste", "statoCompilazioni", "titoloPagina", "vediCertificato", "vediResoconto"];
   function chiamaServer(nome, args) {
     // text/plain: Google risponde senza controlli preliminari, più veloce.
     return fetch(SERVER, { method: 'POST', body: JSON.stringify({ f: nome, a: args }), redirect: 'follow' })
@@ -4037,13 +4052,85 @@ var CONFIG = (function () {
           .aggiungiExtra(cred, { commessa: a.commessa, attivita: a.nome, treno: treno || tr.value, descrizione: de.value, ore: or.value, data: da.value, chi: chi.value });
       });
     };
+    // Le ore dell'ordine per treno (sempre le stesse per ogni treno della commessa): le scrive Manuel.
+    var formOre = function (padre) {
+      var box = nuovo('details', 'tr-ore-ordine', null, padre);
+      nuovo('summary', '', '⚙️ Ore dell\'ordine per treno', box);
+      nuovo('p', 'spiega piccola', 'Le ore che l\'ordine paga per ogni treno, per attività. Valgono per tutti i treni della commessa: quando le ore fatte le superano, la differenza è da farsi pagare.', box);
+      var campi = {}, perC = {};
+      (datiTreni.attivitaTreno || []).forEach(function (a) { (perC[a.commessa] = perC[a.commessa] || []).push(a); });
+      Object.keys(perC).sort().forEach(function (cm) {
+        nuovo('h4', '', cm, box);
+        perC[cm].forEach(function (a) {
+          var r = nuovo('label', 'tr-ore-riga', null, box);
+          nuovo('span', '', a.nome, r);
+          var i = document.createElement('input'); i.inputMode = 'decimal'; i.placeholder = 'ore'; i.value = a.previste ? String(a.previste).replace('.', ',') : '';
+          r.appendChild(i); nuovo('span', 'tr-h', 'h', r);
+          campi[cm + '|' + a.nome] = i;
+        });
+      });
+      var sv = bottone(box, 'Salva le ore dell\'ordine', 'invia', function () {
+        var d = {}; Object.keys(campi).forEach(function (k) { d[k] = campi[k].value.trim(); });
+        sv.disabled = true; sv.textContent = 'Salvo…';
+        google.script.run.withSuccessHandler(function (rr) { datiTreni = rr; treni = rr.treni; disegnaTreni(); })
+          .withFailureHandler(function (e2) { sv.disabled = false; sv.textContent = 'Salva le ore dell\'ordine'; alert(e2.message); }).salvaOreTreno(cred, d);
+      });
+    };
+    // Il riepilogo per il cliente: ore dell'ordine, ore fatte, ore in più, extra, RNC e giorno per giorno.
+    var caricaJsPdf = function () {
+      if (window.jspdf && window.jspdf.jsPDF && window.jspdf.jsPDF.API.autoTable) return Promise.resolve();
+      var js = function (u) { return new Promise(function (ok, ko) { var sc = document.createElement('script'); sc.src = u; sc.onload = ok; sc.onerror = function () { ko(new Error('Il generatore di PDF non si è caricato: controlla la connessione.')); }; document.head.appendChild(sc); }); };
+      return js('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js').then(function () { return js('https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js'); });
+    };
+    var riepilogoTrenoPdf = function (x, bott) {
+      bott.disabled = true;
+      caricaJsPdf().then(function () {
+        var doc = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4' }), M = 16, W = 210, y = 16;
+        var logo = document.querySelector('.logo-ld img');
+        if (logo && /^data:image\/jpeg/.test(logo.src)) { try { doc.addImage(logo.src, 'JPEG', M, y - 4, 34, 21); } catch (e) {} }
+        doc.setFont('helvetica', 'bold'); doc.setFontSize(15); doc.setTextColor(23, 56, 60);
+        doc.text('Riepilogo ore di lavorazione', W - M, y + 3, { align: 'right' });
+        doc.setFontSize(12); doc.text(x.commessa + ' · Treno ' + x.treno, W - M, y + 10, { align: 'right' });
+        doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5); doc.setTextColor(80);
+        doc.text('Lavorato ' + (x.dal === x.al ? 'il ' + dataIt(x.dal) : 'dal ' + dataIt(x.dal) + ' al ' + dataIt(x.al)) + ' · stampato il ' + dataIt(oggi()), W - M, y + 16, { align: 'right' });
+        y += 26;
+        var n = function (v) { return String(Math.round((v || 0) * 100) / 100).replace('.', ','); };
+        doc.autoTable({ startY: y, margin: { left: M, right: M },
+          head: [['Attività', "Ore dell'ordine", 'Ore fatte', "Ore oltre l'ordine"]],
+          body: x.attivita.map(function (a) { return [a.nome, a.previste ? n(a.previste) : '—', n(a.ore), a.oltre ? n(a.oltre) : '—']; })
+            .concat(x.oreExtra ? [['Lavori extra su richiesta del cliente', '—', n(x.oreExtra), n(x.oreExtra)]] : [])
+            .concat([['TOTALE', x.oreOrdine ? n(x.oreOrdine) : '—', n(x.ore + (x.oreExtra || 0)), n((x.oltre || 0) + (x.oreExtra || 0))]]),
+          styles: { fontSize: 10, cellPadding: 2.2 }, headStyles: { fillColor: [23, 56, 60], textColor: 255 },
+          columnStyles: { 1: { halign: 'right' }, 2: { halign: 'right' }, 3: { halign: 'right', fontStyle: 'bold', textColor: [179, 38, 30] } },
+          didParseCell: function (h) { if (h.section === 'body' && h.row.index === h.table.body.length - 1) h.cell.styles.fontStyle = 'bold'; } });
+        y = doc.lastAutoTable.finalY + 6;
+        if (x.rnc && x.rnc.totali) {
+          doc.setFontSize(10); doc.setTextColor(23, 56, 60);
+          doc.text('RNC del cliente riparate: ' + x.rnc.fatti + ' su ' + x.rnc.totali + '  (' + x.rnc.report.join(', ') + ')', M, y); y += 6;
+        }
+        if ((x.extra || []).length) {
+          doc.autoTable({ startY: y, margin: { left: M, right: M }, head: [['Lavori extra su richiesta del cliente', 'Attività', 'Data', 'Ore']],
+            body: x.extra.map(function (e) { return [e.descrizione, e.attivita, dataIt(e.data), n(e.ore)]; }),
+            styles: { fontSize: 9, cellPadding: 1.8 }, headStyles: { fillColor: [242, 196, 67], textColor: [60, 40, 0] }, columnStyles: { 3: { halign: 'right' } } });
+          y = doc.lastAutoTable.finalY + 6;
+        }
+        doc.autoTable({ startY: y, margin: { left: M, right: M }, head: [['Data', 'Dipendente', 'Attività', 'Ore', 'Lavorazione']],
+          body: x.righe.slice().reverse().map(function (r) { return [dataIt(r.data), r.nome, r.attivita, n(r.ore), r.lavorazione]; }),
+          styles: { fontSize: 8.5, cellPadding: 1.6 }, headStyles: { fillColor: [44, 122, 123], textColor: 255 }, columnStyles: { 0: { cellWidth: 20 }, 3: { halign: 'right', cellWidth: 12 } } });
+        var pagine = doc.internal.getNumberOfPages();
+        for (var i = 1; i <= pagine; i++) { doc.setPage(i); doc.setFontSize(8); doc.setTextColor(120); doc.text('LD Montaggi New S.r.l. · pagina ' + i + ' di ' + pagine, W / 2, 290, { align: 'center' }); }
+        doc.save('Riepilogo ore ' + x.commessa + ' treno ' + x.treno + '.pdf');
+        bott.disabled = false;
+      }).catch(function (e) { bott.disabled = false; alert(e.message); });
+    };
     var disegnaTreni = function () {
       boxT.textContent = '';
       var t = nuovo('div', 'lav-testa', null, boxT);
       nuovo('h2', '', 'Treni Verniciatura', t);
       if (treni) bottone(t, 'Aggiorna', 'mini', caricaTreni);
-      nuovo('p', 'spiega', 'Le ore di ogni treno, divise per attività, da quello che inviano i dipendenti (numero del treno nel campo "Seriale cassa / N° treno"). I lavori extra chiesti dal cliente si sommano al treno ma restano a parte, in giallo.', boxT);
+      nuovo('p', 'spiega', 'Le ore di ogni treno, per attività (solo quelle pagate a treno), confrontate con le ore dell\'ordine: quelle in più, in rosso, sono da farsi pagare. I lavori extra chiesti dal cliente restano a parte, in giallo.', boxT);
       if (!treni) { nuovo('p', 'spiega', 'Carico…', boxT); return; }
+      if (datiTreni.puoOre) formOre(boxT);
       if (datiTreni.puoExtra) {
         var nuovoEx = nuovo('details', 'tr-extra tr-extra-nuovo', null, boxT);
         nuovo('summary', '', '⭐ + Lavoro extra su un treno', nuovoEx);
@@ -4056,12 +4143,12 @@ var CONFIG = (function () {
       treni.map(function (x) { return x.commessa; }).filter(function (v, i, a) { return a.indexOf(v) === i; }).sort().forEach(function (cm) { nuovo('option', '', cm, sc).value = cm; });
       sc.value = ft.commessa; f.appendChild(sc);
       var ss = document.createElement('select');
-      [['', 'Tutti'], ['in lavorazione', 'In lavorazione'], ['completato', 'Completati']].forEach(function (x) { nuovo('option', '', x[1], ss).value = x[0]; });
+      [['', 'Tutti'], ['in lavorazione', 'In lavorazione'], ['completato', 'Completati'], ['oltre', 'Oltre le ore dell\'ordine']].forEach(function (x) { nuovo('option', '', x[1], ss).value = x[0]; });
       ss.value = ft.stato; f.appendChild(ss);
       var lista = nuovo('div', '', null, boxT);
       var vis = function () {
         var s = ft.q.trim().toUpperCase().replace(/^TRENO\s*/, '');
-        return treni.filter(function (x) { return (!s || x.treno.indexOf(s) !== -1) && (!ft.commessa || x.commessa === ft.commessa) && (!ft.stato || x.stato === ft.stato); });
+        return treni.filter(function (x) { return (!s || x.treno.indexOf(s) !== -1) && (!ft.commessa || x.commessa === ft.commessa) && (!ft.stato || (ft.stato === 'oltre' ? x.oltre > 0 : x.stato === ft.stato)); });
       };
       var disegnaLista = function () {
         lista.textContent = '';
@@ -4070,11 +4157,12 @@ var CONFIG = (function () {
         nuovo('span', '', v.length + (v.length === 1 ? ' treno' : ' treni') + ' · ' + ore(v.reduce(function (s, x) { return s + x.ore + (x.oreExtra || 0); }, 0)), som);
         var csv = bottone(som, 'Scarica Excel (CSV)', 'mini', function () {
           var esc = function (s) { s = String(s == null ? '' : s); return /[";\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
-          var righe = ['Commessa;Treno;Attività;Ore;Persone;Dal;Al;Stato'];
+          var righe = ['Commessa;Treno;Attività;Ore fatte;Ore ordine;Ore oltre l\'ordine;Persone;Dal;Al;Stato'];
           v.forEach(function (x) {
-            x.attivita.forEach(function (a) { righe.push([x.commessa, x.treno, a.nome, String(a.ore).replace('.', ','), a.persone.join(', '), dataIt(a.dal), dataIt(a.al), a.stato].map(esc).join(';')); });
-            (x.extra || []).forEach(function (ex) { righe.push([x.commessa, x.treno, 'EXTRA ' + ex.attivita + ': ' + ex.descrizione, String(ex.ore).replace('.', ','), ex.chi, dataIt(ex.data), dataIt(ex.data), 'extra'].map(esc).join(';')); });
-            righe.push([x.commessa, x.treno, 'TOTALE', String(x.ore + (x.oreExtra || 0)).replace('.', ','), x.persone.join(', '), dataIt(x.dal), dataIt(x.al), x.stato].map(esc).join(';'));
+            var num = function (n) { return n ? String(n).replace('.', ',') : ''; };
+            x.attivita.forEach(function (a) { righe.push([x.commessa, x.treno, a.nome, num(a.ore) || '0', num(a.previste), num(a.oltre), a.persone.join(', '), dataIt(a.dal), dataIt(a.al), a.stato].map(esc).join(';')); });
+            (x.extra || []).forEach(function (ex) { righe.push([x.commessa, x.treno, 'EXTRA ' + ex.attivita + ': ' + ex.descrizione, num(ex.ore), '', num(ex.ore), ex.chi, dataIt(ex.data), dataIt(ex.data), 'extra'].map(esc).join(';')); });
+            righe.push([x.commessa, x.treno, 'TOTALE', num(x.ore + (x.oreExtra || 0)), num(x.oreOrdine), num(x.oltre + (x.oreExtra || 0)), x.persone.join(', '), dataIt(x.dal), dataIt(x.al), x.stato].map(esc).join(';'));
           });
           scaricaBase64('Treni Verniciatura.csv', 'text/csv', btoa(unescape(encodeURIComponent('\ufeff' + righe.join('\n')))));
         });
@@ -4091,19 +4179,38 @@ var CONFIG = (function () {
           nuovo('small', '', (x.dal === x.al ? dataIt(x.dal) : dataIt(x.dal) + ' – ' + dataIt(x.al)) + ' · ' + x.persone.length + (x.persone.length === 1 ? ' persona' : ' persone'), tit);
           var dx = nuovo('div', 'tr-dx', null, s);
           nuovo('span', 'tr-ore', ore(totale), dx);
+          if (x.oreOrdine) nuovo('small', 'tr-su', 'ordine ' + ore(x.oreOrdine), dx);
+          if (x.oltre) nuovo('span', 'tr-pill-oltre', '+ ' + ore(x.oltre) + ' oltre l\'ordine', dx);
           if (x.oreExtra) nuovo('span', 'tr-pill-extra', '+ ' + ore(x.oreExtra) + ' extra', dx);
           if (x.stato) nuovo('span', 'lav-passo ' + (x.stato === 'completato' ? 'lav-p-mom' : 'lav-p-dichiarata'), x.stato === 'completato' ? 'Completato' : 'In lavorazione', dx);
           var barre = nuovo('div', 'tr-barre', null, card);
-          var max = Math.max.apply(null, x.attivita.map(function (a) { return a.ore; }).concat([x.oreExtra || 0, 1]));
+          var max = Math.max.apply(null, x.attivita.map(function (a) { return Math.max(a.ore, a.previste || 0); }).concat([x.oreExtra || 0, 1]));
           x.attivita.forEach(function (a) {
             var r = nuovo('div', 'tr-barra', null, barre);
             var et = nuovo('div', 'tr-et', null, r);
             nuovo('span', 'tr-nome', a.nome, et);
-            nuovo('span', 'tr-val', ore(a.ore) + (totale ? ' · ' + Math.round(a.ore / totale * 100) + '%' : ''), et);
-            var b = nuovo('div', 'tr-binario', null, r);
-            nuovo('i', '', null, b).style.width = Math.max(2, a.ore / max * 100) + '%';
-            nuovo('small', 'tr-chi', a.persone.join(', ') + (a.stato ? ' · ' + a.stato : ''), r);
+            // Con le ore dell'ordine: "ore fatte / ore dell'ordine" e, se si sfora, le ore in più in rosso.
+            var val = nuovo('span', 'tr-val', a.previste ? ore(a.ore) + ' / ' + ore(a.previste) : ore(a.ore) + (totale ? ' · ' + Math.round(a.ore / totale * 100) + '%' : ''), et);
+            if (a.oltre) nuovo('b', 'tr-oltre', ' +' + ore(a.oltre), val);
+            var b = nuovo('div', 'tr-binario' + (a.previste ? ' con-ordine' : ''), null, r);
+            if (a.previste) {
+              var scala = Math.max(a.ore, a.previste);
+              nuovo('i', a.oltre ? 'pieno' : '', null, b).style.width = Math.max(a.ore ? 2 : 0, Math.min(a.ore, a.previste) / scala * 100) + '%';
+              if (a.oltre) nuovo('i', 'oltre', null, b).style.width = (a.oltre / scala * 100) + '%';
+            } else nuovo('i', '', null, b).style.width = Math.max(2, a.ore / max * 100) + '%';
+            nuovo('small', 'tr-chi', (a.persone.join(', ') || 'ancora nessuno') + (a.stato ? ' · ' + a.stato : ''), r);
           });
+          // Le RNC dei report del cliente su questo treno (solo i punti nostri, scelti da lavorare).
+          if (x.rnc && x.rnc.totali) {
+            var rr0 = nuovo('div', 'tr-rnc', null, barre);
+            nuovo('span', '', '🔍 RNC riparate: ', rr0);
+            nuovo('b', '', x.rnc.fatti + ' su ' + x.rnc.totali, rr0);
+            nuovo('small', '', ' · ' + x.rnc.report.join(', '), rr0);
+          }
+          if (x.oreOrdine || x.oreExtra) {
+            var az0 = nuovo('div', 'lav-azioni', null, card);
+            var pdfb = bottone(az0, '📄 Riepilogo ore per il cliente (PDF)', 'mini', function () { riepilogoTrenoPdf(x, pdfb); });
+          }
           // Lavori extra su richiesta del cliente: a parte, in giallo, con il loro totale.
           if ((x.extra || []).length || datiTreni.puoExtra) {
             var bx = nuovo('div', 'tr-extra', null, card);
