@@ -56,6 +56,13 @@
   .riga label { font-size: 13px; margin: 0; }
   .riga input { margin-top: 4px; }
   .senza-ore .col-seriale { grid-column: span 2; }
+  .tr-segmenti { display: flex; gap: 6px; margin: 4px 0 12px; }
+  .tr-segmenti button { flex: 1; }
+  .tr-fine { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 0 2px; }
+  .tr-fine .invia { flex: 1 1 auto; }
+  .tr-arch-commessa { font-size: 15px; margin: 14px 2px 6px; }
+  .riga .cassa-finita { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; margin: -2px 0 0; }
+  .riga .cassa-finita input { width: 22px; height: 22px; margin: 0; accent-color: #0d6e6e; }
   .nota-ore { margin: -8px 0 12px; font-size: 14px; }
   .campo-lavorazione { margin-bottom: 12px; font-size: 13px; }
   .campo-lavorazione textarea { margin-top: 4px; }
@@ -926,6 +933,24 @@
   .logo-ld { flex: none; display: flex; align-items: center; height: 64px; padding: 4px 10px; background: #fff; border-radius: 14px;
     box-shadow: 0 3px 12px rgba(16, 41, 44, .22), inset 0 0 0 1px rgba(255, 255, 255, .9); }
   .logo-ld img { display: block; height: 56px; width: auto; }
+
+  /* Menu delle schede: una barra di pillole di vetro che scorre col dito; la scelta in petrolio; il numerino rosso resta */
+  .viste-capo.schede-capo { flex-wrap: nowrap !important; overflow-x: auto; overflow-y: hidden; gap: 8px !important; padding: 8px !important;
+    border-radius: 999px !important; scroll-snap-type: x proximity; scrollbar-width: none; position: relative;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%); }
+  .viste-capo.schede-capo::-webkit-scrollbar { display: none; }
+  .viste-capo.schede-capo button { flex: 0 0 auto !important; flex-direction: row !important; gap: 6px !important; min-height: 40px !important;
+    padding: 0 16px !important; border-radius: 999px !important; font-size: 14px !important; white-space: nowrap; scroll-snap-align: center;
+    background: rgba(255, 255, 255, .38) !important; border: 1px solid rgba(255, 255, 255, .7) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), 0 2px 8px rgba(20, 60, 70, .10) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(180%); backdrop-filter: blur(18px) saturate(180%); }
+  .viste-capo.schede-capo button .icona-scheda { font-size: 17px; }
+  .viste-capo.schede-capo button.da-fare, .viste-capo.schede-capo button.da-fare[aria-pressed=true] { color: inherit; }
+  .viste-capo.schede-capo button.da-fare:not([aria-pressed=true]) { background: rgba(255, 255, 255, .38) !important; }
+  .viste-capo.schede-capo button[aria-pressed=true] { background: linear-gradient(135deg, rgba(44, 122, 123, .92) 0%, rgba(56, 163, 165, .92) 100%) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .45), 0 4px 14px rgba(20, 70, 75, .35) !important; }
+  .viste-capo.schede-capo .badge-scheda { margin-left: 2px; }
   .accesso .logo-ld { width: max-content; margin: 0 auto 12px; height: 74px; padding: 6px 12px; }
   .accesso .logo-ld img { height: 62px; }
   @media (max-width: 380px) { .logo-ld { height: 54px; padding: 3px 8px; } .logo-ld img { height: 46px; } }
@@ -1345,7 +1370,7 @@
 // ----- Pagina su GitHub: collegamento diretto al server di Google -----
 (function () {
   var SERVER = "https://xwrzezvzsjjpghdjypox.supabase.co/functions/v1/api";
-  var NOMI = ["abbigliamento", "accediGestione", "accediOperatore", "accediPersonale", "accediReport", "accediSezione", "aggiornaFineAssenza", "aggiungiDipendente", "aggiungiExtra", "allegaCertificato", "allegaCertificatoPersonale", "allegaFotoPunto", "allegaFotoPuntoCapo", "annullaAbbigliamento", "annullaAbbigliamentoMio", "annullaMiaRichiesta", "annullaPrestito", "assenzeDelMese", "attestatiDelMese", "attrezzature", "av_abbigliamentoElenco", "av_accedi", "av_aggiorna", "av_aggiungiDipendente", "av_aggiungiTipo", "av_attivaAttivita", "av_azzeraStoria", "av_cambiaMioPin", "av_caricaPosizioni", "av_collegaRegistroOre", "av_confermaDichiarata", "av_consegnaAbbigliamento", "av_controlla", "av_dpiElenco", "av_eliminaAttivita", "av_eliminaDipendente", "av_eliminaStatino", "av_ignoraDichiarata", "av_inviaAttivita", "av_linkRegistro", "av_modificaAttivita", "av_modificaOrdine", "av_modificaPosizioni", "av_modificaTipo", "av_nuovoOrdine", "av_nuovoPin", "av_oreOrdiniTreno", "av_pagina", "av_respingiAbbigliamento", "av_salvaCassa", "av_salvaConsumabili", "av_salvaDpi", "av_salvaGruppiOrdini", "av_salvaMomConfig", "av_salvaNotaMom", "av_salvaOreOrdiniTreno", "av_salvaStatino", "av_scaricaAbbigliamentoAv", "av_scaricaStatino", "av_segna", "av_segnaMom", "av_storico", "azzeraRegistro", "cambiaMioPin", "cambiaPinMaster", "cambiaPunto", "cambiaSquadra", "caricaReport", "chiudiReport", "comunicaMalattia", "confermaRicevuto", "consegnaAttrezzi", "consegnaBumpCap", "creaPrestito", "documentoRichiesta", "eliminaAssenza", "eliminaDipendente", "eliminaExtra", "eliminaReport", "fileReport", "firmaMod25", "fotoPunto", "generaPinMancanti", "gestisciRichiesta", "importaAttrezzi", "inviaCompilazione", "inviaRichiesta", "lavoriDaConfermare", "lavoriGiorno", "lavoriStorico", "lavoriTreni", "mieAttrezzature", "mieMalattie", "mieRichieste", "mioAbbigliamento", "mioDocumento", "mod25Settimana", "nuovoPin", "personaAvanzamenti", "pinPersonale", "registraAssenza", "richiediAbbigliamento", "richiediAbbigliamentoMio", "rientroAttrezzo", "riepilogoPersonale", "salvaAssegnazioni", "salvaAttestati", "salvaAttrezzo", "salvaOrdineSchede", "salvaOreTreno", "salvaSquadra", "scaricaAbbigliamento", "scaricaAttestato", "scaricaMioAbbigliamento", "scaricaMioModulo", "scaricaMod25", "scaricaModulo", "scaricaResoconto", "scaricaRiepilogoPersonale", "segnaEsitiVisti", "segnaMom", "segnaPunto", "segnaRichiesteViste", "statoCompilazioni", "titoloPagina", "vediCertificato", "vediResoconto"];
+  var NOMI = ["abbigliamento", "accediGestione", "accediOperatore", "accediPersonale", "accediReport", "accediSezione", "aggiornaFineAssenza", "aggiungiDipendente", "aggiungiExtra", "allegaCertificato", "allegaCertificatoPersonale", "allegaFotoPunto", "allegaFotoPuntoCapo", "annullaAbbigliamento", "annullaAbbigliamentoMio", "annullaMiaRichiesta", "annullaPrestito", "assenzeDelMese", "attestatiDelMese", "attrezzature", "av_abbigliamentoElenco", "av_accedi", "av_aggiorna", "av_aggiungiDipendente", "av_aggiungiTipo", "av_attivaAttivita", "av_azzeraStoria", "av_cambiaMioPin", "av_caricaPosizioni", "av_collegaRegistroOre", "av_confermaDichiarata", "av_consegnaAbbigliamento", "av_controlla", "av_dpiElenco", "av_eliminaAttivita", "av_eliminaDipendente", "av_eliminaStatino", "av_ignoraDichiarata", "av_inviaAttivita", "av_linkRegistro", "av_modificaAttivita", "av_modificaOrdine", "av_modificaPosizioni", "av_modificaTipo", "av_nuovoOrdine", "av_nuovoPin", "av_oreOrdiniTreno", "av_pagina", "av_respingiAbbigliamento", "av_salvaCassa", "av_salvaConsumabili", "av_salvaDpi", "av_salvaGruppiOrdini", "av_salvaMomConfig", "av_salvaNotaMom", "av_salvaOreOrdiniTreno", "av_salvaStatino", "av_scaricaAbbigliamentoAv", "av_scaricaStatino", "av_segna", "av_segnaMom", "av_storico", "azzeraRegistro", "cambiaMioPin", "cambiaPinMaster", "cambiaPunto", "cambiaSquadra", "caricaReport", "chiudiReport", "chiudiTreno", "comunicaMalattia", "confermaRicevuto", "consegnaAttrezzi", "consegnaBumpCap", "creaPrestito", "documentoRichiesta", "eliminaAssenza", "eliminaDipendente", "eliminaExtra", "eliminaReport", "fileReport", "firmaMod25", "fotoPunto", "generaPinMancanti", "gestisciRichiesta", "importaAttrezzi", "inviaCompilazione", "inviaRichiesta", "lavoriGiorno", "lavoriStorico", "lavoriTreni", "mieAttrezzature", "mieMalattie", "mieRichieste", "mioAbbigliamento", "mioDocumento", "mod25Settimana", "nuovoPin", "personaAvanzamenti", "pinPersonale", "registraAssenza", "riapriTreno", "richiediAbbigliamento", "richiediAbbigliamentoMio", "rientroAttrezzo", "riepilogoPersonale", "salvaAssegnazioni", "salvaAttestati", "salvaAttrezzo", "salvaOrdineSchede", "salvaOreTreno", "salvaSquadra", "scaricaAbbigliamento", "scaricaAttestato", "scaricaMioAbbigliamento", "scaricaMioModulo", "scaricaMod25", "scaricaModulo", "scaricaResoconto", "scaricaRiepilogoPersonale", "segnaEsitiVisti", "segnaMom", "segnaPunto", "segnaRichiesteViste", "statoCompilazioni", "titoloPagina", "vediCertificato", "vediResoconto"];
   function chiamaServer(nome, args) {
     // text/plain: Google risponde senza controlli preliminari, più veloce.
     return fetch(SERVER, { method: 'POST', body: JSON.stringify({ f: nome, a: args }), redirect: 'follow' })
@@ -3802,8 +3827,8 @@ var CONFIG = (function () {
   // Avviso in cima alla pagina: chi ha compilato il turno e chi manca ancora.
   /* ----- Lavori: quello che inseriscono i dipendenti, in un posto solo ----- */
   // Oggi (chi ha inviato cosa e chi manca), Da confermare (casse dichiarate da registrare negli avanzamenti), Storico.
-  // Ogni cassa mostra il suo punto: Dichiarata → Confermata → Avanzata → A MOM.
-  var PASSI_LAVORO = [['dichiarata', 'Dichiarata'], ['confermata', 'Confermata'], ['avanzata', 'Avanzata'], ['mom', 'A MOM']];
+  // Ogni cassa mostra il suo punto: Inserita (ore mandate) → Finita (spunta del dipendente o treno chiuso) → Avanzata → A MOM.
+  var PASSI_LAVORO = [['dichiarata', 'Inserita'], ['confermata', 'Finita'], ['avanzata', 'Avanzata'], ['mom', 'A MOM']];
   function passoLavoro(passo, padre) {
     if (!passo) return null;
     var box = nuovo('span', 'lav-passo lav-p-' + passo.stato, null, padre);
@@ -3814,14 +3839,14 @@ var CONFIG = (function () {
     punti.setAttribute('aria-hidden', 'true');
     for (var i = 1; i <= tot; i++) nuovo('i', i <= n ? 'si' : '', null, punti);
     var testo = PASSI_LAVORO[n - 1][1];
-    if (passo.stato === 'confermata' && passo.avanza) testo = 'Confermata · da avanzare';
+    if (passo.stato === 'confermata' && passo.avanza) testo = 'Finita · da avanzare';
     if (passo.stato === 'avanzata' && passo.mom) testo = 'Avanzata · da inserire a MOM';
     nuovo('span', '', testo, box);
     var dett = [];
-    if (passo.conferma) dett.push('confermata il ' + dataBreve(passo.conferma));
+    if (passo.conferma) dett.push('finita il ' + dataBreve(passo.conferma));
     if (passo.avIl) dett.push('avanzata il ' + dataBreve(passo.avIl.slice(0, 10)) + (passo.ordine ? ' (ordine ' + passo.ordine + ')' : ''));
     if (passo.momIl) dett.push('a MOM il ' + dataBreve(passo.momIl.slice(0, 10)));
-    box.title = dett.join(' · ') || 'Dichiarata dal dipendente: da confermare';
+    box.title = dett.join(' · ') || 'Inserita dal dipendente: non ancora finita';
     return box;
   }
   function legendaPassi(padre) {
@@ -3831,10 +3856,12 @@ var CONFIG = (function () {
       var s = nuovo('span', 'lav-passo lav-p-' + p[0], null, l);
       nuovo('span', '', p[1], s);
     });
-    nuovo('small', '', 'Dichiarata dal dipendente → confermata dal capo → avanzata dagli addetti agli avanzamenti → inserita a MOM.', l);
+    nuovo('small', '', 'Inserita dal dipendente → finita (spunta "Cassa finita" o treno chiuso) → avanzata dagli addetti agli avanzamenti → inserita a MOM.', l);
   }
 
   function avviaLavori(cred, conConferma) {
+    // "Da confermare" non c'è più: le casse le chiude il dipendente con la spunta "Cassa finita".
+    conConferma = false;
     $('compilazioni').hidden = true;   // sostituita da Lavori → Oggi
     ['lavori-oggi', 'lavori-storico'].forEach(function (id) { $(id).hidden = false; });
     $('lavori-conferma').hidden = !conConferma;
@@ -4039,7 +4066,7 @@ var CONFIG = (function () {
     var boxT = $('lavori-treni');
     if (CONFIG.sezione && CONFIG.sezione.reparto !== 'Verniciatura') return;   // solo capo cantiere e Verniciatura
     boxT.hidden = false;
-    var treni = null, datiTreni = {}, ft = { q: '', stato: '', commessa: '', aperto: '' };
+    var treni = null, datiTreni = {}, ft = { q: '', stato: '', commessa: '', aperto: '', archivio: false };
     // Il modulo per un lavoro extra: attività di Verniciatura, descrizione, ore, data, chi l'ha fatto.
     var formExtra = function (padre, commessa, treno) {
       var f = nuovo('div', 'tr-extra-form', null, padre);
@@ -4147,10 +4174,18 @@ var CONFIG = (function () {
       var t = nuovo('div', 'lav-testa', null, boxT);
       nuovo('h2', '', 'Treni Verniciatura', t);
       if (treni) bottone(t, 'Aggiorna', 'mini', caricaTreni);
-      nuovo('p', 'spiega', 'Le ore di ogni treno, per attività (solo quelle pagate a treno), confrontate con le ore dell\'ordine: quelle in più, in rosso, sono da farsi pagare. I lavori extra chiesti dal cliente restano a parte, in giallo.', boxT);
+      nuovo('p', 'spiega', 'Le ore di ogni treno, per attività (solo quelle pagate a treno), confrontate con le ore dell\'ordine: quelle in più, in rosso, sono da farsi pagare. I lavori extra chiesti dal cliente restano a parte, in giallo. Quando un treno è finito premi Treno finito: va in Archivio.', boxT);
       if (!treni) { nuovo('p', 'spiega', 'Carico…', boxT); return; }
-      if (datiTreni.puoOre) formOre(boxT);
-      if (datiTreni.puoExtra) {
+      if (datiTreni.avviso) { nuovo('p', 'avviso', datiTreni.avviso, boxT); datiTreni.avviso = ''; }
+      // In lavorazione / Archivio (i treni chiusi).
+      var seg = nuovo('div', 'segmenti tr-segmenti', null, boxT);
+      var nArch = treni.filter(function (x) { return x.chiuso; }).length;
+      [[false, 'In lavorazione (' + (treni.length - nArch) + ')'], [true, '🗄️ Archivio (' + nArch + ')']].forEach(function (o) {
+        var bt = bottone(seg, o[1], '', function () { ft.archivio = o[0]; ft.stato = ''; disegnaTreni(); });
+        bt.setAttribute('aria-pressed', String(ft.archivio === o[0]));
+      });
+      if (datiTreni.puoOre && !ft.archivio) formOre(boxT);
+      if (datiTreni.puoExtra && !ft.archivio) {
         var nuovoEx = nuovo('details', 'tr-extra tr-extra-nuovo', null, boxT);
         nuovo('summary', '', '⭐ + Lavoro extra su un treno', nuovoEx);
         formExtra(nuovoEx, '', '');
@@ -4159,15 +4194,18 @@ var CONFIG = (function () {
       var q = document.createElement('input'); q.type = 'search'; q.placeholder = 'Numero treno…'; q.value = ft.q; q.className = 'lav-cerca'; f.appendChild(q);
       var sc = document.createElement('select');
       nuovo('option', '', 'Tutte le commesse', sc).value = '';
-      treni.map(function (x) { return x.commessa; }).filter(function (v, i, a) { return a.indexOf(v) === i; }).sort().forEach(function (cm) { nuovo('option', '', cm, sc).value = cm; });
+      treni.filter(function (x) { return !!x.chiuso === ft.archivio; }).map(function (x) { return x.commessa; }).filter(function (v, i, a) { return a.indexOf(v) === i; }).sort().forEach(function (cm) { nuovo('option', '', cm, sc).value = cm; });
       sc.value = ft.commessa; f.appendChild(sc);
       var ss = document.createElement('select');
-      [['', 'Tutti'], ['in lavorazione', 'In lavorazione'], ['completato', 'Completati'], ['oltre', 'Oltre le ore dell\'ordine']].forEach(function (x) { nuovo('option', '', x[1], ss).value = x[0]; });
+      [['', 'Tutti'], ['oltre', 'Oltre le ore dell\'ordine']].forEach(function (x) { nuovo('option', '', x[1], ss).value = x[0]; });
       ss.value = ft.stato; f.appendChild(ss);
       var lista = nuovo('div', '', null, boxT);
       var vis = function () {
         var s = ft.q.trim().toUpperCase().replace(/^TRENO\s*/, '');
-        return treni.filter(function (x) { return (!s || x.treno.indexOf(s) !== -1) && (!ft.commessa || x.commessa === ft.commessa) && (!ft.stato || (ft.stato === 'oltre' ? x.oltre > 0 : x.stato === ft.stato)); });
+        var v = treni.filter(function (x) { return !!x.chiuso === ft.archivio && (!s || x.treno.indexOf(s) !== -1) && (!ft.commessa || x.commessa === ft.commessa) && (!ft.stato || (ft.stato === 'oltre' ? x.oltre > 0 : x.stato === ft.stato)); });
+        // In archivio: per commessa, poi gli ultimi chiusi per primi.
+        if (ft.archivio) v.sort(function (a, b) { return a.commessa.localeCompare(b.commessa) || (a.chiuso.il < b.chiuso.il ? 1 : a.chiuso.il > b.chiuso.il ? -1 : 0); });
+        return v;
       };
       var disegnaLista = function () {
         lista.textContent = '';
@@ -4188,9 +4226,11 @@ var CONFIG = (function () {
           scaricaBase64('Treni Verniciatura.csv', 'text/csv', btoa(unescape(encodeURIComponent('\ufeff' + righe.join('\n')))));
         });
         csv.disabled = !v.length;
-        if (!v.length) nuovo('p', 'spiega', treni.length ? 'Nessun treno con questi filtri.' : 'Ancora nessun treno: le ore arrivano quando i dipendenti della Verniciatura compilano.', lista);
+        if (!v.length) nuovo('p', 'spiega', ft.archivio ? 'Nessun treno in archivio' + (ft.q || ft.commessa || ft.stato ? ' con questi filtri.' : ': ci vanno quando premete Treno finito.') : treni.length ? 'Nessun treno in lavorazione con questi filtri.' : 'Ancora nessun treno: le ore arrivano quando i dipendenti della Verniciatura compilano.', lista);
+        var ultimaC = '';
         v.slice(0, 200).forEach(function (x) {
           var totale = x.ore + (x.oreExtra || 0);
+          if (ft.archivio && x.commessa !== ultimaC) { ultimaC = x.commessa; nuovo('h3', 'tr-arch-commessa', x.commessa, lista); }
           var card = nuovo('details', 'lav-card tr-card', null, lista);
           if (ft.aperto === x.commessa + '|' + x.treno) card.open = true;
           card.addEventListener('toggle', function () { if (card.open) ft.aperto = x.commessa + '|' + x.treno; });
@@ -4202,7 +4242,8 @@ var CONFIG = (function () {
           nuovo('span', 'tr-ore', ore(totale), dx);
           if (x.oltre) nuovo('span', 'tr-pill-oltre', '+ ' + ore(x.oltre) + ' oltre l\'ordine', dx);
           if (x.oreExtra) nuovo('span', 'tr-pill-extra', '+ ' + ore(x.oreExtra) + ' extra', dx);
-          if (x.stato) nuovo('span', 'lav-passo ' + (x.stato === 'completato' ? 'lav-p-mom' : 'lav-p-dichiarata'), x.stato === 'completato' ? 'Completato' : 'In lavorazione', dx);
+          if (x.chiuso) nuovo('span', 'lav-passo lav-p-mom', 'Chiuso il ' + dataIt(x.chiuso.il.slice(0, 10)), dx);
+          else if (x.stato) nuovo('span', 'lav-passo ' + (x.stato === 'completato' ? 'lav-p-mom' : 'lav-p-dichiarata'), x.stato === 'completato' ? 'Completato' : 'In lavorazione', dx);
           var barre = nuovo('div', 'tr-barre', null, card);
           // Un riquadro per ogni ordine (verniciatura; targhette e attrezzi di corredo): ore fatte / ore dell'ordine.
           (x.ordini || []).forEach(function (o) {
@@ -4239,7 +4280,8 @@ var CONFIG = (function () {
             nuovo('small', '', ' · ' + x.rnc.report.join(', '), rr0);
           }
           // Lavori extra su richiesta del cliente: a parte, in giallo, con il loro totale.
-          if ((x.extra || []).length || datiTreni.puoExtra) {
+          var puoEx = datiTreni.puoExtra && !x.chiuso;
+          if ((x.extra || []).length || puoEx) {
             var bx = nuovo('div', 'tr-extra', null, card);
             var te = nuovo('div', 'tr-extra-testa', null, bx);
             nuovo('strong', '', '⭐ Lavori extra su richiesta del cliente', te);
@@ -4251,7 +4293,7 @@ var CONFIG = (function () {
               nuovo('strong', '', ex.descrizione, t2);
               nuovo('small', '', ex.attivita + ' · ' + dataIt(ex.data) + (ex.chi ? ' · fatto da ' + ex.chi : '') + ' · scritto da ' + ex.da, t2);
               nuovo('span', 'tr-val', ore(ex.ore), r);
-              if (datiTreni.puoExtra) {
+              if (puoEx) {
                 var del = bottone(r, '✕', 'mini', function () {
                   if (!confirm('Elimino il lavoro extra "' + ex.descrizione + '" (' + ore(ex.ore) + ')?')) return;
                   del.disabled = true;
@@ -4261,7 +4303,33 @@ var CONFIG = (function () {
                 del.setAttribute('aria-label', 'Elimina il lavoro extra');
               }
             });
-            if (datiTreni.puoExtra) formExtra(bx, x.commessa, x.treno);
+            if (puoEx) formExtra(bx, x.commessa, x.treno);
+          }
+          // Treno finito → archivio; dall'archivio solo il capo cantiere lo riapre.
+          var fine = nuovo('div', 'tr-fine', null, card);
+          if (x.chiuso) {
+            nuovo('small', 'tr-chi', 'Chiuso il ' + dataIt(x.chiuso.il.slice(0, 10)) + (x.chiuso.il.length > 10 ? ' alle ' + x.chiuso.il.slice(11, 16) : '') + (x.chiuso.da ? ' da ' + x.chiuso.da : '') + '. Non si possono più scrivere ore su questo treno.', fine);
+            if (datiTreni.puoRiaprire) {
+              var ria = bottone(fine, 'Riapri il treno', 'mini', function () {
+                if (!confirm('Riapro ' + x.commessa + ' treno ' + x.treno + '? Torna tra quelli in lavorazione e si possono di nuovo scrivere ore.')) return;
+                ria.disabled = true;
+                google.script.run.withSuccessHandler(function (rr) { datiTreni = rr; treni = rr.treni; ft.archivio = false; ft.aperto = x.commessa + '|' + x.treno; disegnaTreni(); })
+                  .withFailureHandler(function (e2) { ria.disabled = false; alert(e2.message); }).riapriTreno(cred, x.commessa, x.treno);
+              });
+            }
+          } else if (datiTreni.puoChiudere) {
+            var chiudi = bottone(fine, '✅ Treno finito', 'invia', function () {
+              var righeC = ['Chiudo ' + x.commessa + ' · treno ' + x.treno + '?', ''];
+              (x.ordini || []).forEach(function (o) {
+                righeC.push('Ordine ' + o.nome + ': ' + ore(o.ore) + (o.previste ? ' su ' + ore(o.previste) + (o.oltre ? ' (+' + ore(o.oltre) + ' oltre l\'ordine)' : '') : ' (ore dell\'ordine non scritte)'));
+              });
+              if (x.oreExtra) righeC.push('Lavori extra del cliente: ' + ore(x.oreExtra));
+              righeC.push('', 'Va in archivio, negli avanzamenti diventa da avanzare e non si potranno più scrivere ore su questo treno.');
+              if (!confirm(righeC.join('\n'))) return;
+              chiudi.disabled = true; chiudi.textContent = 'Chiudo…';
+              google.script.run.withSuccessHandler(function (rr) { datiTreni = rr; treni = rr.treni; disegnaTreni(); })
+                .withFailureHandler(function (e2) { chiudi.disabled = false; chiudi.textContent = '✅ Treno finito'; alert(e2.message); }).chiudiTreno(cred, x.commessa, x.treno);
+            });
           }
           var dett = nuovo('div', 'tr-dett', null, card);
           nuovo('h4', '', 'Giorno per giorno', dett);
@@ -6721,7 +6789,7 @@ var CONFIG = (function () {
     return etichetta;
   }
 
-  function creaRiga(contenitore, conOre) {
+  function creaRiga(contenitore, conOre, conFinita) {
     var riga = document.createElement('div');
     riga.className = 'riga';
 
@@ -6739,7 +6807,7 @@ var CONFIG = (function () {
       if (contenitore.children.length > 1) {
         riga.remove();
       } else {
-        riga.querySelectorAll('input').forEach(function (i) { i.value = ''; });
+        riga.querySelectorAll('input').forEach(function (i) { if (i.type === 'checkbox') i.checked = false; else i.value = ''; });
       }
       modificato();
     });
@@ -6752,6 +6820,17 @@ var CONFIG = (function () {
       riga.appendChild(campoRiga('Ore', ore));
     }
     riga.appendChild(rimuovi);
+    // Le casse seguite negli avanzamenti: il dipendente segna quando la cassa è finita (va da sola negli avanzamenti).
+    if (conFinita) {
+      var fin = document.createElement('label');
+      fin.className = 'cassa-finita';
+      var spunta = document.createElement('input');
+      spunta.type = 'checkbox';
+      spunta.className = 'finita';
+      fin.appendChild(spunta);
+      fin.appendChild(document.createTextNode(' Cassa finita'));
+      riga.appendChild(fin);
+    }
     contenitore.appendChild(riga);
     return riga;
   }
@@ -6826,14 +6905,14 @@ var CONFIG = (function () {
       var righe = document.createElement('div');
       righe.className = 'righe';
       scheda.appendChild(righe);
-      creaRiga(righe, attivita.ore);
+      creaRiga(righe, attivita.ore, attivita.cassaFinita);
 
       var aggiungi = document.createElement('button');
       aggiungi.type = 'button';
       aggiungi.className = 'aggiungi';
       aggiungi.textContent = '+ Aggiungi cassa / treno';
       aggiungi.addEventListener('click', function () {
-        creaRiga(righe, attivita.ore).querySelector('.seriale').focus();
+        creaRiga(righe, attivita.ore, attivita.cassaFinita).querySelector('.seriale').focus();
       });
       scheda.appendChild(aggiungi);
 
@@ -7077,7 +7156,8 @@ var CONFIG = (function () {
         if (!seriale.value.trim()) segna(seriale);
         if (ore && !n) segna(ore);
         righeAttivita++;
-        righe.push({ commessa: b.dataset.commessa, attivita: b.dataset.attivita, seriale: seriale.value.trim(), ore: n, lavorazione: lavorazione.value.trim() });
+        var fin = r.querySelector('.finita');
+        righe.push({ commessa: b.dataset.commessa, attivita: b.dataset.attivita, seriale: seriale.value.trim(), ore: n, lavorazione: lavorazione.value.trim(), finita: !!(fin && fin.checked) });
       });
       // La descrizione serve con almeno una riga, e una descrizione senza righe non va persa in silenzio.
       if (righeAttivita && !lavorazione.value.trim()) segna(lavorazione);
@@ -7132,7 +7212,7 @@ var CONFIG = (function () {
     lista.textContent = '';
     dati.righe.forEach(function (r) {
       var li = document.createElement('li');
-      li.textContent = r.commessa + ' – ' + r.attivita + ' – ' + r.seriale + (r.ore ? ': ' + formatta(r.ore) + ' h' : '') + ' – ' + r.lavorazione;
+      li.textContent = r.commessa + ' – ' + r.attivita + ' – ' + r.seriale + (r.ore ? ': ' + formatta(r.ore) + ' h' : '') + ' – ' + r.lavorazione + (r.finita ? ' – cassa finita' : '');
       lista.appendChild(li);
     });
     $('modulo').hidden = true;
@@ -7196,7 +7276,6 @@ var CONFIG = (function () {
     { id: 'report', testo: 'Ispezioni', sezioni: ['report-cliente'], sotto: SOTTO_REPORT },
     { id: 'ore', testo: 'Lavori', sezioni: ['lavori-oggi', 'lavori-conferma', 'lavori-storico', 'lavori-treni', 'mod25', 'resoconti', 'attestati', 'registro'], sotto: [
       { id: 'oggi', testo: 'Oggi', el: ['lavori-oggi'] },
-      { id: 'conferma', testo: 'Da confermare', el: ['lavori-conferma'] },
       { id: 'storico-lav', testo: 'Storico', el: ['lavori-storico'] },
       { id: 'treni-vern', testo: 'Treni Verniciatura', el: ['lavori-treni'] },
       { id: 'mod25', testo: 'Mod. 25', el: ['mod25'] },
@@ -7318,6 +7397,11 @@ var CONFIG = (function () {
       if (schedaAttiva === 'lavoro') mostraEsitoLavoro = !$('esito').hidden;
       schedaAttiva = x.id;
       presenti.forEach(function (y) { $('vista-' + y.id).setAttribute('aria-pressed', y.id === x.id ? 'true' : 'false'); });
+      // La pillola scelta si porta al centro della barra.
+      var scelta = $('vista-' + x.id);
+      if (scelta && nav.scrollWidth > nav.clientWidth) {
+        try { nav.scrollTo({ left: scelta.offsetLeft - (nav.clientWidth - scelta.offsetWidth) / 2, behavior: iniziale ? 'auto' : 'smooth' }); } catch (e) { nav.scrollLeft = scelta.offsetLeft; }
+      }
       tutte.forEach(function (id) { if ($(id)) $(id).classList.toggle('fuori-scheda', x.sezioni.indexOf(id) === -1); });
       // Se nella scheda c'è una sola sezione, si apre da sola.
       var visibili = x.sezioni.filter(function (id) { return $(id) && !$(id).hidden; });
